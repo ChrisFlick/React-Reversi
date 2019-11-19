@@ -1,7 +1,7 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 
-module.exports = function(app) {
+module.exports = function (app) {
 
   app.get("/api/auth/", function (req, res) { // Authenticates login requests
     profile = req.body
@@ -11,18 +11,22 @@ module.exports = function(app) {
         name: profile.name
       }
     }).then(function (results) {
-      if (results[0].dataValues.password === profile.password) {
+      if (results[0].dataValues.password === profile.password) { // Compare password given with profile password
         console.log(`${profile.name} has logged in`)
         res.json(true)
-        
+
       } else {
         console.log(`Failed to log in ${profile.name}`)
         res.json(false)
       }
     })
   })
-  
-  app.post("/api/profiles", function (req, res) {
+
+  /*********************
+  ****** Profiles ******
+  *********************/
+
+  app.post("/api/profiles", function (req, res) { // Create new profile
     let profile = req.body;
     console.log(`Creating profile for ${profile.name}`)
 
@@ -37,7 +41,25 @@ module.exports = function(app) {
     res.end();
 
   })
-  
+
+  app.get("/api/profiles/:id", function (req, res) {
+    db.Profile.findAll({
+      where: {
+        name: req.params.id
+      }
+    }).then( function (results) {
+      profile = results[0].dataValues
+
+      res.json({ // Returns profile information without password
+        name: profile.name,
+        elo: profile.elo,
+        wins: profile.wins,
+        loses: profile.loses
+      })
+    })
+  })
+
+
 
   // app.get('/api/lobbies', function(req,res){
   //   db.Lobby.findAll({}).then(function (results) {
