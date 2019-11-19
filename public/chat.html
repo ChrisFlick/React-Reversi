@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>peerChat</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/peerjs@1.0.0/dist/peerjs.min.js"></script>
+
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar is-link" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#">peerChat
+            </a>
+        </div>
+    </nav>
+
+    <div id="messagebox" class="container">
+        <div class="row">
+            <div class="column has-text-centered">
+                <h3 id="lobbyName" class="title is-1 has-text-centered">Lobby Name</h3>
+            </div>
+        </div>
+
+
+        <div id="log"></div>
+
+
+        <div class="row">
+            <div class="column has-text-centered">
+                <div id="textarea" class="field">
+                    <div class="control">
+                        <textarea class="textarea is-link" placeholder="Send a chat" id="message"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="column has-text-centered">
+                <div id="buttonsrow" class="field is-grouped">
+                    <div class="control">
+                        <button id="send" class="button is-link">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript" src="js/chat.js"></script>
+    <div id="scripts"></div>
+
+</body>
+
+</html>
