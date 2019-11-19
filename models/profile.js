@@ -16,6 +16,10 @@ module.exports = function(sequelize, DataTypes) { // Creating a profile module
         type: DataTypes.INTEGER,
         allowNull: false
       },
+      opponentElo: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
 
       wins: {
           type: DataTypes.INTEGER,
