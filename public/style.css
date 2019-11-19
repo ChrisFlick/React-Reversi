@@ -1,0 +1,106 @@
+
+navbar {
+    width:100%;
+
+    margin-bottom: 30px;
+}
+
+#welcometopeerchat {
+    margin-top:50px;
+    margin-bottom: 30px;
+}
+
+#selectalobby{
+    margin-top: 20px;
+    margin-bottom:20px;
+}
+
+#buttonsrow {
+    margin-top: 20px;
+    margin-bottom:20px;
+    position: fixed;
+    bottom: 0px;
+}
+
+#messagebox {
+    width: 500px;
+    height: 800px;
+}
+
+#textarea{
+    position: fixed;
+    bottom: 50px;
+    margin-top: 20px;
+    margin-bottom:20px;
+    width: 477px;
+    }
+
+h2 {
+    margin-top: 20px;
+    margin-bottom:20px;
+
+}
+
+#create {
+margin-top: 20px;
+margin-bottom: 20px;
+}
+
+#existinglobbydiv {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin-top: 20px;
+    margin-right: 30px;
+    margin-left: 30px;
+    background-color: rgb(196, 205, 255);
+      
+}
+
+#createlobby {
+    padding: 20px;
+    margin-top: 20px;
+    margin-right: 30px;
+    margin-left: 30px;
+    background-color:rgba(196, 205, 255, 0.657);
+}
+.bottom {
+    position: absolute;
+    bottom: 0px;
+  }
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+/* #createlobby {
+
+}
+
+#existinglobbydiv{
+
+} */
+
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+
+
+}
+
+/*small devices (phones, 600px and down) */
+@media only screen and (max-width: 480px) { }
+
+
+  
+  @media only screen and (max-width: 600px) {
+    #lobbyName {
+      position: relative;
+      font-size: 24px;
+    }
+    .bottom {
+        position: relative;
+    }
+    #messagebox {
+        width: 400px;
+    }
+  }

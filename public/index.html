@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>peerChat</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/peerjs@1.0.0/dist/peerjs.min.js"></script>
+
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar is-link" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">peerChat
+            </a>
+        </div>
+    </nav>
+
+    <div class="columns">
+        <div id="createlobby" class="column has-text-centered">
+            <h2 class="title is-2 has-text-centered">Create a new lobby</h2>
+            <div class="control">
+                <input id="name" class="input is-medium is-link" type="text" placeholder="Enter a lobby name...">
+            </div>
+            <button id='create' class="button is-link">Create</button>
+        </div>
+        <div id="existinglobbydiv" class="column has-text-centered">
+            <h2 class="title is-2 has-text-centered">Or join an existing lobby</h2>
+            <a href="/lobbies"><button class="button is-link">Find lobbies</button></a>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="js/index.js"></script>
+
+</html>
