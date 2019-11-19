@@ -3,6 +3,25 @@ var db = require("../models");
 
 module.exports = function(app) {
 
+  app.get("/api/auth/", function (req, res) { // Authenticates login requests
+    profile = req.body
+
+    db.Profile.findAll({
+      where: {
+        name: profile.name
+      }
+    }).then(function (results) {
+      if (results[0].dataValues.password === profile.password) {
+        console.log(`${profile.name} has logged in`)
+        res.json(true)
+        
+      } else {
+        console.log(`Failed to log in ${profile.name}`)
+        res.json(false)
+      }
+    })
+  })
+  
   app.post("/api/profiles", function (req, res) {
     let profile = req.body;
     console.log(`Creating profile for ${profile.name}`)
@@ -19,6 +38,7 @@ module.exports = function(app) {
 
   })
   
+
   // app.get('/api/lobbies', function(req,res){
   //   db.Lobby.findAll({}).then(function (results) {
   //     res.json(results)
