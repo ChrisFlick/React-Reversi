@@ -62,7 +62,7 @@ module.exports = function (app) {
     })
   })
 
-  app.put("/api/profiles/:user/:opponent/:win", function (req, res) { // Updates ELO and win/loss
+  app.put("/api/elo/:user/:opponent/:win", function (req, res) { // Updates ELO and win/loss
 
     db.Profile.findAll({ // Search for current user
       where: {
@@ -136,6 +136,23 @@ module.exports = function (app) {
     })
   })
 
+  /*********************
+  ******** Game ********
+  *********************/
+
+  app.post("api/games", function (req, res) {
+    let game = req.body
+    
+    db.Game.create({
+      id: game.id,
+      player1: game.player1,
+      player2: game.player2,
+      moves: [],
+      active: true,
+    })
+
+  })
+
 
   //   app.put("/api/lobbies/:id", function (req, res) {
   //     db.Lobby.update(
@@ -186,3 +203,6 @@ module.exports = function (app) {
 
 
 }
+
+
+
