@@ -1,13 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
 
-import './index.css';
-import Game from './components/game.js'
-import  SignInSide from './components/signIn'
-//TODO: change to app to base whole sites renders
-
-ReactDOM.render(
-  <Game />,
-  document.getElementById('root')
-);
-
+ReactDOM.render(<App />, document.getElementById("root"));
