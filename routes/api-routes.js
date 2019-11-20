@@ -174,11 +174,38 @@ module.exports = function (app) {
     db.Lobby.create({
       id: lobby.id,
       name: lobby.name,
-      player1: lobby.player1
+      player1: lobby.player1,
+      hasRoom: true
     })
     res.end();
   })
 
+  app.get("/api/lobbies/all", function(req, res) {
+    db.Lobby.findAll({})
+      .then(function (results) {
+        res.json(results)
+      })
+  })
+
+  app.get("/api/lobbies/:id", function(req, res) {
+    db.Lobby.findAll({
+      where: {
+        id: req.params.id,
+      }
+    }).then(function (results) {
+      res.json(results)
+    })
+  })
+
+  app.put("/api/lobbies/:id", function (req, res) {
+    let lobby = req.body;
+
+    db.Lobby.update(
+      {player2: lobby.player2},
+      {where: {id: lobby.id}}
+    )
+    res.end();
+  })
 
   
   // app.post("/api/lobbies", function (req, res) {
