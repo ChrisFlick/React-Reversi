@@ -85,9 +85,9 @@ module.exports = function (app) {
         let elo = totalElo + winLossRatio * 400
         let games = user.wins + user.loses + 1
         elo = elo / games
-        
 
-        if (elo < 1 ) {
+
+        if (elo < 1) { // Ensurre ELO never drops below 1
           elo = 1;
         }
 
@@ -106,19 +106,19 @@ module.exports = function (app) {
               res.end()
             })
         } else if (win === "false") {
-            db.Profile.update(
-              {
-                opponentElo: totalElo,
-                wins: user.loses + 1,
-                elo: elo
-              },
-              {
-                where: {
-                  name: req.params.user
-                }
-              }).then((results) => {
-                res.end()
-              })
+          db.Profile.update(
+            {
+              opponentElo: totalElo,
+              wins: user.loses + 1,
+              elo: elo
+            },
+            {
+              where: {
+                name: req.params.user
+              }
+            }).then((results) => {
+              res.end()
+            })
         }
       })
     })
@@ -140,19 +140,58 @@ module.exports = function (app) {
   ******** Game ********
   *********************/
 
-  app.post("api/games", function (req, res) {
+  app.post("/api/games", function (req, res) {
     let game = req.body
-    
+
     db.Game.create({
       id: game.id,
       player1: game.player1,
       player2: game.player2,
-      moves: [],
-      active: true,
+      isActive: true,
+      moves: ""
     })
 
+    res.end();
   })
 
+  app.put("/api/games/:id", function (req, res) {
+    let game = req.body;
+
+    db.Game.update(
+      { moves: game.moves },
+      { where: { id: req.params.id } }
+    )
+  })
+
+  /*********************
+  ****** Lobbies *******
+  *********************/
+
+  app.post("/api/lobbies", function (req, res) {
+    let lobby = req.body;
+
+    console.log(`Creating lobby ${lobby.name}`)
+    db.Lobby.create({
+      id: lobby.id,
+      name: lobby.name,
+      player1: lobby.player1
+    })
+    res.end();
+  })
+
+
+  
+  // app.post("/api/lobbies", function (req, res) {
+  //   let lobby = req.body
+
+  //   console.log(`deleting ${lobby.name}`)
+  //   db.Lobby.create({
+  //     id: lobby.id,
+  //     lobby_name: lobby.name,
+  //     user2Id: null
+  //   })
+  //   res.end();
+  // })
 
   //   app.put("/api/lobbies/:id", function (req, res) {
   //     db.Lobby.update(
@@ -188,17 +227,6 @@ module.exports = function (app) {
   //   })
   // })
 
-  // app.post("/api/lobbies", function (req, res) {
-  //   let lobby = req.body
-
-  //   console.log(`deleting ${lobby.name}`)
-  //   db.Lobby.create({
-  //     id: lobby.id,
-  //     lobby_name: lobby.name,
-  //     user2Id: null
-  //   })
-  //   res.end();
-  // })
 
 
 
