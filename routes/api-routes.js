@@ -174,62 +174,38 @@ module.exports = function (app) {
     db.Lobby.create({
       id: lobby.id,
       name: lobby.name,
-      player1: lobby.player1
+      player1: lobby.player1,
+      hasRoom: true
     })
     res.end();
   })
 
+  app.get("/api/lobbies/all", function(req, res) {
+    db.Lobby.findAll({})
+      .then(function (results) {
+        res.json(results)
+      })
+  })
 
-  
-  // app.post("/api/lobbies", function (req, res) {
-  //   let lobby = req.body
+  app.get("/api/lobbies/:id", function(req, res) {
+    db.Lobby.findAll({
+      where: {
+        id: req.params.id,
+      }
+    }).then(function (results) {
+      res.json(results)
+    })
+  })
 
-  //   console.log(`deleting ${lobby.name}`)
-  //   db.Lobby.create({
-  //     id: lobby.id,
-  //     lobby_name: lobby.name,
-  //     user2Id: null
-  //   })
-  //   res.end();
-  // })
+  app.put("/api/lobbies/:id", function (req, res) {
+    let lobby = req.body;
 
-  //   app.put("/api/lobbies/:id", function (req, res) {
-  //     db.Lobby.update(
-  //       {user2Id: JSON.stringify(req.body.user2Id) },
-  //       {where: {id: req.params.id}}
-  //     )
-  //     res.end();
-  //   })
-
-  //   app.delete("/api/lobbies/:id", function (req, res) {
-  //     console.log(`DELETING ${req.params.id}`)
-  //     db.Lobby.destroy({
-  //       where: {
-  //         id: req.params.id
-  //       }
-  //     })
-  //     res.end();
-  //   })
-
-  // app.get('/api/lobbies', function(req,res){
-  //   db.Lobby.findAll({}).then(function (results) {
-  //     res.json(results)
-  //   })
-  // })
-
-  // app.get('/api/lobbies/:id', function(req, res) {
-  //   db.Lobby.findAll({
-  //     where: {
-  //       id: req.params.id,
-  //     }
-  //   }).then(function (results) {
-  //     res.json(results)
-  //   })
-  // })
-
-
-
-
+    db.Lobby.update(
+      {player2: lobby.player2},
+      {where: {id: lobby.id}}
+    )
+    res.end();
+  })
 }
 
 
