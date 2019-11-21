@@ -1,13 +1,11 @@
 import React, { createContext, useReducer, useContext } from "react";
 import {
-  SET_CURRENT_POST,
-  REMOVE_POST,
-  UPDATE_POSTS,
-  ADD_POST,
-  ADD_FAVORITE,
-  UPDATE_FAVORITES,
-  REMOVE_FAVORITE,
-  LOADING
+  ADD_CHAT,
+  UPDATE_BOARD,
+  UPDATE_OPPONENT_ELO,
+  UPDATE_OPPONENT_SCORE,
+  UPDATE_PLAYER_ELO,
+  UPDATE_PLAYER_SCORE,
 } from "./actions";
 
 const StoreContext = createContext();
@@ -15,77 +13,72 @@ const { Provider } = StoreContext;
 
 const reducer = (state, action) => {
   switch (action.type) {
-  case SET_CURRENT_POST:
-    return {
-      ...state,
-      currentPost: action.post,
-      loading: false
-    };
 
-  case UPDATE_POSTS:
-    return {
-      ...state,
-      posts: [...action.posts],
-      loading: false
-    };
+    case UPDATE_BOARD:
+      return {
+        ...state,
+        board: action.board,
+      }
 
-  case ADD_POST:
-    return {
-      ...state,
-      posts: [action.post, ...state.posts],
-      loading: false
-    };
+    case UPDATE_PLAYER_ELO: 
+      return {
+        ...state,
+        playerElo: action.playerElo
+      }
 
-  case REMOVE_POST:
-    return {
-      ...state,
-      posts: state.posts.filter((post) => {
-        return post._id !== action._id; 
-      })
-    };
+    case UPDATE_OPPONENT_ELO: 
+      return {
+        ...state,
+        opponentElo: action.opponentElo
+      }
 
-  case ADD_FAVORITE:
-    return {
-      ...state,
-      favorites: [action.post, ...state.favorites],
-      loading: false
-    };
+    case UPDATE_PLAYER_SCORE:
+      return {
+        ...state,
+        playerScore: action.playerScore
+      }
 
-  case UPDATE_FAVORITES:
-    return {
-      ...state,
-      favorites: [...state.favorites],
-      loading: false
-    };
+    case UPDATE_OPPONENT_SCORE:
+      return {
+        ...state,
+        opponentScore: action.opponentScore
+      }
 
-  case REMOVE_FAVORITE:
-    return {
-      ...state,
-      favorites: state.favorites.filter((post) => {
-        return post._id !== action._id; 
-      })
-    };
 
-  case LOADING:
-    return {
-      ...state,
-      loading: true
-    };
+    case ADD_CHAT:
+      return {
+        ...state,
+        chat: [...state.chat, action.chat]
+      }
+
 
   default:
     return state;
   }
 };
 
-const StoreProvider = ({ value = [], ...props }) => {
+const ReversiState = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
    board: [[]],
    chat: [],
    playerElo: 0,
    opponentElo: 0,
-   playerScoere: 2,
+   playerScore: 2,
    opponentScore: 2,
   });
+
+// const StoreProvider = ({ value = [], ...props }) => {
+//   const [state, dispatch] = useReducer(reducer, {
+//     posts: [],
+//     currentPost: {
+//       _id: 0,
+//       title: "",
+//       body: "",
+//       author: ""
+//     },
+//     favorites: [],
+//     loading: false
+//   });
 
   return <Provider value={[state, dispatch]} {...props} />;
 };
@@ -94,4 +87,4 @@ const useStoreContext = () => {
   return useContext(StoreContext);
 };
 
-export { StoreProvider, useStoreContext };
+export { ReversiState, useStoreContext };
