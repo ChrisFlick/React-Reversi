@@ -79,15 +79,12 @@ const reducer = (state, action) => {
 
 const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
-    posts: [],
-    currentPost: {
-      _id: 0,
-      title: "",
-      body: "",
-      author: ""
-    },
-    favorites: [],
-    loading: false
+   board: [[]],
+   chat: [],
+   playerElo: 0,
+   opponentElo: 0,
+   playerScoere: 2,
+   opponentScore: 2,
   });
 
   return <Provider value={[state, dispatch]} {...props} />;
