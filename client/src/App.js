@@ -6,10 +6,10 @@ import Nav from "./components/Nav";
 import Login from "./pages/login";
 import { ReversiState } from "./utils/GlobalState";
 
-const API = require("./utils/API")
-API.createProfile("userA", "password").then(res => {
-console.log('jobs done')
-}).catch(err=>console.log(err))
+// const API = require("./utils/API")
+// API.deleteProfile("userA").then(res => {
+// console.log('jobs done')
+// }).catch(err=>console.log(err))
 
 function App() {
   return (

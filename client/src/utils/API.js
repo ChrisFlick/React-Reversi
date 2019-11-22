@@ -14,6 +14,10 @@ const API = {
       password: password,
       imgUrl: imgUrl
     })
+  },
+
+  deleteProfile: function (name) {
+    return axios.delete(`/api/profiles/${name}`)
   }
 
   //   // Gets all posts
