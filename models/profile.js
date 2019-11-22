@@ -35,7 +35,7 @@ module.exports = function (sequelize, DataTypes) { // Creating a profile module
         },
         imgUrl: {
             type: DataTypes.STRING,
-            allowNull: false;
+            allowNull: false
         }
     });
     return Profile;
