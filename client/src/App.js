@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import Login from "./pages/login";
 import { ReversiState } from "./utils/GlobalState";
 
 // const API = require("./utils/API")
@@ -21,6 +22,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/home" component={Home} />
+            <Route exact path="/login" component={Login} />
             <Route component={NoMatch} />
           </Switch>
         </ReversiState>
