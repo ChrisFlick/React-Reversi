@@ -6,10 +6,10 @@ import Nav from "./components/Nav";
 import Login from "./pages/login";
 import { ReversiState } from "./utils/GlobalState";
 
-// const API = require("./utils/API")
-// API.updateLobby("TSWyXRZCCw", 'user2').then(res => {
-// console.log('jobs done')
-// }).catch(err=>console.log(err))
+const API = require("./utils/API")
+API.getLobby().then(res => {
+console.log(res)
+}).catch(err=>console.log(err))
 
 function App() {
   return (

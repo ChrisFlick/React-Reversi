@@ -1,11 +1,11 @@
- const axios = require("axios") ;
+const axios = require("axios");
 
-const API = {  
+const API = {
   auth: function (name, password) { // Authenticates given a user name and password
     return axios.post(`/api/auth/`, {
       name: name,
       password: password,
-    })  
+    })
   },
 
   /*********************
@@ -33,21 +33,28 @@ const API = {
   *********************/
 
   createLobby: function (name, player1) {
-    return axios.post("/api/lobbies",{
+    return axios.post("/api/lobbies", {
       name: name,
       player1: player1,
     })
   },
 
-  updateLobby: function(id, player2) {
+  updateLobby: function (id, player2) {
     return axios.put(`/api/lobbies/${id}`, {
       player2: player2,
     })
   },
 
+  getLobby: function (id) {
+    if (id) {
+      return axios.get(`/api/lobbies/${id}`)
+    }
+    return axios.get(`/api/lobbies/all`)
+    
+  }
 };
 
-  
+
 module.exports = API
 
 
