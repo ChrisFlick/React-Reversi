@@ -207,7 +207,7 @@ module.exports = function (app) {
 
     db.Lobby.update(
       { player2: lobby.player2 },
-      { where: { id: lobby.id } }
+      { where: { id: req.params.id } }
     )
     res.end();
   })

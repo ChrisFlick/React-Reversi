@@ -37,7 +37,14 @@ const API = {
       name: name,
       player1: player1,
     })
-  }
+  },
+
+  updateLobby: function(id, player2) {
+    return axios.put(`/api/lobbies/${id}`, {
+      player2: player2,
+    })
+  },
+
 };
 
   

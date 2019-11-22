@@ -7,7 +7,7 @@ import Login from "./pages/login";
 import { ReversiState } from "./utils/GlobalState";
 
 // const API = require("./utils/API")
-// API.createLobby("hobby", 'user1').then(res => {
+// API.updateLobby("TSWyXRZCCw", 'user2').then(res => {
 // console.log('jobs done')
 // }).catch(err=>console.log(err))
 
