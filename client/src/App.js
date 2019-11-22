@@ -5,9 +5,16 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import { ReversiState } from "./utils/GlobalState";
 
+// const API = require("./utils/API")
+
+// API.auth("player1", "password").then(res => {
+// console.log(res)
+// }).catch(err=>console.log(err))
+
 function App() {
   return (
     <Router>
+      
       <div>
         <ReversiState>
           <Nav />
