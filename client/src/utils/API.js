@@ -2,6 +2,7 @@
 
 const API = {  
   auth: function (name, password) {
+    console.log(name, password)
     return axios.post(`/api/auth/`, {
       name: name,
       password: password,

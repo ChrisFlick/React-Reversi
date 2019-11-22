@@ -30,12 +30,9 @@ module.exports = function (sequelize, DataTypes) { // Creating a profile module
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        games: {
-            type: DataTypes.STRING // Stringify of an array
-        },
         imgUrl: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true,
         }
     });
     return Profile;

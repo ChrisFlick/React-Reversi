@@ -28,6 +28,7 @@ module.exports = function (app) {
 
   app.post("/api/profiles", function (req, res) { // Create new profile
     let profile = req.body;
+    console.log(req.body);
     console.log(`Creating profile for ${profile.name}`)
 
     db.Profile.create({

@@ -63,12 +63,14 @@ export default function SignInSide() {
     const handleSubmit = e => {
         e.preventDefault();
         console.log("clicked");
-        console.log(document.getElementById("name").value);
-        console.log(document.getElementById("password").value);
-        API.auth({
-            name: document.getElementById("name").value,
-            password: document.getElementById("password").value
-        }).then(
+        let userName=document.getElementById("name").value;
+        let userPassword=document.getElementById("password").value;
+        console.log(userName);
+        console.log(userPassword);
+        API.auth(
+           userName,
+           userPassword
+        ).then(
             result => console.log(result)
         )
             .catch(err => console.log(err));
