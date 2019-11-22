@@ -26,16 +26,22 @@ const API = {
 
   getProfile: function (name) { // Searches for profile based on name
     return axios.get(`/api/profiles/${name}`)
-  }
+  },
 
   /*********************
   ******* Lobby ********
   *********************/
+
+  createLobby: function (name, player1) {
+    return axios.post("/api/lobbies",{
+      name: name,
+      player1: player1,
+    })
+  }
 };
 
   
-
-
-
 module.exports = API
+
+
 

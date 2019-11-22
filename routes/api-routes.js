@@ -3,9 +3,10 @@ var db = require("../models");
 
 module.exports = function (app) {
 
-  app.get("/api/auth/", function (req, res) { // Authenticates login requests
-    profile = req.body
+  app.post("/api/auth/", function (req, res) { // Authenticates login requests
+    let profile = req.body
 
+    console.log("request", req.body)
     db.Profile.findAll({
       where: {
         name: profile.name
@@ -37,7 +38,8 @@ module.exports = function (app) {
       opponentElo: 0,
       wins: 0,
       loses: 0,
-      games: [] // Holdes ids of all games played for game history
+      games: "", // Holdes ids of all games played for game history
+      imgUrl: profile.imgUrl
     })
 
     res.end();
@@ -171,8 +173,11 @@ module.exports = function (app) {
     let lobby = req.body;
 
     console.log(`Creating lobby ${lobby.name}`)
+    let ID_LENGTH = 10;
+    console.log("HELLO WORLD")
+    
     db.Lobby.create({
-      id: lobby.id,
+      id: makeid(ID_LENGTH),
       name: lobby.name,
       player1: lobby.player1,
       hasRoom: true
@@ -180,14 +185,14 @@ module.exports = function (app) {
     res.end();
   })
 
-  app.get("/api/lobbies/all", function(req, res) {
+  app.get("/api/lobbies/all", function (req, res) {
     db.Lobby.findAll({})
       .then(function (results) {
         res.json(results)
       })
   })
 
-  app.get("/api/lobbies/:id", function(req, res) {
+  app.get("/api/lobbies/:id", function (req, res) {
     db.Lobby.findAll({
       where: {
         id: req.params.id,
@@ -201,8 +206,8 @@ module.exports = function (app) {
     let lobby = req.body;
 
     db.Lobby.update(
-      {player2: lobby.player2},
-      {where: {id: lobby.id}}
+      { player2: lobby.player2 },
+      { where: { id: lobby.id } }
     )
     res.end();
   })
@@ -210,3 +215,16 @@ module.exports = function (app) {
 
 
 
+// Internal Functions
+
+function makeid(length) { // Makes a random ID for peerJS
+  var result = '';
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+
+
+  return result;
+}
