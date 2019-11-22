@@ -1,12 +1,16 @@
  const axios = require("axios") ;
 
 const API = {  
-  auth: function (name, password) {
+  auth: function (name, password) { // Authenticates given a user name and password
     return axios.post(`/api/auth/`, {
       name: name,
       password: password,
     })  
   },
+
+  /*********************
+  ****** Profile *******
+  *********************/
 
   createProfile: function (name, password, imgUrl) {
     return axios.post("/api/profiles", {
@@ -16,27 +20,22 @@ const API = {
     })
   },
 
-  deleteProfile: function (name) {
+  deleteProfile: function (name) { // Deletes profile given the name
     return axios.delete(`/api/profiles/${name}`)
+  },
+
+  getProfile: function (name) { // Searches for profile based on name
+    return axios.get(`/api/profiles/${name}`)
   }
 
-  //   // Gets all posts
-  //   getPosts: function() {
-  //     return axios.get("/api/posts");
-  //   },
-  //   // Gets the post with the given id
-  //   getPost: function(id) {
-  //     return axios.get("/api/posts/" + id);
-  //   },
-  //   // Deletes the post with the given id
-  //   deletePost: function(id) {
-  //     return axios.delete("/api/posts/" + id);
-  //   },
-  //   // Saves a post to the database
-  //   savePost: function(postData) {
-  //     return axios.post("/api/posts", postData);
-  //   }
+  /*********************
+  ******* Lobby ********
+  *********************/
 };
+
+  
+
+
 
 module.exports = API
 
