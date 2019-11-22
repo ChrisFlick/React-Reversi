@@ -1,5 +1,6 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
+const Sequelize = require("sequelize")
 
 module.exports = function (app) {
 
@@ -147,6 +148,19 @@ module.exports = function (app) {
     })
 
     res.end();
+  })
+
+  app.get("/api/games/:name", function (req, res) {
+    console.log('HELLOW')
+    db.Game.findAll({
+      where: Sequelize.or(
+          {player1: req.params.name},
+          {player2: req.params.name}
+        )
+
+    }).then(function (results) {
+      res.json(results)
+    })
   })
 
   app.put("/api/games/:id", function (req, res) {

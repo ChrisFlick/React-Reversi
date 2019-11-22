@@ -7,8 +7,9 @@ import Login from "./pages/login";
 import { ReversiState } from "./utils/GlobalState";
 
 const API = require("./utils/API")
-API.updateGame("1", "movesmovesmoves").then(res => {
-console.log("jobs done")
+API.getGames("player1").then(res => {
+  console.log("jobs done")
+console.log(res)
 }).catch(err=>console.log(err))
 
 function App() {
