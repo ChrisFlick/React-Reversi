@@ -55,8 +55,22 @@ const API = {
     }
     return axios.get(`/api/lobbies/all`)
     
+  },
+
+  /*********************
+  ****** Game **********
+  *********************/
+
+  createGame: function (id, player1, player2) {
+    return axios.post(`/api/games`, {
+      id: id,
+      player1: player1,
+      player2: player2,
+    })
   }
 };
+
+  
 
 
 module.exports = API
