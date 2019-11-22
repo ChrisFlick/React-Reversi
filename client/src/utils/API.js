@@ -2,7 +2,14 @@
 
 const API = {  
   auth: function (name, password) {
-    return axios.get(`/api/auth/${name}/${password}`)  
+    return axios.post(`/api/auth/`, {
+      name: name,
+      password: password,
+    })  
+  },
+
+  createProfile: function (name, password) {
+
   }
 
   //   // Gets all posts
