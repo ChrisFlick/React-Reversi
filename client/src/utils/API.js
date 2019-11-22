@@ -8,8 +8,12 @@ const API = {
     })  
   },
 
-  createProfile: function (name, password) {
-
+  createProfile: function (name, password, imgUrl) {
+    return axios.post("/api/profiles", {
+      name: name,
+      password: password,
+      imgUrl: imgUrl
+    })
   }
 
   //   // Gets all posts
