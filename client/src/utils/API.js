@@ -28,6 +28,10 @@ const API = {
     return axios.get(`/api/profiles/${name}`)
   },
 
+  updateElo: function (user, opponent, win) {
+    return axios.put(`/api/elo/${user}/${opponent}/${win}`)
+  },
+
   /*********************
   ******* Lobby ********
   *********************/

@@ -81,9 +81,18 @@ module.exports = function (app) {
         let opponent = opponentResults[0].dataValues
         let win = req.params.win
 
+        let wins = user.wins;
+        let loses = user.loses
+
+        if (win === "true") {
+          wins++
+        } else if (win === "false") {
+          loses++
+        }
+
         // Calculate users new ELO rating
         let totalElo = parseInt(user.opponentElo) + parseInt(opponent.elo)
-        let winLossRatio = user.wins - user.loses
+        let winLossRatio = wins - loses
         let elo = totalElo + winLossRatio * 400
         let games = user.wins + user.loses + 1
         elo = elo / games
@@ -92,36 +101,20 @@ module.exports = function (app) {
         if (elo < 1) { // Ensurre ELO never drops below 1
           elo = 1;
         }
-
-        if (win === "true") {
-          db.Profile.update(
-            {
-              opponentElo: totalElo,
-              wins: user.wins + 1,
-              elo: elo
-            },
-            {
-              where: {
-                name: req.params.user
-              }
-            }).then((results) => {
-              res.end()
-            })
-        } else if (win === "false") {
-          db.Profile.update(
-            {
-              opponentElo: totalElo,
-              wins: user.loses + 1,
-              elo: elo
-            },
-            {
-              where: {
-                name: req.params.user
-              }
-            }).then((results) => {
-              res.end()
-            })
-        }
+        db.Profile.update(
+          {
+            opponentElo: totalElo,
+            wins: wins,
+            loses: loses,
+            elo: elo
+          },
+          {
+            where: {
+              name: req.params.user
+            }
+          }).then((results) => {
+            res.end()
+          })
       })
     })
   })
@@ -174,8 +167,7 @@ module.exports = function (app) {
 
     console.log(`Creating lobby ${lobby.name}`)
     let ID_LENGTH = 10;
-    console.log("HELLO WORLD")
-    
+
     db.Lobby.create({
       id: makeid(ID_LENGTH),
       name: lobby.name,

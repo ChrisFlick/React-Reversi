@@ -7,8 +7,8 @@ import Login from "./pages/login";
 import { ReversiState } from "./utils/GlobalState";
 
 const API = require("./utils/API")
-API.getLobby().then(res => {
-console.log(res)
+API.updateElo("userB", "player1", "false").then(res => {
+console.log("jobs done")
 }).catch(err=>console.log(err))
 
 function App() {
