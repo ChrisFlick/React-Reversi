@@ -31,8 +31,7 @@ const useStyles = makeStyles(theme => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: 'url(https://source.unsplash.com/random)',
-    backgroundRepeat: 'no-repeat',
+    backgroundImage: 'url(https://playpager.com/wp-content/uploads/2019/08/reversi-game.jpg)',
     backgroundColor: theme.palette.grey[50],
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -69,7 +68,7 @@ export default function SignInSide() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+           Login in
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
