@@ -67,6 +67,12 @@ const API = {
       player1: player1,
       player2: player2,
     })
+  },
+
+  updateGame: function(id, moves) {
+    return axios.put(`/api/games/${id}`,{
+      moves: moves
+    })
   }
 };
 
