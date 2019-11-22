@@ -2,9 +2,11 @@
   "name": "react-chess",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080/",
   "dependencies": {
     "@material-ui/core": "^4.6.1",
     "@material-ui/icons": "^4.5.1",
+    "axios": "^0.19.0",
     "gh-pages": "^2.1.1",
     "react": "^16.12.0",
     "react-chat-window": "^1.2.1",
