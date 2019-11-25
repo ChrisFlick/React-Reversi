@@ -43,7 +43,7 @@ module.exports = function (app) {
       imgUrl: profile.imgUrl
     })
 
-    res.end();
+    res.end()
 
   })
 
@@ -62,6 +62,8 @@ module.exports = function (app) {
         loses: profile.loses,
         games: profile.games
       })
+    }).catch(() => {
+      res.end()
     })
   })
 

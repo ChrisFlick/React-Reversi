@@ -5,6 +5,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
 import "../css/Signup.css";
+import API from "../utils/API"
 
 const Signup = () => {
   // Setting the component's initial state
@@ -37,11 +38,21 @@ const Signup = () => {
       alert("Passwords do not match.");
     }
     else {
-      setInputState({
-        userName: "",
-        password: "",
-        passwordConfirm: ""
-      });
+      API.getProfile(inputState.userName).then((res) => {
+        if (res.data.name) {
+          alert("Username is already taken")
+        } else {
+          API.createProfile(inputState.userName, inputState.password, "").then((res) => {
+            document.location.href = "/login"
+            setInputState({
+              userName: "",
+              password: "",
+              passwordConfirm: ""
+            });
+          })
+        }
+      })
+
     }
   };
 
@@ -115,7 +126,7 @@ const Signup = () => {
             </Grid>
             <div className="avatar-choices">
               <p>Avatar Choices</p>
-            <button type="button" class="btn btn-primary" onClick={handleFormSubmit}>Submit</button>
+              <button type="button" className="btn btn-primary" onClick={handleFormSubmit}>Submit</button>
             </div>
           </div>
         </div>
