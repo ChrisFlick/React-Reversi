@@ -1,7 +1,8 @@
 const axios = require("axios");
 
-const API = {
-  auth: function (name, password) { // Authenticates given a user name and password
+const API = {  
+  auth: function (name, password) {
+    console.log(name, password)
     return axios.post(`/api/auth/`, {
       name: name,
       password: password,
