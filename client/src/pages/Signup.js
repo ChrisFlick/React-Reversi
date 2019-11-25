@@ -56,7 +56,7 @@ const Signup = () => {
           let avatar = document.querySelectorAll("input[name=avatar]:checked")[0].value
           console.log(avatar)
           API.createProfile(inputState.userName, inputState.password, avatar).then((res) => {
-            // document.location.href = "/login"
+            document.location.href = "/login"
             setInputState({
               userName: "",
               password: "",
@@ -129,49 +129,49 @@ const Signup = () => {
               <Grid container justify="center" alignItems="center">
                 <input type="radio"  name="avatar" value="0" checked="checked"></input>
                 <Avatar className={classes.avatar}>
-                  <img className="avatar" src={profile_0}></img
+                  <img className="avatar" src={profile_0} alt="avatar"></img
                 ></Avatar>
 
                 <input type="radio" name="avatar" value="1"></input>
                 <Avatar className={classes.orangeAvatar}>
-                  <img className="avatar" src={profile_1}></img>
+                  <img className="avatar" src={profile_1} alt="avatar"></img>
                 </Avatar>
 
                 <input type="radio" name="avatar" value="2"></input>
                 <Avatar className={classes.avatar} >
-                  <img className="avatar" src={profile_2}></img>
+                  <img className="avatar" src={profile_2} alt="avatar"></img>
                 </Avatar>
 
                 <input type="radio" name="avatar" value="3"></input>
                 <Avatar className={classes.purpleAvatar} >
-                  <img className="avatar" src={profile_3}></img>
+                  <img className="avatar" src={profile_3} alt="avatar"></img>
                 </Avatar>
 
                 <input type="radio" name="avatar" value="4"></input>
                 <Avatar className={classes.purpleAvatar} >
-                  <img className="avatar" src={profile_4}></img>
+                  <img className="avatar" src={profile_4} alt="avatar"></img>
                 </Avatar>
 
               </Grid>
               <Grid container justify="center" alignItems="center">
                 <input type="radio" name="avatar"  value="5"></input>
                 <Avatar className={classes.avatar} >
-                  <img className="avatar" src={profile_5}></img>
+                  <img className="avatar" src={profile_5} alt="avatar"></img>
                 </Avatar>
 
                 <input type="radio" name="avatar" value="6"></input>
                 <Avatar className={classes.avatar} >
-                  <img className="avatar" src={profile_6}></img>
+                  <img className="avatar" src={profile_6} alt="avatar"></img>
                 </Avatar>
 
                 <input type="radio" name="avatar"  value="7"></input>
                 <Avatar className={classes.orangeAvatar} >
-                  <img className="avatar" src={profile_7}></img>
+                  <img className="avatar" src={profile_7} alt="avatar"></img>
                 </Avatar>
 
                 <input type="radio" name="avatar"  value="8"></input>
                 <Avatar className={classes.purpleAvatar} >
-                  <img className="avatar" src={profile_8}></img>
+                  <img className="avatar" src={profile_8} alt="avatar"></img>
                 </Avatar>
               </Grid>
             </form>
