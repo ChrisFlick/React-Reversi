@@ -32,7 +32,7 @@ module.exports = function (sequelize, DataTypes) { // Creating a profile module
         },
         imgUrl: {
             type: DataTypes.STRING,
-            allowNull: true,
+        
         }
     });
     return Profile;

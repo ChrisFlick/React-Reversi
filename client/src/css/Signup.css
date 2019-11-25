@@ -1,0 +1,44 @@
+header {
+  height: 87px;
+  background-color: #954D00;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+}
+
+span {
+  width: 100%;
+  margin: 5px 0px 5px 0px;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.form {
+  display: grid;
+  grid-template-rows: auto;
+  margin: 20px;
+}
+
+.form-card {
+  position: absolute;
+  top: 140px;
+  width: 593px;
+  height: 367px;
+  background-color: #EEBE96;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+
+.form input {
+  float: right;
+  width: 75%;
+}
+
+.avatar-choices {
+  text-align: center;
+}
+
