@@ -40,7 +40,6 @@ module.exports = function (app) {
       opponentElo: 0,
       wins: 0,
       loses: 0,
-      games: "", // Holdes ids of all games played for game history
       imgUrl: profile.imgUrl
     })
 
