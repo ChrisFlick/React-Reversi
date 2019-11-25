@@ -62,11 +62,8 @@ export default function SignInSide() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log("clicked");
         let userName=document.getElementById("name").value;
         let userPassword=document.getElementById("password").value;
-        console.log(userName);
-        console.log(userPassword);
         API.auth(
            userName,
            userPassword
