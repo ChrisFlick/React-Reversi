@@ -70,7 +70,7 @@ export default function SignInSide() {
         ).then(result => {
            if (result.data) {
                localStorage.setItem("username", userName)
-            //    window.location.href = "/profile"
+               window.location.href = "/profile"
            }
         })
             .catch(err => console.log(err));

@@ -30,8 +30,9 @@ module.exports = function (sequelize, DataTypes) { // Creating a profile module
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        imgUrl: {
-            type: DataTypes.STRING,
+        profilePic: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         
         }
     });
