@@ -1,4 +1,7 @@
 header {
+  display: grid;
+  align-items: center;
+  justify-items: center;
   height: 87px;
   background-color: #954D00;
   font-family: Verdana, Geneva, Tahoma, sans-serif;

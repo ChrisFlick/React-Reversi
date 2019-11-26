@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import Header from "../components/Header";
+import Nav from "../components/Nav";
 import { Container } from "../components/Grid";
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid'; // Grid for avatars
 import "../css/Signup.css";
 import API from "../utils/API"
 
@@ -94,7 +96,8 @@ const Signup = () => {
   return (
     <Container fluid>
       <div>
-        <header><h1>Reversi</h1></header>
+        <Header />
+        <Nav />
         <div className="form-container">
           <div className="form-card">
             <form className="form">
