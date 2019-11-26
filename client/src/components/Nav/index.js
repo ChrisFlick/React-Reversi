@@ -11,7 +11,7 @@ function Nav() {
         <a href="/lobbies">CREATE LOBBY</a>
       </p>
       <p className="history">
-        <a href="/">GAME HISTORY</a>
+        <a href="/profile">PROFILE</a>
       </p>
       <p className="logout">
         <a href="/">LOGOUT</a>
