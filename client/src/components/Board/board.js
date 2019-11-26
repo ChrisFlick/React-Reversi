@@ -1,7 +1,7 @@
 import React from 'react';
 import './board.css';
 import Square from './square.js';
-
+import useStoreContext from '../../utils/GlobalState';
 
 function Board() {
 
