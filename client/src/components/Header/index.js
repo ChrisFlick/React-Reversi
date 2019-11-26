@@ -1,4 +1,5 @@
 import React from "react";
+import "../../css/Header.css";
 import Logo from  "../../img/Reversi200.png";
 
 function Header() {
