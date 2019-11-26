@@ -35,7 +35,7 @@ let profilePic = [
 
 const Profile = () => {
   const [state, setState] = useState({
-    name: "",
+    name: "Loading..",
     elo: 0,
     wins: 0,
     loses: 0,
@@ -55,21 +55,31 @@ const Profile = () => {
     <Container fluid>
       <Row>
         <Col size="md-6">
-          <Card>
-            <h1>{state.name}</h1>
-              <img src={profilePic[state.pic]} alt="profile picture"></img>
 
-          </Card>
+          <h1>{state.name}</h1>
+          <img src={profilePic[state.pic]} alt="profile picture" className="profilePic"></img>
+
+
         </Col>
         <Col size="md-6">
-          <Card>
-            <CardHeader><h4>ELO Rating:</h4></CardHeader>
-            <CardBody><h1>{state.elo}</h1></CardBody>
-          </Card>
+          <Row>
+            <Card>
+              <CardHeader><h4>ELO Rating:</h4></CardHeader>
+              <CardBody><h1>{state.elo}</h1></CardBody>
+            </Card>
+          </Row>
+          <Row>
+            <Card>
+              <CardHeader><h4>Wins:</h4></CardHeader>
+              <CardBody><h1>{state.wins}</h1></CardBody>
+            </Card>
+            <Card>
+              <CardHeader><h4>Loses:</h4></CardHeader>
+              <CardBody><h1>{state.loses}</h1></CardBody>
+            </Card>
+          </Row>
 
-        </Col>
-        <Col size="md-6 sm-12">
-          test test
+
         </Col>
       </Row>
     </Container>
