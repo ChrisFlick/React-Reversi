@@ -6,12 +6,16 @@ function Nav() {
   const [store] = useStoreContext();
 
   return (
-    //<nav className="navbar navbar-expand-lg navbar-light bg-light">
     <nav >
-      <span className="lobby">
-        <a href="/">Create lobby</a>
-      </span>
-      {store.loading ? <a className="navbar-brand ml-auto">Loading...</a> : <></>}
+      <p className="lobby">
+        <a href="/lobbies">CREATE LOBBY</a>
+      </p>
+      <p className="history">
+        <a href="/">GAME HISTORY</a>
+      </p>
+      <p className="logout">
+        <a href="/">LOGOUT</a>
+      </p>
     </nav>
   );
 }
