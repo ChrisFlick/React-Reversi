@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from  "../../img/Reversi-logo-200.gif";
+import Logo from  "../../img/Reversi200.png";
 
 function Header() {
   return(

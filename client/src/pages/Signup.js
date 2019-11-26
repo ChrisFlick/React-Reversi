@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import Header from "../components/Header";
 import Nav from "../components/Nav";
-import { Container, fluid } from "../components/Grid";
+import { Container } from "../components/Grid";
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
@@ -90,8 +91,8 @@ const Signup = () => {
 
   return (
     <Container fluid>
-      <>
-        <header><h1>Reversi</h1></header>
+      <div>
+        <Header />
         <Nav />
         <div className="form-container">
           <div className="form-card">
@@ -129,10 +130,10 @@ const Signup = () => {
             </form>
             <form id="avatar">
               <Grid container justify="center" alignItems="center">
-                <input type="radio"  name="avatar" value="0" checked="checked"></input>
+                <input type="radio" name="avatar" value="0" checked="checked"></input>
                 <Avatar className={classes.avatar}>
                   <img className="avatar" src={profile_0} alt="avatar"></img
-                ></Avatar>
+                  ></Avatar>
 
                 <input type="radio" name="avatar" value="1"></input>
                 <Avatar className={classes.orangeAvatar}>
@@ -156,7 +157,7 @@ const Signup = () => {
 
               </Grid>
               <Grid container justify="center" alignItems="center">
-                <input type="radio" name="avatar"  value="5"></input>
+                <input type="radio" name="avatar" value="5"></input>
                 <Avatar className={classes.avatar} >
                   <img className="avatar" src={profile_5} alt="avatar"></img>
                 </Avatar>
@@ -166,12 +167,12 @@ const Signup = () => {
                   <img className="avatar" src={profile_6} alt="avatar"></img>
                 </Avatar>
 
-                <input type="radio" name="avatar"  value="7"></input>
+                <input type="radio" name="avatar" value="7"></input>
                 <Avatar className={classes.orangeAvatar} >
                   <img className="avatar" src={profile_7} alt="avatar"></img>
                 </Avatar>
 
-                <input type="radio" name="avatar"  value="8"></input>
+                <input type="radio" name="avatar" value="8"></input>
                 <Avatar className={classes.purpleAvatar} >
                   <img className="avatar" src={profile_8} alt="avatar"></img>
                 </Avatar>
@@ -184,7 +185,7 @@ const Signup = () => {
             </div>
           </div>
         </div>
-      </>
+      </div>
     </Container>
   );
 }
