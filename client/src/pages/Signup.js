@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Header from "../components/Header";
 import { Container } from "../components/Grid";
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
@@ -90,7 +91,7 @@ const Signup = () => {
   return (
     <Container fluid>
       <div>
-        <header><h1>Reversi</h1></header>
+        <Header />
         <div className="form-container">
           <div className="form-card">
             <form className="form">
