@@ -19,7 +19,7 @@ function App() {
       
       <div>
         <ReversiState>
-          <Nav />
+          {/* <Nav /> */}
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/home" component={Home} />
