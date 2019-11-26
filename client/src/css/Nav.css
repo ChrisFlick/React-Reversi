@@ -3,12 +3,11 @@ nav {
   top: 87px;
   left: 0;
   height: 513px;
-  width: 87px;
-  margin: 0 auto;
+  width: 140px;
   background-color: #613216;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
-  font-size: 10px;
+  font-size: 13px;
 }
 
 nav a {
@@ -18,4 +17,14 @@ nav a {
 .lobby {
   position: relative;
   top: 53px;
+}
+
+.history {
+  position: relative;
+  top: 66px;
+}
+
+.logout {
+  position: relative;
+  top: 367px;
 }
