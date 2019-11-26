@@ -62,14 +62,17 @@ export default function SignInSide() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        let userName=document.getElementById("name").value;
-        let userPassword=document.getElementById("password").value;
+        let userName = document.getElementById("name").value;
+        let userPassword = document.getElementById("password").value;
         API.auth(
-           userName,
-           userPassword
-        ).then(
-            result => console.log(result)
-        )
+            userName,
+            userPassword
+        ).then(result => {
+           if (result.data) {
+               localStorage.setItem("username", userName)
+            //    window.location.href = "/profile"
+           }
+        })
             .catch(err => console.log(err));
 
     }
@@ -128,13 +131,8 @@ export default function SignInSide() {
                             Sign In
                      </Button>
                         <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                </Link>
-                            </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link href="/signup" variant="body2">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>
