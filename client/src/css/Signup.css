@@ -1,10 +1,3 @@
-header {
-  height: 87px;
-  background-color: #954D00;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  text-align: center;
-}
-
 span {
   width: 100%;
   margin: 5px 0px 5px 0px;
@@ -44,5 +37,9 @@ span {
 
 .avatar {
   width: 40px;
+}
+
+.profilePic {
+  width: 250px
 }
 

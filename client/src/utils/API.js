@@ -13,11 +13,11 @@ const API = {
   ****** Profile *******
   *********************/
 
-  createProfile: function (name, password, imgUrl) {
+  createProfile: function (name, password, pic) {
     return axios.post("/api/profiles", {
       name: name,
       password: password,
-      imgUrl: imgUrl
+      pic: pic
     })
   },
 

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
+import Nav from "../components/Nav";
 import { Container } from "../components/Grid";
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid'; // Grid for avatars
 import "../css/Signup.css";
 import API from "../utils/API"
 
@@ -50,11 +51,15 @@ const Signup = () => {
       alert("Passwords do not match.");
     }
     else {
+      console.log(inputState.userName)
       API.getProfile(inputState.userName).then((res) => {
+        console.log('hi')
         if (res.data.name) {
           alert("Username is already taken")
         } else {
+
           let avatar = document.querySelectorAll("input[name=avatar]:checked")[0].value
+
           console.log(avatar)
           API.createProfile(inputState.userName, inputState.password, avatar).then((res) => {
             document.location.href = "/login"
@@ -92,6 +97,7 @@ const Signup = () => {
     <Container fluid>
       <div>
         <Header />
+        <Nav />
         <div className="form-container">
           <div className="form-card">
             <form className="form">
@@ -128,49 +134,49 @@ const Signup = () => {
             </form>
             <form id="avatar">
               <Grid container justify="center" alignItems="center">
-                <input type="radio"  name="avatar" value="0" checked="checked"></input>
+                <input type="radio" name="avatar" value={0} checked="checked"></input>
                 <Avatar className={classes.avatar}>
                   <img className="avatar" src={profile_0} alt="avatar"></img
-                ></Avatar>
+                  ></Avatar>
 
-                <input type="radio" name="avatar" value="1"></input>
+                <input type="radio" name="avatar" value={1}></input>
                 <Avatar className={classes.orangeAvatar}>
                   <img className="avatar" src={profile_1} alt="avatar"></img>
                 </Avatar>
 
-                <input type="radio" name="avatar" value="2"></input>
+                <input type="radio" name="avatar" value={2}></input>
                 <Avatar className={classes.avatar} >
                   <img className="avatar" src={profile_2} alt="avatar"></img>
                 </Avatar>
 
-                <input type="radio" name="avatar" value="3"></input>
+                <input type="radio" name="avatar" value={3}></input>
                 <Avatar className={classes.purpleAvatar} >
                   <img className="avatar" src={profile_3} alt="avatar"></img>
                 </Avatar>
 
-                <input type="radio" name="avatar" value="4"></input>
+                <input type="radio" name="avatar" value={4}></input>
                 <Avatar className={classes.purpleAvatar} >
                   <img className="avatar" src={profile_4} alt="avatar"></img>
                 </Avatar>
 
               </Grid>
               <Grid container justify="center" alignItems="center">
-                <input type="radio" name="avatar"  value="5"></input>
+                <input type="radio" name="avatar" value={5}></input>
                 <Avatar className={classes.avatar} >
                   <img className="avatar" src={profile_5} alt="avatar"></img>
                 </Avatar>
 
-                <input type="radio" name="avatar" value="6"></input>
+                <input type="radio" name="avatar" value={6}></input>
                 <Avatar className={classes.avatar} >
                   <img className="avatar" src={profile_6} alt="avatar"></img>
                 </Avatar>
 
-                <input type="radio" name="avatar"  value="7"></input>
+                <input type="radio" name="avatar" value={7}></input>
                 <Avatar className={classes.orangeAvatar} >
                   <img className="avatar" src={profile_7} alt="avatar"></img>
                 </Avatar>
 
-                <input type="radio" name="avatar"  value="8"></input>
+                <input type="radio" name="avatar" value={8}></input>
                 <Avatar className={classes.purpleAvatar} >
                   <img className="avatar" src={profile_8} alt="avatar"></img>
                 </Avatar>
