@@ -40,7 +40,7 @@ module.exports = function (app) {
       opponentElo: 0,
       wins: 0,
       loses: 0,
-      imgUrl: profile.imgUrl
+      profilePic: profile.pic
     })
 
     res.end()
@@ -60,7 +60,7 @@ module.exports = function (app) {
         elo: profile.elo,
         wins: profile.wins,
         loses: profile.loses,
-        games: profile.games
+        profilePic: profile.profilePic,
       })
     }).catch(() => {
       res.end()
