@@ -6,6 +6,7 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Login from "./pages/login";
 import Profile from "./pages/Profile";
+import Lobbies from "./pages/Lobbies"
 import { ReversiState } from "./utils/GlobalState";
 
 // const API = require("./utils/API")
@@ -27,6 +28,7 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/profile" component={Profile} />
+            <Route exact path="/lobbies" component={Lobbies} />
             <Route component={NoMatch} />
           </Switch>
         </ReversiState>
