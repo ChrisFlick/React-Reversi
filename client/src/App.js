@@ -6,6 +6,8 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Login from "./pages/login";
 import { ReversiState } from "./utils/GlobalState";
+import Board from './components/Board/board';
+import './components/Board/board.css';
 
 // const API = require("./utils/API")
 // API.getGames("player1").then(res => {
@@ -21,7 +23,7 @@ function App() {
         <ReversiState>
           <Nav />
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={Board} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
