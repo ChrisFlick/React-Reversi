@@ -42,13 +42,13 @@ const Lobbies = () => {
         })
     })
 
-    let lobbies = state.lobbies.map((item, key) => {
-        <li>hi</li>
-    })
+    // let lobbies = state.lobbies.map((item, key) => {
+    //     <li>hi</li>
+    // })
 
     return (
         <Container>
-            {lobbies}
+            
         </Container>
     )
 }

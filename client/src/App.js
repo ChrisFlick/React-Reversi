@@ -31,6 +31,7 @@ function App() {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/lobbies" component={Lobbies} />
+            <Route exact path="/board" component={Board} />
             <Route component={NoMatch} />
           </Switch>
         </ReversiState>
