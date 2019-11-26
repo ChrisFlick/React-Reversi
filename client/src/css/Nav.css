@@ -1,0 +1,21 @@
+nav {
+  position: absolute;
+  top: 87px;
+  left: 0;
+  height: 513px;
+  width: 87px;
+  margin: 0 auto;
+  background-color: #613216;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  font-size: 10px;
+}
+
+nav a {
+  color: white;
+}
+
+.lobby {
+  position: relative;
+  top: 53px;
+}
