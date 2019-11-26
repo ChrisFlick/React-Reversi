@@ -34,7 +34,7 @@ let profilePic = [
 ]
 
 
-
+console.log("loggen")
 const Profile = () => {
   const [state, setState] = useState({
     name: "Loading..",
@@ -44,8 +44,10 @@ const Profile = () => {
     pic: 9
   })
 
-  useEffect(() => {
+  useEffect(() => { 
+    console.log("logging")
     API.getProfile(username).then((results) => {
+     
       setState({
         pic: results.data.profilePic,
         name: results.data.name,
@@ -53,8 +55,8 @@ const Profile = () => {
         wins: results.data.wins,
         loses: results.data.loses
       })
-    }, [])
-  })
+    })
+  },[])
  
 
   return (
