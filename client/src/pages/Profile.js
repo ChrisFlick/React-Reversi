@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Card from "../components/Card"
 import CardHeader from "../components/CardHeader"
@@ -16,6 +16,7 @@ import profile_5 from "../img/profile_pics/profile_5.png"
 import profile_6 from "../img/profile_pics/profile_6.png"
 import profile_7 from "../img/profile_pics/profile_7.png"
 import profile_8 from "../img/profile_pics/profile_8.png"
+import loading from "../img/loading.gif"
 
 const username = localStorage.getItem("username")
 
@@ -29,32 +30,39 @@ let profilePic = [
   profile_6,
   profile_7,
   profile_8,
+  loading
 ]
 
 
-
+console.log("loggen")
 const Profile = () => {
   const [state, setState] = useState({
     name: "Loading..",
     elo: 0,
     wins: 0,
     loses: 0,
-    pic: 0
+    pic: 9
   })
-  API.getProfile(username).then((results) => {
-    setState({
-      pic: results.data.profilePic,
-      name: results.data.name,
-      elo: results.data.elo,
-      wins: results.data.wins,
-      loses: results.data.loses
+
+  useEffect(() => { 
+    console.log("logging")
+    API.getProfile(username).then((results) => {
+     
+      setState({
+        pic: results.data.profilePic,
+        name: results.data.name,
+        elo: results.data.elo,
+        wins: results.data.wins,
+        loses: results.data.loses
+      })
     })
-  })
+  },[])
+ 
 
   return (
     <Container fluid>
       <Row>
-        <Col size="md-6">
+        <Col size="md-6 ">
 
           <h1>{state.name}</h1>
           <img src={profilePic[state.pic]} alt="profile picture" className="profilePic"></img>

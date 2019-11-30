@@ -7,6 +7,7 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Login from "./pages/login";
 import Profile from "./pages/Profile";
+import Lobbies from "./pages/Lobbies"
 import { ReversiState } from "./utils/GlobalState";
 import Board from './components/Board/board';
 import './components/Board/board.css';
@@ -31,6 +32,8 @@ function App() {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/games" component={Game} />
             <Route exact path="/profile" component={Profile} />
+            <Route exact path="/lobbies" component={Lobbies} />
+            <Route exact path="/board" component={Board} />
             <Route component={NoMatch} />
           </Switch>
         </ReversiState>
