@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Card from "../components/Card"
 import CardHeader from "../components/CardHeader"
@@ -20,36 +20,40 @@ import profile_8 from "../img/profile_pics/profile_8.png"
 const username = localStorage.getItem("username")
 
 let profilePic = [
-  profile_0,
-  profile_1,
-  profile_2,
-  profile_3,
-  profile_4,
-  profile_5,
-  profile_6,
-  profile_7,
-  profile_8,
+    profile_0,
+    profile_1,
+    profile_2,
+    profile_3,
+    profile_4,
+    profile_5,
+    profile_6,
+    profile_7,
+    profile_8,
 ]
 
 const Lobbies = () => {
     const [state, setState] = useState({
-        lobbies: [],
+        lobbies: []
     })
 
-    API.getLobby().then(results => {
-        setState({
-            lobbies: results
+    useEffect(() => {
+        API.getLobby().then(results => {
+            if (results.data !== []) {
+                setState({
+                    lobbies: results.data
+                })
+            }
         })
     })
 
-    // let lobbies = state.lobbies.map((item, key) => {
-    //     <li>hi</li>
-    // })
+
 
     return (
-        <Container>
-            
-        </Container>
+        <div>
+            {state.lobbies.map(item => {
+                return <h1>{item.name}</h1>
+            })}
+        </div>
     )
 }
 
