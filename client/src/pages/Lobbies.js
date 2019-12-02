@@ -6,30 +6,7 @@ import CardBody from "../components/CardBody"
 import API from "../utils/API"
 import Avatar from '@material-ui/core/Avatar';
 
-// Importing images
-import profile_0 from "../img/profile_pics/profile_0.png"
-import profile_1 from "../img/profile_pics/profile_1.png"
-import profile_2 from "../img/profile_pics/profile_2.png"
-import profile_3 from "../img/profile_pics/profile_3.png"
-import profile_4 from "../img/profile_pics/profile_4.png"
-import profile_5 from "../img/profile_pics/profile_5.png"
-import profile_6 from "../img/profile_pics/profile_6.png"
-import profile_7 from "../img/profile_pics/profile_7.png"
-import profile_8 from "../img/profile_pics/profile_8.png"
-
 const username = localStorage.getItem("username")
-
-let profilePic = [
-    profile_0,
-    profile_1,
-    profile_2,
-    profile_3,
-    profile_4,
-    profile_5,
-    profile_6,
-    profile_7,
-    profile_8,
-]
 
 const Lobbies = () => {
     const [state, setState] = useState({
@@ -46,15 +23,25 @@ const Lobbies = () => {
         })
     })
 
+    const handleClick = (e) => {
+        API.updateLobby (e.id, username)
+    }
+
 
 
     return (
         <div>
+            <h1></h1>
             {state.lobbies.map(item => {
-                return <h1>{item.name}</h1>
+                if (item.hasRoom) {
+                    return (
+                        <h1><button id="hi"onClick={(e) => handleClick(item)}>{item.name}</button></h1>
+                    )
+                }
             })}
         </div>
     )
 }
+
 
 export default Lobbies;
