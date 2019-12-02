@@ -6,26 +6,11 @@ nav {
   grid-area: nav;
 }
 
-.black-dot {
-  height: 25px;
-  width: 25px;
-  background-color: #000;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.white-dot {
-  height: 25px;
-  width: 25px;
-  background-color: #fff;
-  border-radius: 50%;
-  display: inline-block;
-}
-
 .game-board {
   grid-area: game-board;
-  justify-self: center;
-  /* align-self: center; */
+  display: grid;
+  justify-content: center;
+  align-content: center;
 }
 
 .game-details {
@@ -54,10 +39,7 @@ nav {
 .game-info {
   grid-area: game-info;
   display: grid;
-  /* grid-template-columns: repeat(4, minmax(min-content, auto));
-  grid-auto-rows: auto; */
-  justify-self: center;
-
+  justify-content: center;
 }
 
 .profiles {
