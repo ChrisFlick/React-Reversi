@@ -1,11 +1,12 @@
 {
-  "name": "1-Passport-Example",
+  "name": "React-Reversi",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js && cd client && npm start",
+    "start": "nodemon server.js",
+    "dev": "nodemon server.js && cd client && npm start",
     "watch": "nodemon server.js"
   },
   "keywords": [],
