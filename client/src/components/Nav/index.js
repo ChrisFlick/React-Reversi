@@ -10,7 +10,7 @@ function Nav() {
       <p className="lobby">
         <a href="/lobbies">LOBBIES</a>
       </p>
-      <p className="history">
+      <p className="profile">
         <a href="/profile">PROFILE</a>
       </p>
       <p className="logout">
