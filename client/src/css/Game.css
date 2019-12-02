@@ -6,6 +6,15 @@ nav {
   grid-area: nav;
 }
 
+.card {
+  border: solid black 1px;
+  border-radius: 13px;
+  height: 201px;
+  padding: 13px;
+  margin: 13px;
+  text-align: center;
+}
+
 .game-board {
   grid-area: game-board;
   display: grid;
@@ -26,13 +35,14 @@ nav {
   grid-template-columns: repeat(4, minmax(min-content, auto));
   grid-auto-rows: auto;
   justify-items: center;
+  align-items: center;
   background: white;
   width: 100%;
   padding: 13px;
   margin: 13px 0;
   border: solid black 1px;
   border-radius: 13px;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .game-info {
@@ -43,6 +53,7 @@ nav {
 
 .profiles {
   grid-area: profiles;
+  justify-content: center;
 }
 
 .profile-details {
@@ -50,20 +61,39 @@ nav {
   grid-template-columns: repeat(2, minmax(min-content, auto));
   grid-auto-rows: auto;
   justify-items: center;
-  margin: 13px 0;
+  /* align-items: center; */
+  background: white;
+  margin: 13px;
+  padding: 7px 7px 0 7px;
+  border: solid black 1px;
+}
+
+.profile-details img {
+  max-width: 100px;
+  height: auto;
 }
 
 .elo {
   display: grid;
-  grid-template-columns: repeat(2, minmax(min-content, auto));
+  grid-template-columns: repeat(2, minmax(min-content, 50%));
   grid-auto-rows: auto;
-  justify-items: center;
-  font-size: 12px;
+  padding: 3px;
+  font-size: 10px;
+  white-space: nowrap;
+  text-align: center;
 }
 
 .elo img {
-  max-width: 50%;
-  height: auto;;
+  max-width: 25%;
+  height: auto;
+}
+
+.timeout {
+    background: white;
+    padding: 13px;
+    margin: 13px;
+    border: solid black 1px;
+    border-radius: 13px;
 }
 
 @media screen and (min-width: 640px) {
