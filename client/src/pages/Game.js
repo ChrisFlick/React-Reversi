@@ -47,6 +47,10 @@ const Game = () => {
           <img src={Board} alt="Reversi board"/>
         </div>
         <div class="profiles">
+          <div><img src={Opponent} alt="Opponent"/></div>
+          <div><img src={Player} alt="Player"/></div>
+          <div></div>
+          <div></div>
         </div>
       </div>
   )

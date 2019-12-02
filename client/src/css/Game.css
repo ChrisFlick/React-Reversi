@@ -10,7 +10,6 @@ nav {
   grid-area: game-board;
   display: grid;
   justify-content: center;
-  align-content: center;
 }
 
 .game-details {
