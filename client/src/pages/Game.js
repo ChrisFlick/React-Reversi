@@ -39,7 +39,7 @@ const Game = () => {
         </div>
         <div class="game-board">
           <div className="scores">
-            <div>GameBro 15</div>
+            <div>WhiteHead 15</div>
             <div><img src={BlackDot}/></div>
             <div>Ramon 5</div>
             <div> <img src={WhiteDot}/></div>
@@ -47,10 +47,20 @@ const Game = () => {
           <img src={Board} alt="Reversi board"/>
         </div>
         <div class="profiles">
-          <div><img src={Opponent} alt="Opponent"/></div>
-          <div><img src={Player} alt="Player"/></div>
-          <div></div>
-          <div></div>
+          <div className="profile-details">
+
+            <div><img src={Opponent} alt="Opponent"/></div>
+            <div><img src={Player} alt="Player"/></div>
+            <div className="elo">
+              <div><img src={BlackDot}/></div>
+              <div>WhiteHead 1300</div>
+            </div>
+            <div className="elo">
+              <div><img src={WhiteDot}/></div>
+              <div>Ramon 1400</div>
+            </div>
+            <div></div>
+          </div>
         </div>
       </div>
   )
