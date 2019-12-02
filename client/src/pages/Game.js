@@ -19,6 +19,7 @@ const Game = () => {
   return (
       <div className="game-container">
         <Header />
+        <div className="navbar">Proposed Navbar</div>
         <Nav />
         <div class="game-info">
           <div className="game-details">
