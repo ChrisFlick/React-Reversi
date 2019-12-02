@@ -1,9 +1,24 @@
+html {
+  /* background-image: url("../img/woodentable.png") no-repeat center center fixed; */
+  /* background-size: cover; */
+  /* height: 100%; */
+  /* overflow: hidden; */
+}
+
+body {
+  background-image: url("../img/woodentable.png");
+}
+
 header {
   grid-area: header;
 }
 
 nav {
   grid-area: nav;
+}
+
+.navbar {
+  display: none;
 }
 
 .card {
@@ -25,7 +40,7 @@ nav {
   background: white;
   height: 201px;
   padding: 13px;
-  margin: 13px 0;
+  margin: 13px;
   border: solid black 1px;
   border-radius: 13px;
 }
@@ -96,11 +111,38 @@ nav {
     border-radius: 13px;
 }
 
+/* Portrait style for phones */
+@media screen and (max-width: 640px) {
+  .game-container {
+    /* background-image: url("../img/woodentable.png"); */
+    /* background-size: 640px; */
+    display: grid;
+    grid-template-columns: minmax(1fr, auto) minmax(1fr, auto);
+    grid-auto-rows: minmax(87px, auto);
+    max-width: 640px;
+    margin: 0 auto;
+    grid-template-areas:
+      "header     header"
+      "nav        nav"
+      "game-board game-board"
+      "game-info  profiles";
+  }
+  nav {
+    display: none;
+  }
+  .navbar {
+    display: grid;
+  }
+}
+
 @media screen and (min-width: 640px) {
   .game-container {
     background-image: url("../img/woodentable.png");
+    /* background-repeat: no-repeat; */
+    background-size: 100%;
     display: grid;
     grid-template-columns: minmax(min-content, 87px) minmax(min-content, 193px) minmax(min-content, 420px) minmax(min-content, 260px);
+    /* grid-template-columns: minmax(min-content, 87px) minmax(min-content, 193px) minmax(min-content, auto) minmax(min-content, 260px); */
     grid-auto-rows: minmax(87px, auto);
     width: 960px;
     margin: 0 auto;
