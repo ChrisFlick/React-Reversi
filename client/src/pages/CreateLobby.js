@@ -8,7 +8,7 @@ import Avatar from '@material-ui/core/Avatar';
 
 const username = localStorage.getItem("username")
 
-const Lobbies = () => {
+const CreateLobby = () => {
     const [state, setState] = useState({
         lobbies: []
     })
@@ -30,35 +30,19 @@ const Lobbies = () => {
 
     }
 
-    const handleSubmit = (e) => {
-        
-    }
-
 
 
     return (
         <div>
             <Header />
             <Nav />
-
             <Row>
-                <Col size="md-2"></Col>
-                <Col size="md-4">
-                    <h1>Create a lobby</h1>
+                <Col size="md-6"></Col>
+                <Col size="md-6">
                     <form id="createLobby">
                         Name:
                         <input id="name" type="text"></input>
                     </form>
-                </Col>
-                <Col size="md-6">
-                    <h1>Join a loby</h1>
-                    {state.lobbies.map(item => {
-                        if (item.hasRoom) {
-                            return (
-                                <h4><button id="hi" onClick={(e) => handleClick(item)}>{item.name}</button></h4>
-                            )
-                        }
-                    })}
                 </Col>
             </Row>
         </div>
@@ -66,4 +50,4 @@ const Lobbies = () => {
 }
 
 
-export default Lobbies;
+export default CreateLobby;

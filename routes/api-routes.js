@@ -189,6 +189,8 @@ module.exports = function (app) {
       id: id,
       name: lobby.name,
       player1: lobby.player1,
+      player1Ready: false,
+      player2Ready: false,
       hasRoom: true
     })
     res.json(id);
