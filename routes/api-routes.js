@@ -183,14 +183,15 @@ module.exports = function (app) {
 
     console.log(`Creating lobby ${lobby.name}`)
     let ID_LENGTH = 10;
+    let id = makeid(ID_LENGTH)
 
     db.Lobby.create({
-      id: makeid(ID_LENGTH),
+      id: id,
       name: lobby.name,
       player1: lobby.player1,
       hasRoom: true
     })
-    res.end();
+    res.json(id);
   })
 
   app.get("/api/lobbies/all", function (req, res) {

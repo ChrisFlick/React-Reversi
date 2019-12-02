@@ -26,7 +26,7 @@ function App() {
         <ReversiState>
           {/* <Nav /> */}
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={Login} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
