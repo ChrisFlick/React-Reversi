@@ -8,7 +8,7 @@ function Nav() {
   return (
     <nav >
       <p className="lobby">
-        <a href="/lobbies">CREATE LOBBY</a>
+        <a href="/lobbies">LOBBIES</a>
       </p>
       <p className="history">
         <a href="/profile">PROFILE</a>
