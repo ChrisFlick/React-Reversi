@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import API from "../utils/API"
 import Header from "../components/Header";
 import Nav from "../components/Nav";
+import Card from "../components/Card";
 import Board from "../img/board.png"
 import BlackDot from "../img/black-dot.png"
 import WhiteDot from "../img/white-dot.png"
@@ -48,7 +49,6 @@ const Game = () => {
         </div>
         <div class="profiles">
           <div className="profile-details">
-
             <div><img src={Opponent} alt="Opponent"/></div>
             <div><img src={Player} alt="Player"/></div>
             <div className="elo">
@@ -61,6 +61,13 @@ const Game = () => {
             </div>
             <div></div>
           </div>
+          <div className="text-center">
+            <button type="button" class="btn btn-danger">Quit</button>
+          </div>
+          <div className="timeout text-center">
+            Timeout: 4 minutes
+          </div>
+          <Card>Chat Box</Card>
         </div>
       </div>
   )
