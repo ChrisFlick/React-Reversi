@@ -189,6 +189,8 @@ module.exports = function (app) {
       id: id,
       name: lobby.name,
       player1: lobby.player1,
+      player1Ready: false,
+      player2Ready: false,
       hasRoom: true
     })
     res.json(id);
@@ -215,7 +217,8 @@ module.exports = function (app) {
     let lobby = req.body;
 
     db.Lobby.update(
-      { player2: lobby.player2 },
+      { player2: lobby.player2,
+        hasRoom: false },
       { where: { id: req.params.id } }
     )
     res.end();

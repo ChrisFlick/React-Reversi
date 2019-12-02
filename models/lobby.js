@@ -20,6 +20,12 @@ module.exports = function (sequelize, DataTypes) { // Creating a game module
         player2: {
             type: DataTypes.STRING,
         },
+        player1Ready: {
+            type: DataTypes.BOOLEAN
+        },
+        player2Ready: {
+            type: DataTypes.BOOLEAN
+        },
         hasRoom: {
             type: DataTypes.BOOLEAN
         }
