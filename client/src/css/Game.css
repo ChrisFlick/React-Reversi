@@ -45,6 +45,27 @@ nav {
   grid-area: profiles;
 }
 
+.profile-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(min-content, auto));
+  grid-auto-rows: auto;
+  justify-items: center;
+  margin: 13px 0;
+}
+
+.elo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(min-content, auto));
+  grid-auto-rows: auto;
+  justify-items: center;
+  font-size: 12px;
+}
+
+.elo img {
+  max-width: 50%;
+  height: auto;;
+}
+
 @media screen and (min-width: 640px) {
   .game-container {
     background-image: url("../img/woodentable.png");
