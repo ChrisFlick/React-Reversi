@@ -1,10 +1,3 @@
-html {
-  /* background-image: url("../img/woodentable.png") no-repeat center center fixed; */
-  /* background-size: cover; */
-  /* height: 100%; */
-  /* overflow: hidden; */
-}
-
 body {
   background-image: url("../img/woodentable.png");
 }
@@ -18,6 +11,7 @@ nav {
 }
 
 .navbar {
+  grid-area: navbar;
   display: none;
 }
 
@@ -76,7 +70,6 @@ nav {
   grid-template-columns: repeat(2, minmax(min-content, auto));
   grid-auto-rows: auto;
   justify-items: center;
-  /* align-items: center; */
   background: white;
   margin: 13px;
   padding: 7px 7px 0 7px;
@@ -111,11 +104,42 @@ nav {
     border-radius: 13px;
 }
 
+/* Landscape style for phones */
+@media screen and (max-height: 400px) {
+  .game-container {
+    display: grid;
+    grid-template-columns: minmax(min-content, 420px) minmax(min-content, 260px);
+    grid-auto-rows: minmax(min-content, auto);
+    width: auto;
+    margin: 0 auto;
+  }
+  .game-info {
+    display: none;
+  }
+  header {
+    display: none;
+  }
+  nav {
+    display: none;
+  }
+  .navbar {
+    display: grid;
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+  }
+  .game-board {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+  .profiles {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+  }
+}
+
 /* Portrait style for phones */
 @media screen and (max-width: 640px) {
   .game-container {
-    /* background-image: url("../img/woodentable.png"); */
-    /* background-size: 640px; */
     display: grid;
     grid-template-columns: minmax(1fr, auto) minmax(1fr, auto);
     grid-auto-rows: minmax(87px, auto);
@@ -123,7 +147,7 @@ nav {
     margin: 0 auto;
     grid-template-areas:
       "header     header"
-      "nav        nav"
+      "navbar     navbar"
       "game-board game-board"
       "game-info  profiles";
   }
@@ -138,11 +162,9 @@ nav {
 @media screen and (min-width: 640px) {
   .game-container {
     background-image: url("../img/woodentable.png");
-    /* background-repeat: no-repeat; */
     background-size: 100%;
     display: grid;
     grid-template-columns: minmax(min-content, 87px) minmax(min-content, 193px) minmax(min-content, 420px) minmax(min-content, 260px);
-    /* grid-template-columns: minmax(min-content, 87px) minmax(min-content, 193px) minmax(min-content, auto) minmax(min-content, 260px); */
     grid-auto-rows: minmax(87px, auto);
     width: 960px;
     margin: 0 auto;
