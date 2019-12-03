@@ -1,6 +1,6 @@
 import React from "react";
 import { useStoreContext } from "../../utils/GlobalState";
-import "../../css/Nav.css";
+import "./Nav.css";
 
 function Nav() {
   const [store] = useStoreContext();
@@ -8,9 +8,9 @@ function Nav() {
   return (
     <nav >
       <p className="lobby">
-        <a href="/lobbies">CREATE LOBBY</a>
+        <a href="/lobbies">LOBBIES</a>
       </p>
-      <p className="history">
+      <p className="profile">
         <a href="/profile">PROFILE</a>
       </p>
       <p className="logout">

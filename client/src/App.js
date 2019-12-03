@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
+import Game from "./pages/Game";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Login from "./pages/login";
@@ -30,6 +31,7 @@ function App() {
             <Route exact path="/home" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
+            <Route exact path="/games" component={Game} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/lobbies" component={Lobbies} />
             <Route exact path="/board" component={Board} />

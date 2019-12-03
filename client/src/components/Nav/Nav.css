@@ -1,9 +1,6 @@
 nav {
-  position: absolute;
-  top: 87px;
-  left: 0;
   height: 513px;
-  width: 140px;
+  width: 87px;
   background-color: #613216;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
@@ -16,12 +13,12 @@ nav a {
 
 .lobby {
   position: relative;
-  top: 53px;
+  top: 13px;
 }
 
-.history {
+.profile {
   position: relative;
-  top: 66px;
+  top: 10px;
 }
 
 .logout {
