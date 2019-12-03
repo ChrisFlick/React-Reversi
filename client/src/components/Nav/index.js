@@ -1,6 +1,6 @@
 import React from "react";
 import { useStoreContext } from "../../utils/GlobalState";
-import "../../css/Nav.css";
+import "./Nav.css";
 
 function Nav() {
   const [store] = useStoreContext();
