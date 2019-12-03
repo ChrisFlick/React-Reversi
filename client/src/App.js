@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
-import Games from "./pages/Game";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Login from "./pages/login";
@@ -12,7 +11,7 @@ import { ReversiState } from "./utils/GlobalState";
 import Board from './components/Board/board';
 import './components/Board/board.css';
 import CreateLobby from "./pages/CreateLobby";
-import Game from './components/Game/game';
+import Games from './pages/Game';
 
 // const API = require("./utils/API")
 // API.getGames("player1").then(res => {
@@ -37,7 +36,6 @@ function App() {
             <Route exact path="/lobbies" component={Lobbies} />
             <Route exact path="/board" component={Board} />
             <Route exact path="/create" component={CreateLobby} />
-            <Route exact path="/game" component={Game} />
             <Route component={NoMatch} />
           </Switch>
         </ReversiState>
