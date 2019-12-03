@@ -5,13 +5,14 @@ import {
   UPDATE_BOARD,
 } from "../../utils/actions";
 
-let player1,player2;
+let player1="player1";
+let player2="player2";
 // adjacent spaces
 let direction = [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]];
 // white == 1
 // black == 2
 let boards = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
-let status= '';
+let status= "";
 let turn= 'White';
 let winner= null;
 let player= whoGoesFirst(player1,player2);
@@ -20,6 +21,7 @@ let startedGame = false;
 
 function whoGoesFirst(player1,player2) {
 	let first = Math.random() < 0.5 ? player1 : player2;
+	console.log(first);
 	return first;
 }
 function Game(props) {
@@ -51,9 +53,12 @@ function Game(props) {
 	          	<div className="game-info">
 	            	<h3>Turn</h3>
 	            	<div id="player-turn-box">
-	            	{turn}
+	            	{turn}, {player}
 	            	</div>
-	            	<div className="game-status">{status}</div>
+	        	</div>
+	        	<div className="game-status">
+	        		<h3>Status</h3>
+	        		{status}
 	        	</div>
 	    	</div>
 	    </div>
@@ -76,6 +81,7 @@ function Game(props) {
 	 	board[3][4] = 2;
 	 	board[4][3] = 2;
 		board = getBoardValidMoves(board);
+		status = "Game started between "+player1+" and "+player2+". "+player+" goes first";
 		return board;
 	}
 
@@ -234,44 +240,67 @@ function Game(props) {
 	}
 
 	function pass() {
-		if (!getValidMoves(squares)) {
-			let playerPassing = player;
-			player = player === player1? player2: player1;
-			turn = turn === 'White' ? 'Black': 'White';
-			status = playerPassing+" has no available moves. Pass";
-			passCounter++;
+		if (getValidMoves(squares) === null) {
+			
+			return true;
 		}
 		else {
+			console.log("pass failed");
 			return false;
 		}
 	}
 	function isGameOver() {
-		if (passCounter > 1) {
+		if (passCounter > 1 || isBoardFull()) {
 			return true;
 		}
 		else
 			return false;
 	}
 
+	function isBoardFull() {
+		let range = Array.from({length: 8}, (x,i) => i);
+		let x,y;
+		for (x of range) {
+			for (y of range) {
+				if (board[x][y] === 0 || board[x][y] === 3) {return false;}
+			}
+		}
+		return true;
+	}
+
+	// function rematch() {
+	// 	const [show, setShow] = useState(false);
+
+	// 	const handleClose = () => setShow(false);
+	// 	const handleShow = () => setShow(true);
+
+	// 	return (
+	// 	<>
+	// 	  	<Button variant="primary" onClick={handleShow}>
+	// 	    	Launch demo modal
+	// 	  	</Button>
+
+	// 	  	<Modal show={show} onHide={handleClose}>
+	// 	    	<Modal.Header closeButton>
+	// 	      		<Modal.Title>Modal heading</Modal.Title>
+	// 	    	</Modal.Header>
+	// 	    	<Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+	// 	    	<Modal.Footer>
+	// 	      		<Button variant="secondary" onClick={handleClose}>
+	// 	        		Leave Lobby
+	// 	      		</Button>
+	// 	      		<Button variant="primary" onClick={handleClose}>
+	// 	        		rematch
+	// 	      		</Button>
+	// 	    	</Modal.Footer>
+	// 	  	</Modal>
+	// 	</>
+	// 	);
+	// }
+
+
 	function handleClick(x,y,dispatch) {
 		console.log(x,y);
-		if (isGameOver()) {
-			let finalScore = getScores(squares);
-			let winner;
-			if (finalScore.white > finalScore.black ) {
-				winner = "Player 1";
-			}
-			else if (finalScore.white < finalScore.black) {
-				winner = "Player 2";
-			}
-			else {
-				winner = "No one";
-			}
-			status= "Game over! Winner is "+winner;
-			winner= winner;
-			return;
-		}
-		console.log("squares before", squares);
 		if (!pass() && isValidMove(squares,x,y)) {
 			let moves = getValidMoves(squares);
 			let swapColors;
@@ -281,16 +310,49 @@ function Game(props) {
 					getBoardValidMoves(squares);
 				}
 			}
+			if (isGameOver()) {
+				let finalScore = getScores(squares);
+				let winner;
+				if (finalScore.white > finalScore.black ) {
+					winner = "Player 1";
+				}
+				else if (finalScore.white < finalScore.black) {
+					winner = "Player 2";
+				}
+				else {
+					winner = "No one";
+				}
+				status= "Game over! Winner is "+winner;
+				dispatch({type: UPDATE_BOARD, board: squares});
+				//rematch();
+				return;
+			}
 			passCounter = 0;
 			console.log(squares);
 			console.log(turn);
 			console.log(getScores(squares));
+			status='';
 			dispatch({type: UPDATE_BOARD, board: squares});
 			return;
 		}
+		else  if (pass()){
+			let playerPassing = player;
+			player = player === player1? player2: player1;
+			turn = turn === 'White' ? 'Black': 'White';
+			status = playerPassing+" has no available moves. Pass";
+			passCounter++;
+			console.log(status);
+			console.log(passCounter);
+			clearChoices(squares);
+			getBoardValidMoves(squares);
+			dispatch({type: UPDATE_BOARD, board: squares});
+			console.log("dispatch made");
+			return;
+		}
 		else {
-			console.log("passing")
-			pass();
+			status = "Not a valid move. Try again.";
+			getBoardValidMoves(squares);
+			dispatch({type: UPDATE_BOARD, board: squares});
 			return;
 		}
 
