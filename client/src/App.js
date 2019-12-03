@@ -11,6 +11,7 @@ import Lobbies from "./pages/Lobbies"
 import { ReversiState } from "./utils/GlobalState";
 import Board from './components/Board/board';
 import './components/Board/board.css';
+import CreateLobby from "./pages/CreateLobby";
 
 // const API = require("./utils/API")
 // API.getGames("player1").then(res => {
@@ -34,6 +35,7 @@ function App() {
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/lobbies" component={Lobbies} />
             <Route exact path="/board" component={Board} />
+            <Route exact path="/create" component={CreateLobby} />
             <Route component={NoMatch} />
           </Switch>
         </ReversiState>
