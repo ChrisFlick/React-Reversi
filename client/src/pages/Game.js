@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import "../css/Game.css";
+import Games from '../components/Game/game';
 
 const Game = () => {
 
@@ -39,15 +40,15 @@ const Game = () => {
             </ol>
           </div>
         </div>
-        <div class="game-board">
-          <div className="scores">
+        <Games className="game-board">
+          {/* <div className="scores">
             <div>WhiteHead 15</div>
             <div><img src={BlackDot}/></div>
             <div>Ramon 5</div>
             <div> <img src={WhiteDot}/></div>
           </div>
-          <img src={Board} alt="Reversi board"/>
-        </div>
+          <img src={Board} alt="Reversi board"/> */}
+        </Games>
         <div class="profiles">
           <div className="profile-details">
             <div><img src={Opponent} alt="Opponent"/></div>
