@@ -5,7 +5,7 @@ exports.configure = function(env) {
 let configs = {
   "development": {
     "username": "root",
-    "password": `${process.env.DB_PASSWORD}`,
+    "password": `00Archie
     "database": "chess_db",
     "host": "localhost",
 
