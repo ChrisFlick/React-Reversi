@@ -60,9 +60,8 @@ const Game = () => {
               <div><img src={WhiteDot}/></div>
               <div>Ramon 1400</div>
             </div>
-            <div></div>
           </div>
-          <div className="text-center">
+          <div className="quit-button">
             <button type="button" class="btn btn-danger">Quit</button>
           </div>
           <div className="timeout text-center">

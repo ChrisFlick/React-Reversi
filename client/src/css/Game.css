@@ -1,18 +1,9 @@
-body {
-  background-image: url("../img/woodentable.png");
-}
-
 header {
   grid-area: header;
 }
 
 nav {
   grid-area: nav;
-}
-
-.navbar {
-  grid-area: navbar;
-  display: none;
 }
 
 .card {
@@ -22,6 +13,21 @@ nav {
   padding: 13px;
   margin: 13px;
   text-align: center;
+}
+
+.elo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(min-content, 50%));
+  grid-auto-rows: auto;
+  padding: 3px;
+  font-size: 10px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.elo img {
+  width: 35%;
+  height: auto;
 }
 
 .game-board {
@@ -39,25 +45,15 @@ nav {
   border-radius: 13px;
 }
 
-.scores {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(min-content, auto));
-  grid-auto-rows: auto;
-  justify-items: center;
-  align-items: center;
-  background: white;
-  width: 100%;
-  padding: 13px;
-  margin: 13px 0;
-  border: solid black 1px;
-  border-radius: 13px;
-  font-size: 20px;
-}
-
 .game-info {
   grid-area: game-info;
   display: grid;
   justify-content: center;
+}
+
+.navbar {
+  grid-area: navbar;
+  display: none;
 }
 
 .profiles {
@@ -81,19 +77,23 @@ nav {
   height: auto;
 }
 
-.elo {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(min-content, 50%));
-  grid-auto-rows: auto;
-  padding: 3px;
-  font-size: 10px;
-  white-space: nowrap;
+.quit-button {
   text-align: center;
 }
 
-.elo img {
-  max-width: 25%;
-  height: auto;
+.scores {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(min-content, auto));
+  grid-auto-rows: auto;
+  justify-items: center;
+  align-items: center;
+  background: white;
+  width: 100%;
+  padding: 13px;
+  margin: 13px 0;
+  border: solid black 1px;
+  border-radius: 13px;
+  font-size: 20px;
 }
 
 .timeout {
@@ -108,37 +108,51 @@ nav {
 @media screen and (max-height: 400px) {
   .game-container {
     display: grid;
-    grid-template-columns: minmax(min-content, 420px) minmax(min-content, 260px);
-    grid-auto-rows: minmax(min-content, auto);
-    width: auto;
-    margin: 0 auto;
+    grid-template-columns: repeat(3, 20fr) 40fr;
+    grid-auto-rows: auto;
+    justify-items: center;
+    background-image: none;
   }
-  .game-info {
-    display: none;
-  }
-  header {
-    display: none;
-  }
-  nav {
-    display: none;
+  .game-board {
+    grid-column: 1 / 4;
+    grid-row: 2 / 3;
   }
   .navbar {
     display: grid;
-    grid-column: 1 / 3;
+    grid-column: 1 / 5;
     grid-row: 1 / 2;
   }
-  .game-board {
-    grid-column: 1 / 2;
+  .profiles {
+    grid-column: 4 / 5;
     grid-row: 2 / 3;
   }
-  .profiles {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
+  body {
+    background-image: url("../img/woodentable.png");
+    background-size: 100hw;
+  }
+  header, nav {
+    display: none;
+  }
+  .game-info, .profile-details, .quit-button, .scores, .timeout{
+    display: none;
+  }
+  .card {
+    height: 75vh;
+    width: 40vw;
+  }
+  .game-board img{
+    height: 80vh;
+  }
+  .navbar {
+    height: 20vh;
   }
 }
 
 /* Portrait style for phones */
 @media screen and (max-width: 640px) {
+  body {
+    background-image: url("../img/woodentable.png");
+  }
   .game-container {
     display: grid;
     grid-template-columns: minmax(1fr, auto) minmax(1fr, auto);
@@ -159,13 +173,13 @@ nav {
   }
 }
 
-@media screen and (min-width: 640px) {
+@media screen and (min-width: 640px)
+  and (min-height: 400px) {
   .game-container {
     background-image: url("../img/woodentable.png");
-    background-size: 100%;
     display: grid;
-    grid-template-columns: minmax(min-content, 87px) minmax(min-content, 193px) minmax(min-content, 420px) minmax(min-content, 260px);
-    grid-auto-rows: minmax(87px, auto);
+    grid-template-columns: minmax(1fr, 87px) minmax(1fr, 193px) minmax(1fr, 420px) minmax(1fr, 260px);
+    grid-auto-rows: auto;
     width: 960px;
     margin: 0 auto;
     grid-template-areas:
