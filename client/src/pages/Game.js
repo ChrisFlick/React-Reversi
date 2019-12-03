@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import API from "../utils/API"
+// import API from "../utils/API"
 import Header from "../components/Header";
 import Nav from "../components/Nav";
-import Card from "../components/Card";
 import Board from "../img/board.png";
 import BlackDot from "../img/black-dot.png";
 import WhiteDot from "../img/white-dot.png";
 import Opponent from "../img/opponent.png";
 import Player from "../img/player.png";
-import { Container } from "../components/Grid";
-import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import { deepOrange, deepPurple } from '@material-ui/core/colors';
+// import { Container } from "../components/Grid";
+// import { makeStyles } from '@material-ui/core/styles';
+// import Avatar from '@material-ui/core/Avatar';
+// import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import "../css/Game.css";
 
 const Game = () => {
@@ -67,7 +66,7 @@ const Game = () => {
           <div className="timeout text-center">
             Timeout: 4 minutes
           </div>
-          <Card>Chat Box</Card>
+          <div className="chatbox">Chat Box</div>
         </div>
       </div>
   )
