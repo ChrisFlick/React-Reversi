@@ -13,11 +13,13 @@ import Player from "../img/player.png";
 // import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import "../css/Game.css";
 import Games from '../components/Game/game';
+import { ReversiState } from "../utils/GlobalState";
 
 const Game = () => {
 
   return (
-      <div className="game-container">
+    <ReversiState>
+    <div className="game-container">
         <Header />
         <div className="navbar">Proposed Navbar</div>
         <Nav />
@@ -45,7 +47,7 @@ const Game = () => {
             <div><img src={BlackDot}/></div>
             <div>Ramon 5</div>
             <div> <img src={WhiteDot}/></div>
-          </div>
+            </div>
           <img src={Board} alt="Reversi board"/> */}
         </Games>
         <div class="profiles">
@@ -70,6 +72,7 @@ const Game = () => {
           <div className="chatbox">Chat Box</div>
         </div>
       </div>
+          </ReversiState>
   )
 }
 
