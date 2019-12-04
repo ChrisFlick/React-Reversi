@@ -303,7 +303,6 @@ function Game(props) {
 		console.log(x,y);
 		if (!pass() && isValidMove(squares,x,y)) {
 			let moves = getValidMoves(squares);
-			let swapColors;
 			for (let i = 0; i < moves.length; i++) {
 				if (moves[i][0] === x && moves[i][1] === y) {
 					getBoardSwapColors(squares,isValidMove(squares,x,y));
