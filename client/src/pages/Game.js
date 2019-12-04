@@ -129,7 +129,7 @@ const Games = () => {
             <div><img src={BlackDot}/></div>
             <div>Ramon 5</div>
             <div> <img src={WhiteDot}/></div>
-          </div>
+            </div>
           <img src={Board} alt="Reversi board"/> */}
       </Game>
       <div className="profiles">

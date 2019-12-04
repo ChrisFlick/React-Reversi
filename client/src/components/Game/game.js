@@ -194,9 +194,13 @@ function Game(props) {
 		let newColor;
 		if (turn === "White") {
 			newColor = 1;
+		// blackFlipDown(black);
+        // setTimeout(() => whiteFlipUp(white, piece), 250);
 		}
 		else
 			newColor = 2;
+		// whiteFlipDown(white);
+        // setTimeout(() => blackFlipUp(black, piece), 250);
 		return newColor;
 	}
 
@@ -318,7 +322,6 @@ function Game(props) {
 			});
 			
 			let moves = getValidMoves(squares);
-			let swapColors;
 			for (let i = 0; i < moves.length; i++) {
 				if (moves[i][0] === x && moves[i][1] === y) {
 					getBoardSwapColors(squares, isValidMove(squares, x, y));
