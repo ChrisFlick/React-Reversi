@@ -22,7 +22,7 @@ const handleClick = event => {
 }
 
 function blackFlipDown () {
-  black.className = "blackFlipDown";
+  black.className = "black-flip-down";
   black.style.transform = "rotateY(90deg)";
 }
 
