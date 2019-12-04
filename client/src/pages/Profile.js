@@ -3,8 +3,9 @@ import { Col, Row, Container } from "../components/Grid";
 import Card from "../components/Card"
 import CardHeader from "../components/CardHeader"
 import CardBody from "../components/CardBody"
+import Header from "../components/Header"
 import API from "../utils/API"
-import Avatar from '@material-ui/core/Avatar';
+import Nav from "../components/Nav"
 
 // Importing images
 import profile_0 from "../img/profile_pics/profile_0.png"
@@ -45,7 +46,6 @@ const Profile = () => {
   })
 
   useEffect(() => { 
-    console.log("logging")
     API.getProfile(username).then((results) => {
      
       setState({
@@ -61,6 +61,8 @@ const Profile = () => {
 
   return (
     <Container fluid>
+      <Header />
+      <Nav />
       <Row>
         <Col size="md-6 ">
 
