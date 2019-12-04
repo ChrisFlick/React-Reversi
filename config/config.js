@@ -19,6 +19,9 @@ let configs = {
     "dialect": "mysql"
   },
   "production": {
-    "use_env_variable":"JAWSDB_URL"
+    "username":"oogskhdc1zuqans2",
+    "password": "f835o7h7r3vnazp7",
+    "database": "w2fcxieubc35b53y",
+    "host": "hcm4e9frmbwfez47.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
   }
 }
