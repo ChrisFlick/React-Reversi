@@ -1,0 +1,37 @@
+header {
+  grid-area: header;
+}
+
+nav {
+  grid-area: nav;
+}
+
+.userprofile {
+  grid-area: userprofile;
+}
+
+.details {
+  grid-area: details;
+}
+
+.standings {
+  grid-area: standings;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: auto;
+}
+
+@media screen and (min-width: 640px)
+  and (min-height: 400px) {
+    .profile-container {
+      background-image: url("../img/woodentable.png");
+      display: grid;
+      grid-template-columns: minmax(min-content, 87px) minmax(min-content, 50vw) minmax(min-content, 50vw);
+      grid-auto-rows: auto;
+      width: 100%;
+      margin: 0 auto;
+      grid-template-areas:
+      "header header  header"
+      "nav    userprofile details";
+    }
+  }
