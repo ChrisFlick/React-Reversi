@@ -12,6 +12,7 @@ import Board from './components/Board/board';
 import './components/Board/board.css';
 import CreateLobby from "./pages/CreateLobby";
 import Games from './pages/Game';
+import AIGame from './pages/AIGame';
 import Wait from "./pages/Wait"
 
 // const API = require("./utils/API")
@@ -38,6 +39,7 @@ function App() {
             <Route exact path="/board" component={Board} />
             <Route exact path="/create" component={CreateLobby} />
             <Route exact path="/wait" component={Wait} />
+            <Route exact path="/aigame" component={AIGame} />
             <Route component={NoMatch} />
           </Switch>
         </ReversiState>
