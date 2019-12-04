@@ -30,7 +30,17 @@ let passCounter = 0;
 let startedGame = false;
 
 function whoGoesFirst(player1, player2) {
+let boards = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+let status= "";
+let turn= 'White';
+let winner= null;
+let player= whoGoesFirst(player1,player2);
+let passCounter = 0;
+let startedGame = false;
+let startedAIGame = false;
+function whoGoesFirst(player1,player2) {
 	let first = Math.random() < 0.5 ? player1 : player2;
+	console.log(first);
 	return first;
 }
 function Game(props) {
@@ -111,6 +121,7 @@ function Game(props) {
 		board[3][4] = 2;
 		board[4][3] = 2;
 		board = getBoardValidMoves(board);
+		status = "Game started between "+player1+" and "+player2+". "+player+" goes first";
 		return board;
 	}
 
@@ -277,11 +288,13 @@ function Game(props) {
 			passCounter++;
 		}
 		else {
+			console.log("pass failed");
 			return false;
 		}
 	}
 	function isGameOver() {
-		if (passCounter > 1) {
+		if (passCounter > 1 || isBoardFull()) {
+			console.log("Game is Over");
 			return true;
 		}
 		else
@@ -325,16 +338,49 @@ function Game(props) {
 					getBoardValidMoves(squares);
 				}
 			}
+			if (isGameOver()) {
+				let finalScore = getScores(squares);
+				let winner;
+				if (finalScore.white > finalScore.black ) {
+					winner = "Player 1";
+				}
+				else if (finalScore.white < finalScore.black) {
+					winner = "Player 2";
+				}
+				else {
+					winner = "No one";
+				}
+				status= "Game over! Winner is "+winner;
+				dispatch({type: UPDATE_BOARD, board: squares});
+				rematch();
+				return;
+			}
 			passCounter = 0;
 			console.log(squares);
 			console.log(turn);
 			console.log(getScores(squares));
-			dispatch({ type: UPDATE_BOARD, board: squares });
+			status='';
+			dispatch({type: UPDATE_BOARD, board: squares});
 			return;
 		}
+		// else  if (pass()){
+		// 	let playerPassing = player;
+		// 	player = player === player1? player2: player1;
+		// 	turn = turn === 'White' ? 'Black': 'White';
+		// 	status = playerPassing+" has no available moves. Pass";
+		// 	passCounter++;
+		// 	console.log(status);
+		// 	console.log(passCounter);
+		// 	clearChoices(squares);
+		// 	getBoardValidMoves(squares);
+		// 	dispatch({type: UPDATE_BOARD, board: squares});
+		// 	console.log("dispatch made");
+		// 	return;
+		// }
 		else {
-			console.log("passing")
-			pass();
+			status = "Not a valid move. Try again.";
+			getBoardValidMoves(squares);
+			dispatch({type: UPDATE_BOARD, board: squares});
 			return;
 		}
 
