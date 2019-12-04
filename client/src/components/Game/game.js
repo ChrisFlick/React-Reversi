@@ -289,8 +289,7 @@ function Game(props) {
 	}
 
 	function handleClick(x, y, dispatch) {
-		var conn = peer.connect(opponentName);
-		// on open will be launch when you successfully connect to PeerServer
+		
 		
 
 		console.log(x, y);
@@ -312,6 +311,7 @@ function Game(props) {
 		}
 		console.log("squares before", squares);
 		if (!pass() && isValidMove(squares, x, y)) {
+			var conn = peer.connect(opponentName);
 			conn.on('open', function () {
 				// here you have conn.id
 				conn.send([x,y]);
