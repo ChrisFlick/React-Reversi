@@ -58,7 +58,7 @@ const Profile = () => {
         loses: results.data.loses
       })
     })
-  }, [])
+  },[])
 
 
   return (
