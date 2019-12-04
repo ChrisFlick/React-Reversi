@@ -29,6 +29,7 @@ const Lobbies = () => {
     const handleClick = (e) => {
         API.updateLobby(e.id, username).then((results) => {
             localStorage.setItem("lobby", e.id)
+            localStorage.setItem("color", 'Black')
             document.location.href = "/games";
         })
         

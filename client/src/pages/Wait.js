@@ -9,6 +9,7 @@ import API from "../utils/API"
 import "../css/Lobbies.css"
 
 const lobbyId = localStorage.getItem('lobby')
+localStorage.setItem("color", "White")
 
 const Lobbies = () => {
 
