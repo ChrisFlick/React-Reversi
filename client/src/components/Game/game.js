@@ -4,6 +4,7 @@ import {useStoreContext} from '../../utils/GlobalState';
 import {
   UPDATE_BOARD,
 } from "../../utils/actions";
+import Piece from "../Piece/index";
 
 let player1="player1";
 let player2="player2";
@@ -165,9 +166,13 @@ function Game(props) {
 		let newColor;
 		if (turn === "White") {
 			newColor = 1;
+		// blackFlipDown(black);
+        // setTimeout(() => whiteFlipUp(white, piece), 250);
 		}
 		else
 			newColor = 2;
+		// whiteFlipDown(white);
+        // setTimeout(() => blackFlipUp(black, piece), 250);
 		return newColor;
 	}
 

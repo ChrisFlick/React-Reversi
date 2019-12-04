@@ -44,7 +44,9 @@ const handleClick = event => {
 const Piece = () => {
   return (
     <div className="piece-container">
-      <div id="piece" className="black" onClick={handleClick}>
+      <div id="piece" className="black" 
+      onClick={handleClick}
+      >
         <img src={BlackDot} id="black" alt="Black side" />
         <img src={WhiteDot} id="white" alt="White side" />
       </div>
