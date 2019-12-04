@@ -6,6 +6,7 @@ import {
   UPDATE_OPPONENT_SCORE,
   UPDATE_PLAYER_ELO,
   UPDATE_PLAYER_SCORE,
+  ADD_PEER
 } from "./actions";
 
 const StoreContext = createContext();
@@ -51,6 +52,12 @@ const reducer = (state, action) => {
         chat: [...state.chat, action.chat]
       }
 
+      case ADD_PEER:
+      return {
+        ...state,
+        peer: action.peer
+      }
+
 
   default:
     return state;
@@ -65,6 +72,7 @@ const ReversiState = ({ value = [], ...props }) => {
    opponentElo: 0,
    playerScore: 2,
    opponentScore: 2,
+   peer: null
   });
 
 // const StoreProvider = ({ value = [], ...props }) => {
