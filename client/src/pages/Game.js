@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 // import API from "../utils/API"
 import Header from "../components/Header";
 import Nav from "../components/Nav";
-import Board from "../img/board.png";
 import BlackDot from "../img/black-dot.png";
 import WhiteDot from "../img/white-dot.png";
 import API from "../utils/API"
-import Opponent from "../img/opponent.png";
-import Player from "../img/player.png";
+
+// import { useStoreContext } from "../utils/GlobalState";
+// import {
+//   ADD_PEER,
+// } from "../utils/actions";
 // import { Container } from "../components/Grid";
 // import { makeStyles } from '@material-ui/core/styles';
 // import Avatar from '@material-ui/core/Avatar';
@@ -28,9 +30,17 @@ import profile_8 from "../img/profile_pics/profile_8.png"
 import loading from "../img/loading.gif"
 
 const username = localStorage.getItem("username")
-let opponentName = localStorage.getItem("opponentName")
+const opponentName = localStorage.getItem("opponentName")
 
-opponentName = 'chris' // for debugging
+let userColor;
+let opponentColor;
+if (localStorage.getItem("color") === "White") {
+  userColor = 0;
+  opponentColor = 1;
+} else {
+  userColor = 1;
+  opponentColor = 0;
+}
 
 let profilePic = [
   profile_0,
@@ -44,6 +54,21 @@ let profilePic = [
   profile_8,
   loading
 ]
+
+let colorPic = [
+  WhiteDot,
+  BlackDot
+]
+
+
+
+
+
+
+
+
+
+
 
 const Games = () => {
 
@@ -80,7 +105,7 @@ const Games = () => {
       <Header />
       <div className="navbar">Proposed Navbar</div>
       <Nav />
-      <div class="game-info">
+      <div className="game-info">
         <div className="game-details">
           <h5>Game Details:</h5>
           <ul style={{ padding: 0 }}>
@@ -107,21 +132,21 @@ const Games = () => {
             </div>
           <img src={Board} alt="Reversi board"/> */}
       </Game>
-      <div class="profiles">
+      <div className="profiles">
         <div className="profile-details">
           <div><img src={profilePic[state.playerPic]} alt="player" /></div>
           <div><img src={profilePic[state.opponentPic]} alt="opponent" /></div>
           <div className="elo">
-            <div><img src={BlackDot} /></div>
+            <div><img src={colorPic[userColor]} /></div>
             <div>{state.playerName} {state.playerElo}</div>
           </div>
           <div className="elo">
-            <div><img src={WhiteDot} /></div>
+            <div><img src={colorPic[opponentColor]} /></div>
             <div>{state.opponentName} {state.opponentElo}</div>
           </div>
         </div>
         <div className="quit-button">
-          <button type="button" class="btn btn-danger">Quit</button>
+          <button type="button" className="btn btn-danger">Quit</button>
         </div>
         <div className="timeout text-center">
           Timeout: 4 minutes
