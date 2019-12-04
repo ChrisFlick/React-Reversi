@@ -72,7 +72,7 @@ const Games = () => {
         })
       })
     })
-  })
+  }, [])
 
 
   return (
