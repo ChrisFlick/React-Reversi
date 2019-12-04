@@ -32,6 +32,15 @@ import loading from "../img/loading.gif"
 const username = localStorage.getItem("username")
 const opponentName = localStorage.getItem("opponentName")
 
+let userColor;
+let opponentColor;
+if (localStorage.getItem("color") === "White") {
+  userColor = 0;
+  opponentColor = 1;
+} else {
+  userColor = 1;
+  opponentColor = 0;
+}
 
 let profilePic = [
   profile_0,
@@ -44,6 +53,11 @@ let profilePic = [
   profile_7,
   profile_8,
   loading
+]
+
+let colorPic = [
+  WhiteDot,
+  BlackDot
 ]
 
 
@@ -123,11 +137,11 @@ const Games = () => {
           <div><img src={profilePic[state.playerPic]} alt="player" /></div>
           <div><img src={profilePic[state.opponentPic]} alt="opponent" /></div>
           <div className="elo">
-            <div><img src={BlackDot} /></div>
+            <div><img src={colorPic[userColor]} /></div>
             <div>{state.playerName} {state.playerElo}</div>
           </div>
           <div className="elo">
-            <div><img src={WhiteDot} /></div>
+            <div><img src={colorPic[opponentColor]} /></div>
             <div>{state.opponentName} {state.opponentElo}</div>
           </div>
         </div>
