@@ -4,11 +4,7 @@ import { useStoreContext } from '../../utils/GlobalState';
 import {
 	UPDATE_BOARD,
 } from "../../utils/actions";
-<<<<<<< HEAD
-import Piece from "../Piece/index";
-=======
 import Peer from "peerjs"
->>>>>>> master
 
 const username = localStorage.getItem("username")
 const opponentName = localStorage.getItem("opponentName")

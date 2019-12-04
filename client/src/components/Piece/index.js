@@ -1,7 +1,7 @@
 import React from "react";
 import BlackDot from "../../img/black-dot.png";
 import WhiteDot from "../../img/white-dot.png";
-import "./Piece.css";
+// import "./Piece.css";
 
 const handleClick = event => {
   const piece = document.getElementById("piece");
