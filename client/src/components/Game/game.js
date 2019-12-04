@@ -8,8 +8,10 @@ import Peer from "peerjs"
 
 const username = localStorage.getItem("username")
 const opponentName = localStorage.getItem("opponentName")
+const color = localStorage.getItem('color')
 
 const peer = new Peer(username, {
+	// host: '74.207.252.238',
 	debug: 3
 });
 
@@ -72,7 +74,7 @@ function Game(props) {
 				<div className="game-board">
 					<Board
 						board={squares}
-						onClick={handleClick}
+						onClick={handleTurn}
 						dispatch={dispatch}
 					/>
 				</div>
@@ -87,6 +89,11 @@ function Game(props) {
 		</div>
 	);
 
+	function handleTurn(x,y,dispatch) {
+		if (color === turn) {
+			handleClick(x, y, dispatch)
+		}
+	}
 	function resetBoard(board) {
 		for (var x = 0; x < board.length; x++) {
 			for (var y = 0; y < board.length; y++) {
@@ -284,10 +291,7 @@ function Game(props) {
 	function handleClick(x, y, dispatch) {
 		var conn = peer.connect(opponentName);
 		// on open will be launch when you successfully connect to PeerServer
-		conn.on('open', function () {
-			// here you have conn.id
-			conn.send([x,y]);
-		});
+		
 
 		console.log(x, y);
 		if (isGameOver()) {
@@ -308,6 +312,11 @@ function Game(props) {
 		}
 		console.log("squares before", squares);
 		if (!pass() && isValidMove(squares, x, y)) {
+			conn.on('open', function () {
+				// here you have conn.id
+				conn.send([x,y]);
+			});
+			
 			let moves = getValidMoves(squares);
 			let swapColors;
 			for (let i = 0; i < moves.length; i++) {
