@@ -1,85 +1,52 @@
-import React, { createContext, useReducer, useContext, useEffect } from 'react';
+import React, { createContext, useReducer, useContext } from 'react';
 import Board from '../Board/board.js';
-import { useStoreContext } from '../../utils/GlobalState';
+import {useStoreContext} from '../../utils/GlobalState';
 import {
-	UPDATE_BOARD,
+  UPDATE_BOARD,
 } from "../../utils/actions";
-import Peer from "peerjs"
-
-const username = localStorage.getItem("username")
-const opponentName = localStorage.getItem("opponentName")
-const color = localStorage.getItem('color')
-
-const peer = new Peer(username, {
-	// host: '74.207.252.238',
-	debug: 3
-});
-
 
 let player1="player1";
-let player2="player2";
+let player2="AI";
 // adjacent spaces
 let direction = [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]];
 // white == 1
 // black == 2
-let boards = [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]];
-let status = '';
-let turn = 'White';
-let winner = null;
-let player = whoGoesFirst(player1, player2);
+let boards = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]];
+let status= "";
+let turn= 'White';
+let winner= null;
+let player= player1;
 let passCounter = 0;
 let startedGame = false;
 
-function whoGoesFirst(player1, player2) {
-	let first = Math.random() < 0.5 ? player1 : player2;
-	return first;
-}
-function Game(props) {
-
-	
+function CompGame(props) {
 	console.log("context", useStoreContext());
-	const [{ board }, dispatch] = useStoreContext();
+	const [{board}, dispatch] = useStoreContext();
 	let squares = board;
 	if (!startedGame) {
-		squares = startGame(boards);
-		dispatch({ type: UPDATE_BOARD, board: squares });
+		squares = startGame(boards);	
+		dispatch({type: UPDATE_BOARD, board: squares});
+		console.log(squares);
 		startedGame = true;
 	}
 	console.log("start game", squares);
-
-	useEffect(() => {
-		
-		
-		let conn = peer.connect(opponentName);
-		// on open will be launch when you successfully connect to PeerServer
-		
-		
-		peer.on('connection', function (conn) {
-			conn.on('data', function (data) {
-				// Handles coordinates from opponent
-				handleClick(data[0],data[1], dispatch);
-			});
-		});
-	}, [])
-
-
 	const element = (
 		<div>
-			<div className="game">
-				<h3>Score</h3>
-				<div id="score">
-					<p>White: <span id="score-white">{getScores(squares).white}
-						|| Black: </span><span id="score-black">{getScores(squares).black}</span>
-					</p>
-				</div>
-				<div className="game-board">
-					<Board
-						board={squares}
-						onClick={handleTurn}
-						dispatch={dispatch}
-					/>
-				</div>
-				<div className="game-info">
+	        <div className="game">
+	        	<h3>Score</h3>
+	        	<div id="score">
+	        		<p>White: <span id="score-white">{getScores(squares).white}
+	        			|| Black: </span><span id="score-black">{getScores(squares).black}</span>
+	        		</p>
+	        	</div>
+	          	<div className="game-board">
+	            	<Board
+	            		board = {squares}
+	            		onClick = {handleClick}
+	            		dispatch = {dispatch}
+	            	/>
+	          	</div>
+	          	<div className="game-info">
 	            	<h3>Turn</h3>
 	            	<div id="player-turn-box">
 	            	{turn}, {player}
@@ -93,11 +60,18 @@ function Game(props) {
 	    </div>
 	);
 
-	function handleTurn(x,y,dispatch) {
-		if (color === turn) {
-			handleClick(x, y, dispatch)
-		}
+	function aiTurn(board) {
+		let choices = getValidMoves(board);
+		console.log("Droid's choices are "+choices);
+		let move = aiMove(choices);
+		console.log("Droid's move is "+move);
+		return move;
 	}
+	function aiMove(options) {
+		let move = options[Math.floor(Math.random() * options.length)];
+		return move;
+	}
+
 	function resetBoard(board) {
 		for (var x = 0; x < board.length; x++) {
 			for (var y = 0; y < board.length; y++) {
@@ -108,14 +82,15 @@ function Game(props) {
 		return board;
 	}
 	function startGame(board) {
-		resetBoard(board);
-		//set middle 4 squares to black and white
-		board[3][3] = 1;
-		board[4][4] = 1;
-		board[3][4] = 2;
-		board[4][3] = 2;
+	 	resetBoard(board);
+	 	//set middle 4 squares to black and white
+	 	board[3][3] = 1;
+	 	board[4][4] = 1;
+	 	board[3][4] = 2;
+	 	board[4][3] = 2;
 		board = getBoardValidMoves(board);
-		status = "Game started between "+player1+" and "+player2+". "+player+" goes first";
+		console.log(board);
+		status = "New game with AI started. "+player+" goes first!"
 		return board;
 	}
 
@@ -182,6 +157,7 @@ function Game(props) {
 	function getBoardValidMoves(board) {
 		let space;
 		if (!getValidMoves(board)) {
+			console.log("no valid moves");
 			return board;
 		}
 		else {
@@ -190,6 +166,7 @@ function Game(props) {
 				let y = space[1];
 				//highlight these squares
 				board[x][y] = 3;
+				console.log("valid move found",[x,y]);
 			}
 			return board;
 		}
@@ -205,16 +182,18 @@ function Game(props) {
 		return newColor;
 	}
 
-	function getBoardSwapColors(board, array) {
+	function getBoardSwapColors(board,array) {
+		console.log(array);
 		array.forEach(space => {
 			let x = space[0];
 			let y = space[1];
 			//flip pieces
+			console.log(x,y);
 			board[x][y] = swapColor();
 		})
 		clearChoices(board);
-		player = player === player1 ? player2 : player1;
-		turn = turn === 'White' ? 'Black' : 'White';
+		player = player === player1? player2: player1;
+		turn = turn === 'White' ? 'Black': 'White';
 		squares = board;
 	}
 
@@ -230,12 +209,12 @@ function Game(props) {
 
 	function getValidMoves(board) {
 		let validMoves = [];
-		let range = Array.from({ length: 8 }, (x, i) => i);
-		let x, y;
+		let range = Array.from({length: 8}, (x,i) => i);
+		let x,y;
 		for (x of range) {
 			for (y of range) {
-				if (isValidMove(board, x, y)) {
-					validMoves.push([x, y]);
+				if (isValidMove(board,x,y)) {
+					validMoves.push([x,y]);
 				}
 			}
 		}
@@ -246,8 +225,8 @@ function Game(props) {
 			return validMoves;
 	}
 
-	function isOnBoard(x, y) {
-		if (x >= 0 && x <= 7 && y >= 0 && y <= 7) {
+	function isOnBoard(x,y) {
+		if (x >= 0 && x <= 7 && y >= 0 && y <= 7 ) {
 			return true;
 		}
 		else
@@ -257,8 +236,8 @@ function Game(props) {
 	function getScores(board) {
 		let scoreW = 0;
 		let scoreB = 0;
-		let range = Array.from({ length: 8 }, (x, i) => i);
-		let x, y;
+		let range = Array.from({length: 8}, (x,i) => i);
+		let x,y;
 		//count number of colored pieces
 		for (x of range) {
 			for (y of range) {
@@ -270,7 +249,7 @@ function Game(props) {
 				}
 			}
 		}
-		return { white: scoreW, black: scoreB };
+		return {white: scoreW, black:scoreB};
 	}
 
 	function pass() {
@@ -304,14 +283,51 @@ function Game(props) {
 		return true;
 	}
 
+	function rematch() {
+		// const [show, setShow] = useState(false);
+
+		// const handleClose = () => setShow(false);
+		// const handleShow = () => setShow(true);
+
+		// return (
+		// <>
+		//   	<Button variant="primary" onClick={handleShow}>
+		//     	Launch demo modal
+		//   	</Button>
+
+		//   	<Modal show={show} onHide={handleClose}>
+		//     	<Modal.Header closeButton>
+		//       		<Modal.Title>Modal heading</Modal.Title>
+		//     	</Modal.Header>
+		//     	<Modal.Body>{status}</Modal.Body>
+		//     	<Modal.Footer>
+		//       		<Button variant="secondary" onClick={handleClose}>
+		//         		Leave Lobby
+		//       		</Button>
+		//       		<Button variant="primary" onClick={handleClose}>
+		//         		rematch
+		//       		</Button>
+		//     	</Modal.Footer>
+		//   	</Modal>
+		// </>
+		// );
+	}
+
+	function sleep(ms) {
+  		return new Promise(resolve => setTimeout(resolve, ms));
+	}
+
+	async function demo() {
+  		console.log('Taking a break...');
+  		await sleep(2000);
+  		console.log('Two second later');
+  		return true;
+	}
+
 	function handleClick(x,y,dispatch) {
 		console.log(x,y);
+		let wait = false;
 		if (!pass() && isValidMove(squares,x,y)) {
-			var conn = peer.connect(opponentName);
-			conn.on('open', function () {
-				// here you have conn.id
-				conn.send([x,y]);
-			});
 			let moves = getValidMoves(squares);
 			for (let i = 0; i < moves.length; i++) {
 				if (moves[i][0] === x && moves[i][1] === y) {
@@ -348,6 +364,7 @@ function Game(props) {
 				}
 				status= "Game over! Winner is "+winner;
 				dispatch({type: UPDATE_BOARD, board: squares});
+				rematch();
 				return;
 			}
 			passCounter = 0;
@@ -356,8 +373,32 @@ function Game(props) {
 			console.log(getScores(squares));
 			status='';
 			dispatch({type: UPDATE_BOARD, board: squares});
+			console.log("dispatch made");
+			wait = demo();
+			if (player === player2 && wait) {
+				let move = aiTurn(squares);
+				// getBoardValidMoves(squares);
+				getBoardSwapColors(squares,isValidMove(squares,move[0],move[1]));
+				getBoardValidMoves(squares);
+				dispatch({type: UPDATE_BOARD, board: squares});
+				console.log("droid move made");
+			}
 			return;
 		}
+		// else  if (pass()){
+		// 	let playerPassing = player;
+		// 	player = player === player1? player2: player1;
+		// 	turn = turn === 'White' ? 'Black': 'White';
+		// 	status = playerPassing+" has no available moves. Pass";
+		// 	passCounter++;
+		// 	console.log(status);
+		// 	console.log(passCounter);
+		// 	clearChoices(squares);
+		// 	getBoardValidMoves(squares);
+		// 	dispatch({type: UPDATE_BOARD, board: squares});
+		// 	console.log("dispatch made");
+		// 	return;
+		// }
 		else {
 			status = "Not a valid move. Try again.";
 			getBoardValidMoves(squares);
@@ -369,6 +410,4 @@ function Game(props) {
 	return element;
 }
 
-
-
-export default Game;
+export default CompGame;
