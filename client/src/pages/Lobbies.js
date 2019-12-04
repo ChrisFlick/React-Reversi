@@ -27,14 +27,22 @@ const Lobbies = () => {
     })
 
     const handleClick = (e) => {
-        API.updateLobby(e.id, username)
-        localStorage.setItem("lobby", e.id)
-        document.location.href = "/lobby";
+        API.updateLobby(e.id, username).then((results) => {
+            localStorage.setItem("lobby", e.id)
+            document.location.href = "/games";
+        })
+        
 
     }
 
     const handleSubmit = (e) => {
-        
+        e.preventDefault()
+        API.createLobby(document.getElementById('name').value, username).then(results => {  
+            localStorage.setItem("lobby", results.data)
+           document.location.href = "/wait"
+
+        })
+            
     }
 
 
@@ -49,7 +57,7 @@ const Lobbies = () => {
                     <CardHeader>Create a Lobby</CardHeader>
                     <CardBody>
 
-                    <form id="createLobby">
+                    <form id="createLobby" onSubmit={handleSubmit}>
                         Name:
                         <input id="name" type="text"></input>
                     </form>
