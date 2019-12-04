@@ -6,7 +6,7 @@ import {
 } from "../../utils/actions";
 
 let player1="player1";
-let player2="player2";
+let player2="AI";
 // adjacent spaces
 let direction = [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]];
 // white == 1
@@ -24,7 +24,7 @@ function whoGoesFirst(player1,player2) {
 	console.log(first);
 	return first;
 }
-function Game(props) {
+function CompGame(props) {
 	console.log("context", useStoreContext());
 	const [{board}, dispatch] = useStoreContext();
 	let squares = board;
@@ -64,6 +64,9 @@ function Game(props) {
 	    </div>
 	);
 
+	function aiTurn() {
+
+	}
 	function resetBoard(board) {
 		for (var x = 0; x < board.length; x++) {
 			for (var y = 0; y < board.length; y++) {
@@ -81,7 +84,7 @@ function Game(props) {
 	 	board[3][4] = 2;
 	 	board[4][3] = 2;
 		board = getBoardValidMoves(board);
-		status = "Game started between "+player1+" and "+player2+". "+player+" goes first";
+		status = "New game with AI started. "+player+" goes first!"
 		return board;
 	}
 
@@ -376,4 +379,4 @@ function Game(props) {
 	return element;
 }
 
-export default Game;
+export default CompGame;
