@@ -4,19 +4,6 @@ import Square from './square.js';
 import {useStoreContext} from '../../utils/GlobalState';
 
 function Board(props) {
-    // let subArr;
-    // for (let i = 0; i < 8; i++) {
-    //     subArr = []
-    //     for (let j = 0; j < 8; j++) {
-    //     subArr.push([0][0])
-    //         // subArr.push(0)
-    //         if (j === 7) {
-    //             board.push(subArr)
-    //         }
-    //     }
-    // }
-
-    // TODO: Add context and pass down onClick
     return (
         <div>
             {props.board.map((row,x) => {

@@ -199,9 +199,13 @@ function Game(props) {
 		let newColor;
 		if (turn === "White") {
 			newColor = 1;
+		// blackFlipDown(black);
+        // setTimeout(() => whiteFlipUp(white, piece), 250);
 		}
 		else
 			newColor = 2;
+		// whiteFlipDown(white);
+        // setTimeout(() => blackFlipUp(black, piece), 250);
 		return newColor;
 	}
 
