@@ -6,7 +6,6 @@ import CardBody from "../components/CardBody"
 import Header from "../components/Header"
 import API from "../utils/API"
 import Nav from "../components/Nav"
-import "../css/Profile.css";
 
 // Importing images
 import profile_0 from "../img/profile_pics/profile_0.png"
@@ -61,23 +60,25 @@ const Profile = () => {
  
 
   return (
-    <div className="profile-container">
+    <Container fluid>
       <Header />
       <Nav />
-      <div className="userprofile">
-        <Card>
+      <Row>
+        <Col size="md-6 ">
+
           <h1>{state.name}</h1>
-          <CardBody>
-            <img src={profilePic[state.pic]} alt="profile picture" className="profilePic"></img>
-          </CardBody>
-        </Card>
-      </div>
-        <div className="details">
+          <img src={profilePic[state.pic]} alt="profile picture" className="profilePic"></img>
+
+
+        </Col>
+        <Col size="md-6">
+          <Row>
             <Card>
               <CardHeader><h4>ELO Rating:</h4></CardHeader>
               <CardBody><h1>{state.elo}</h1></CardBody>
             </Card>
-          <div className="standings">
+          </Row>
+          <Row>
             <Card>
               <CardHeader><h4>Wins:</h4></CardHeader>
               <CardBody><h1>{state.wins}</h1></CardBody>
@@ -86,11 +87,12 @@ const Profile = () => {
               <CardHeader><h4>Loses:</h4></CardHeader>
               <CardBody><h1>{state.loses}</h1></CardBody>
             </Card>
-          </div>
+          </Row>
 
 
-        </div>
-    </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
