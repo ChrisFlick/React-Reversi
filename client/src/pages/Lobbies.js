@@ -30,7 +30,12 @@ const Lobbies = () => {
         API.updateLobby(e.id, username).then((results) => {
             localStorage.setItem("lobby", e.id)
             localStorage.setItem("color", 'Black')
-            document.location.href = "/games";
+
+            API.getLobby(e.id).then(res => {
+                localStorage.setItem("opponentName", res.data[0].player1)
+                document.location.href = "/games";
+            })
+            
         })
         
 
