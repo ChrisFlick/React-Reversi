@@ -5,6 +5,7 @@ import {
 	UPDATE_BOARD,
 } from "../../utils/actions";
 import Peer from "peerjs"
+import QuitButton from '../Quit/index.js';
 
 const username = localStorage.getItem("username")
 const opponentName = localStorage.getItem("opponentName")
@@ -35,9 +36,7 @@ function whoGoesFirst(player1, player2) {
 	return first;
 }
 function Game(props) {
-
 	
-	console.log("context", useStoreContext());
 	const [{ board }, dispatch] = useStoreContext();
 	let squares = board;
 	if (!startedGame) {
@@ -45,7 +44,6 @@ function Game(props) {
 		dispatch({ type: UPDATE_BOARD, board: squares });
 		startedGame = true;
 	}
-	console.log("start game", squares);
 
 	useEffect(() => {
 		
@@ -87,7 +85,7 @@ function Game(props) {
 	        	</div>
 	        	<div className="game-status">
 	        		<h3>Status</h3>
-	        		{status}
+	        		{status}	{winner}
 	        	</div>
 	    	</div>
 	    </div>
@@ -283,7 +281,6 @@ function Game(props) {
 			return true;
 		}
 		else {
-			console.log("pass failed");
 			return false;
 		}
 	}
@@ -309,7 +306,6 @@ function Game(props) {
 	}
 
 	function handleClick(x,y,dispatch) {
-		console.log(x,y);
 		if (!pass() && isValidMove(squares,x,y)) {
 			var conn = peer.connect(opponentName);
 			conn.on('open', function () {
@@ -326,12 +322,9 @@ function Game(props) {
 						turn = turn === 'White' ? 'Black': 'White';
 						status = playerPassing+" has no available moves. Pass";
 						passCounter++;
-						console.log(status);
-						console.log(passCounter);
 						clearChoices(squares);
 						getBoardValidMoves(squares);
 						dispatch({type: UPDATE_BOARD, board: squares});
-						console.log("dispatch made");
 						return;
 					}
 					else
@@ -340,24 +333,21 @@ function Game(props) {
 			}
 			if (isGameOver()) {
 				let finalScore = getScores(squares);
-				let winner;
 				if (finalScore.white > finalScore.black ) {
-					winner = "Player 1";
+					winner = player1;
 				}
 				else if (finalScore.white < finalScore.black) {
-					winner = "Player 2";
+					winner = player2;
 				}
 				else {
 					winner = "No one";
 				}
 				status= "Game over! Winner is "+winner;
+				winner = <QuitButton />;
 				dispatch({type: UPDATE_BOARD, board: squares});
 				return;
 			}
 			passCounter = 0;
-			console.log(squares);
-			console.log(turn);
-			console.log(getScores(squares));
 			status='';
 			dispatch({type: UPDATE_BOARD, board: squares});
 			return;
@@ -372,7 +362,5 @@ function Game(props) {
 	}
 	return element;
 }
-
-
 
 export default Game;

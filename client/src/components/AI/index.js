@@ -1,11 +1,13 @@
-import React, { createContext, useReducer, useContext } from 'react';
+import React, { createContext, useReducer, useContext, useState } from 'react';
 import Board from '../Board/board.js';
 import {useStoreContext} from '../../utils/GlobalState';
 import {
   UPDATE_BOARD,
 } from "../../utils/actions";
+import QuitButton from '../Quit/index.js';
 
-let player1="player1";
+let wait = false;
+let player1="You";
 let player2="AI";
 // adjacent spaces
 let direction = [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]];
@@ -20,16 +22,13 @@ let passCounter = 0;
 let startedGame = false;
 
 function CompGame(props) {
-	console.log("context", useStoreContext());
 	const [{board}, dispatch] = useStoreContext();
 	let squares = board;
 	if (!startedGame) {
 		squares = startGame(boards);	
 		dispatch({type: UPDATE_BOARD, board: squares});
-		console.log(squares);
 		startedGame = true;
 	}
-	console.log("start game", squares);
 	const element = (
 		<div>
 	        <div className="game">
@@ -54,7 +53,9 @@ function CompGame(props) {
 	        	</div>
 	        	<div className="game-status">
 	        		<h3>Status</h3>
-	        		{status}
+	        		<div>
+	        		{status}	{winner}
+	        		</div>
 	        	</div>
 	    	</div>
 	    </div>
@@ -62,9 +63,7 @@ function CompGame(props) {
 
 	function aiTurn(board) {
 		let choices = getValidMoves(board);
-		console.log("Droid's choices are "+choices);
 		let move = aiMove(choices);
-		console.log("Droid's move is "+move);
 		return move;
 	}
 	function aiMove(options) {
@@ -89,8 +88,7 @@ function CompGame(props) {
 	 	board[3][4] = 2;
 	 	board[4][3] = 2;
 		board = getBoardValidMoves(board);
-		console.log(board);
-		status = "New game with AI started. "+player+" goes first!"
+		status = "New game with AI started. "+player+" go first!"
 		return board;
 	}
 
@@ -157,7 +155,6 @@ function CompGame(props) {
 	function getBoardValidMoves(board) {
 		let space;
 		if (!getValidMoves(board)) {
-			console.log("no valid moves");
 			return board;
 		}
 		else {
@@ -166,7 +163,6 @@ function CompGame(props) {
 				let y = space[1];
 				//highlight these squares
 				board[x][y] = 3;
-				console.log("valid move found",[x,y]);
 			}
 			return board;
 		}
@@ -183,17 +179,18 @@ function CompGame(props) {
 	}
 
 	function getBoardSwapColors(board,array) {
-		console.log(array);
 		array.forEach(space => {
 			let x = space[0];
 			let y = space[1];
 			//flip pieces
-			console.log(x,y);
 			board[x][y] = swapColor();
 		})
 		clearChoices(board);
 		player = player === player1? player2: player1;
 		turn = turn === 'White' ? 'Black': 'White';
+		if (turn === "Black") {
+			status = "Droid is thinking";
+		}
 		squares = board;
 	}
 
@@ -254,11 +251,9 @@ function CompGame(props) {
 
 	function pass() {
 		if (getValidMoves(squares) === null) {
-			
 			return true;
 		}
 		else {
-			console.log("pass failed");
 			return false;
 		}
 	}
@@ -283,50 +278,8 @@ function CompGame(props) {
 		return true;
 	}
 
-	function rematch() {
-		// const [show, setShow] = useState(false);
-
-		// const handleClose = () => setShow(false);
-		// const handleShow = () => setShow(true);
-
-		// return (
-		// <>
-		//   	<Button variant="primary" onClick={handleShow}>
-		//     	Launch demo modal
-		//   	</Button>
-
-		//   	<Modal show={show} onHide={handleClose}>
-		//     	<Modal.Header closeButton>
-		//       		<Modal.Title>Modal heading</Modal.Title>
-		//     	</Modal.Header>
-		//     	<Modal.Body>{status}</Modal.Body>
-		//     	<Modal.Footer>
-		//       		<Button variant="secondary" onClick={handleClose}>
-		//         		Leave Lobby
-		//       		</Button>
-		//       		<Button variant="primary" onClick={handleClose}>
-		//         		rematch
-		//       		</Button>
-		//     	</Modal.Footer>
-		//   	</Modal>
-		// </>
-		// );
-	}
-
-	function sleep(ms) {
-  		return new Promise(resolve => setTimeout(resolve, ms));
-	}
-
-	async function demo() {
-  		console.log('Taking a break...');
-  		await sleep(2000);
-  		console.log('Two second later');
-  		return true;
-	}
-
 	function handleClick(x,y,dispatch) {
-		console.log(x,y);
-		let wait = false;
+		wait = false;
 		if (!pass() && isValidMove(squares,x,y)) {
 			let moves = getValidMoves(squares);
 			for (let i = 0; i < moves.length; i++) {
@@ -338,12 +291,9 @@ function CompGame(props) {
 						turn = turn === 'White' ? 'Black': 'White';
 						status = playerPassing+" has no available moves. Pass";
 						passCounter++;
-						console.log(status);
-						console.log(passCounter);
 						clearChoices(squares);
 						getBoardValidMoves(squares);
 						dispatch({type: UPDATE_BOARD, board: squares});
-						console.log("dispatch made");
 						return;
 					}
 					else
@@ -352,53 +302,57 @@ function CompGame(props) {
 			}
 			if (isGameOver()) {
 				let finalScore = getScores(squares);
-				let winner;
 				if (finalScore.white > finalScore.black ) {
-					winner = "Player 1";
+					winner = player1;
 				}
 				else if (finalScore.white < finalScore.black) {
-					winner = "Player 2";
+					winner = player2;
 				}
 				else {
 					winner = "No one";
 				}
 				status= "Game over! Winner is "+winner;
+				winner = <QuitButton />;
 				dispatch({type: UPDATE_BOARD, board: squares});
-				rematch();
 				return;
 			}
 			passCounter = 0;
-			console.log(squares);
-			console.log(turn);
-			console.log(getScores(squares));
-			status='';
 			dispatch({type: UPDATE_BOARD, board: squares});
-			console.log("dispatch made");
-			wait = demo();
-			if (player === player2 && wait) {
-				let move = aiTurn(squares);
-				// getBoardValidMoves(squares);
-				getBoardSwapColors(squares,isValidMove(squares,move[0],move[1]));
-				getBoardValidMoves(squares);
-				dispatch({type: UPDATE_BOARD, board: squares});
-				console.log("droid move made");
-			}
+
+			let think = new Promise((resolve) => {
+	        	wait = true;
+	        	setTimeout(() => {
+	            	return resolve(wait);
+	        	}, 3000);
+	    	});
+
+			think.then(function() {
+				if (player === player2 && wait === true) {
+					let move = aiTurn(squares);
+					getBoardSwapColors(squares,isValidMove(squares,move[0],move[1]));
+					status = "Droid moved. Player's turn now";
+					getBoardValidMoves(squares);
+					dispatch({type: UPDATE_BOARD, board: squares});
+				}
+				if (isGameOver()) {
+					let finalScore = getScores(squares);
+					if (finalScore.white > finalScore.black ) {
+						winner = player1;
+					}
+					else if (finalScore.white < finalScore.black) {
+						winner = player2;
+					}
+					else {
+						winner = "No one";
+					}
+					status = "Game over! Winner is "+winner;
+					winner = <QuitButton />;
+					dispatch({type: UPDATE_BOARD, board: squares});
+					return;
+				}
+			});
 			return;
 		}
-		// else  if (pass()){
-		// 	let playerPassing = player;
-		// 	player = player === player1? player2: player1;
-		// 	turn = turn === 'White' ? 'Black': 'White';
-		// 	status = playerPassing+" has no available moves. Pass";
-		// 	passCounter++;
-		// 	console.log(status);
-		// 	console.log(passCounter);
-		// 	clearChoices(squares);
-		// 	getBoardValidMoves(squares);
-		// 	dispatch({type: UPDATE_BOARD, board: squares});
-		// 	console.log("dispatch made");
-		// 	return;
-		// }
 		else {
 			status = "Not a valid move. Try again.";
 			getBoardValidMoves(squares);
