@@ -18,7 +18,8 @@ const peer = new Peer(username, {
 });
 
 
-let player1 = "player1", player2 = "player2";
+let player1 = "player1";
+let player2 = "player2";
 // adjacent spaces
 let direction = [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]];
 // white == 1
@@ -290,30 +291,6 @@ function Game(props) {
 			return false;
 	}
 
-	function handleClick(x, y, dispatch) {
-		
-		
-
-		console.log(x, y);
-		if (isGameOver()) {
-			let finalScore = getScores(squares);
-			let winner;
-			if (finalScore.white > finalScore.black) {
-				winner = "White";
-
-				if(color === winner) {
-					API.updateElo(username, opponentName, true)
-				} else {
-					API.updateElo(username, opponentName, false)
-				}
-			}
-			else if (finalScore.white < finalScore.black) {
-				winner = "Black";	
-			}
-			else {
-				winner = "No one";
-			}
-
 	function handleClick(x,y,dispatch) {
 		if (!pass() && isValidMove(squares, x, y)) {
 
@@ -329,11 +306,7 @@ function Game(props) {
 				if (moves[i][0] === x && moves[i][1] === y) {
 					getBoardSwapColors(squares,isValidMove(squares,x,y));
 					if (pass() && !isGameOver()) {
-						let playerPassing = player;
-						player = player === player1? player2: player1;
-						turn = turn === 'White' ? 'Black': 'White';
-						status = playerPassing+" has no available moves. Pass";
-						passCounter++;
+						pass();
 						clearChoices(squares);
 						getBoardValidMoves(squares);
 						dispatch({type: UPDATE_BOARD, board: squares});
@@ -349,9 +322,9 @@ function Game(props) {
 					winner = "White";
 
 					if(color === winner) {
-						API.updateElo(username, opponentName, true)
+						API.updateElo(username, opponentName, true);
 					} else {
-						API.updateElo(username, opponentName, false)
+						API.updateElo(username, opponentName, false);
 					}
 				}
 				else if (finalScore.white < finalScore.black) {
@@ -376,8 +349,9 @@ function Game(props) {
 			return;
 		}
 		else {
-			console.log("passing")
-			pass();
+			status = "Not a valid move. Try again.";
+			getBoardValidMoves(squares);
+			dispatch({type: UPDATE_BOARD, board: squares});
 			return;
 		}
 
