@@ -1,5 +1,6 @@
 import React, { createContext, useReducer, useContext, useEffect } from 'react';
 import Board from '../Board/board.js';
+import API from "../../utils/API"
 import { useStoreContext } from '../../utils/GlobalState';
 import {
 	UPDATE_BOARD,
@@ -17,8 +18,7 @@ const peer = new Peer(username, {
 });
 
 
-let player1="player1";
-let player2="player2";
+let player1, player2;
 // adjacent spaces
 let direction = [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]];
 // white == 1
@@ -113,11 +113,10 @@ function Game(props) {
 		board[3][4] = 2;
 		board[4][3] = 2;
 		board = getBoardValidMoves(board);
-		status = "Game started between "+player1+" and "+player2+". "+player+" goes first";
 		return board;
 	}
 
-	function isValidMove(board,xPos,yPos) {
+	function isValidMove(board, xPos, yPos) {
 		let color;
 		let otherColor;
 		if (turn === "White") {
@@ -128,53 +127,53 @@ function Game(props) {
 			color = 2;
 			otherColor = 1;
 		}
-	 	if (board[xPos][yPos] != 0 && board[xPos][yPos] != 3 || !isOnBoard(xPos,yPos)) {
-	 		return false;
-	 	}
-	 	let changedColors = [];
-	 	direction.forEach(dir => {
-	 		let xDir = dir[0];
-	 		let yDir = dir[1];
-	 		let x = xPos;
-	 		let y = yPos;
-	 		x += xDir;
-	 		y += yDir;
-	 		if (isOnBoard(x,y) && board[x][y] === otherColor) {
-	 			x += xDir;
-	 			y += yDir;
-	 			if (!isOnBoard(x,y)) {
-	 				return;
-	 			}
-				while (board[x][y] === otherColor && isOnBoard(x,y)) {
+		if (board[xPos][yPos] != 0 && board[xPos][yPos] != 3 || !isOnBoard(xPos, yPos)) {
+			return false;
+		}
+		let changedColors = [];
+		direction.forEach(dir => {
+			let xDir = dir[0];
+			let yDir = dir[1];
+			let x = xPos;
+			let y = yPos;
+			x += xDir;
+			y += yDir;
+			if (isOnBoard(x, y) && board[x][y] === otherColor) {
+				x += xDir;
+				y += yDir;
+				if (!isOnBoard(x, y)) {
+					return;
+				}
+				while (board[x][y] === otherColor && isOnBoard(x, y)) {
 					x += xDir;
 					y += yDir;
-					if (!isOnBoard(x,y)) {
+					if (!isOnBoard(x, y)) {
 						break;
 					}
-	 			}
-	 			if (!isOnBoard(x,y)) {
-	 				return;
-	 			}
-	 			if (board[x][y] === color) {
-	 				let matchColor = true;
-	 				while (matchColor) {
-	 					changedColors.push([x,y]);
-	 					x -= xDir;
-	 					y -= yDir;
-	 					if (x === xPos && y === yPos) {
-	 						changedColors.push([x,y]);
-	 						break;
-	 					}
-	 				} 
+				}
+				if (!isOnBoard(x, y)) {
+					return;
+				}
+				if (board[x][y] === color) {
+					let matchColor = true;
+					while (matchColor) {
+						changedColors.push([x, y]);
+						x -= xDir;
+						y -= yDir;
+						if (x === xPos && y === yPos) {
+							changedColors.push([x, y]);
+							break;
+						}
+					}
 
-	 			}
-	 		}
-	 	});
-	 	board[xPos][yPos] = 0;
-	 	if (changedColors.length === 0) {
-	 		return false;
-	 	}
-	 	return changedColors;
+				}
+			}
+		});
+		board[xPos][yPos] = 0;
+		if (changedColors.length === 0) {
+			return false;
+		}
+		return changedColors;
 	}
 
 	function getBoardValidMoves(board) {
@@ -197,13 +196,9 @@ function Game(props) {
 		let newColor;
 		if (turn === "White") {
 			newColor = 1;
-		// blackFlipDown(black);
-        // setTimeout(() => whiteFlipUp(white, piece), 250);
 		}
 		else
 			newColor = 2;
-		// whiteFlipDown(white);
-        // setTimeout(() => blackFlipUp(black, piece), 250);
 		return newColor;
 	}
 
@@ -276,43 +271,59 @@ function Game(props) {
 	}
 
 	function pass() {
-		if (getValidMoves(squares) === null) {
-			
-			return true;
+		if (!getValidMoves(squares)) {
+			let playerPassing = player;
+			player = player === player1 ? player2 : player1;
+			turn = turn === 'White' ? 'Black' : 'White';
+			status = playerPassing + " has no available moves. Pass";
+			passCounter++;
 		}
 		else {
 			return false;
 		}
 	}
 	function isGameOver() {
-		if (passCounter > 1 || isBoardFull()) {
-			console.log("Game is Over");
+		if (passCounter > 1) {
 			return true;
 		}
 		else
 			return false;
 	}
 
-	function isBoardFull() {
-		let range = Array.from({length: 8}, (x,i) => i);
-		let x,y;
-		for (x of range) {
-			for (y of range) {
-				if (board[x][y] === 0 || board[x][y] === 3) {return false;}
+	function handleClick(x, y, dispatch) {
+		
+		
+
+		console.log(x, y);
+		if (isGameOver()) {
+			let finalScore = getScores(squares);
+			let winner;
+			if (finalScore.white > finalScore.black) {
+				winner = "White";
+
+				if(color === winner) {
+					API.updateElo(username, opponentName, true)
+				} else {
+					API.updateElo(username, opponentName, false)
+				}
 			}
-		}
-		console.log("Board is full");
-		return true;
-	}
+			else if (finalScore.white < finalScore.black) {
+				winner = "Black";	
+			}
+			else {
+				winner = "No one";
+			}
 
 	function handleClick(x,y,dispatch) {
-		if (!pass() && isValidMove(squares,x,y)) {
-			var conn = peer.connect(opponentName);
+		if (!pass() && isValidMove(squares, x, y)) {
+			let conn = peer.connect(opponentName);
 			conn.on('open', function () {
 				// here you have conn.id
 				conn.send([x,y]);
 			});
+			
 			let moves = getValidMoves(squares);
+			let swapColors;
 			for (let i = 0; i < moves.length; i++) {
 				if (moves[i][0] === x && moves[i][1] === y) {
 					getBoardSwapColors(squares,isValidMove(squares,x,y));
@@ -334,13 +345,24 @@ function Game(props) {
 			if (isGameOver()) {
 				let finalScore = getScores(squares);
 				if (finalScore.white > finalScore.black ) {
-					winner = player1;
+					winner = "White";
+
+					if(color === winner) {
+						API.updateElo(username, opponentName, true)
+					} else {
+						API.updateElo(username, opponentName, false)
+					}
 				}
 				else if (finalScore.white < finalScore.black) {
-					winner = player2;
+					winner = "Black";
 				}
 				else {
 					winner = "No one";
+				}
+				if(color === winner) {
+					API.updateElo(username, opponentName, true)
+				} else {
+					API.updateElo(username, opponentName, false)
 				}
 				status= "Game over! Winner is "+winner;
 				winner = <QuitButton />;
@@ -353,9 +375,8 @@ function Game(props) {
 			return;
 		}
 		else {
-			status = "Not a valid move. Try again.";
-			getBoardValidMoves(squares);
-			dispatch({type: UPDATE_BOARD, board: squares});
+			console.log("passing")
+			pass();
 			return;
 		}
 
