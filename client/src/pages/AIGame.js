@@ -112,11 +112,11 @@ const AIGames = () => {
           <div><img src={profilePic[state.playerPic]} alt="player" /></div>
           <div><img src={state.opponentPic} alt="opponent" /></div>
           <div className="elo">
-            <div><img src={BlackDot} /></div>
+            <div><img src={WhiteDot} /></div>
             <div>{state.playerName} {state.playerElo}</div>
           </div>
           <div className="elo">
-            <div><img src={WhiteDot} /></div>
+            <div><img src={BlackDot} /></div>
             <div>{state.opponentName} {state.opponentElo}</div>
           </div>
         </div>
