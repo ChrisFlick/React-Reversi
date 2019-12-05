@@ -14,7 +14,10 @@ useEffect(() => {
         setBackgroundColor("#000");
     } else if (currentColor === "3") {
         setBackgroundColor("#90ee90");
+    } else if (currentColor === "0") {
+        setBackgroundColor("rgb(0,153,64)");
     }
+
 });
 
     return (

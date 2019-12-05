@@ -16,6 +16,9 @@ function Nav() {
       <p className="logout">
         <a href="/">LOGOUT</a>
       </p>
+      <p className="aiGame">
+        <a href="/aigame">Battle the Bot</a>
+      </p>
     </nav>
   );
 }
