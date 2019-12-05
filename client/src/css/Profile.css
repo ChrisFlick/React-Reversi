@@ -29,7 +29,6 @@ nav {
       grid-template-columns: minmax(min-content, 87px) minmax(min-content, 50vw) minmax(min-content, 50vw);
       grid-auto-rows: auto;
       width: 100%;
-      margin: 0 auto;
       grid-template-areas:
       "header header  header"
       "nav    userprofile details";

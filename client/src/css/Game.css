@@ -180,12 +180,11 @@ nav {
   .game-container {
     background-image: url("../img/woodentable.png");
     display: grid;
-    grid-template-columns: minmax(1fr, 87px) minmax(1fr, 193px) minmax(1fr, 420px) minmax(1fr, 260px);
+    grid-template-columns: minmax(min-content, 9vw) minmax(min-content, 44vw) minmax(min-content, 47vw);
     grid-auto-rows: auto;
-    width: 960px;
-    margin: 0 auto;
+    width: 100%;
     grid-template-areas:
-      "header header    header     header"
-      "nav    game-info game-board profiles";
+      "header header     header"
+      "nav    game-board profiles";
   }
 }
