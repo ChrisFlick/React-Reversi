@@ -6,6 +6,7 @@ import {
 } from "../../utils/actions";
 import QuitButton from '../Quit/index.js';
 import Card from "../Card";
+import "./AI.css";
 
 let wait = false;
 let player1="You";
@@ -33,37 +34,39 @@ function CompGame(props) {
 	const element = (
 		<div>
 	        <div className="game">
-						<Card>
-							<h3>Score</h3>
-							<div id="score">
-								<p>White: <span id="score-white">{getScores(squares).white}
-									|| Black: </span><span id="score-black">{getScores(squares).black}</span>
-								</p>
+				<Card>
+					<h3>Score</h3>
+					<div id="score">
+						<p>White: <span id="score-white">{getScores(squares).white}
+							|| Black: </span><span id="score-black">{getScores(squares).black}</span>
+						</p>
+					</div>
+				</Card>
+				<div className="game-board">
+					<Board
+						board = {squares}
+						onClick = {handleClick}
+						dispatch = {dispatch}
+					/>
+					<div className="game-stuff">
+					<Card>
+						<div className="game-info">
+							<h3>Turn</h3>
+							<div id="player-turn-box">
+							{turn}, {player}
 							</div>
-						</Card>
-						<div className="game-board">
-							<Board
-								board = {squares}
-								onClick = {handleClick}
-								dispatch = {dispatch}
-							/>
 						</div>
-						<Card>
-							<div className="game-info">
-								<h3>Turn</h3>
-								<div id="player-turn-box">
-								{turn}, {player}
-								</div>
+					</Card>
+					<Card>
+						<div className="game-status">
+							<h3>Status</h3>
+							<div>
+							{status}	{winner}
 							</div>
-						</Card>
-						<Card>
-							<div className="game-status">
-								<h3>Status</h3>
-								<div>
-								{status}	{winner}
-								</div>
-							</div>
-						</Card>
+						</div>
+					</Card>
+				</div>
+				</div>
 	    	</div>
 	    </div>
 	);
