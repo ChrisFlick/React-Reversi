@@ -1,23 +1,23 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 // import API from "../utils/API"
 import Header from "../components/Header";
 import Nav from "../components/Nav";
+import Board from "../img/board.png";
 import BlackDot from "../img/black-dot.png";
 import WhiteDot from "../img/white-dot.png";
 import API from "../utils/API"
-
-// import { useStoreContext } from "../utils/GlobalState";
-// import {
-//   ADD_PEER,
-// } from "../utils/actions";
+import Opponent from "../img/opponent.png";
+import Player from "../img/player.png";
 // import { Container } from "../components/Grid";
 // import { makeStyles } from '@material-ui/core/styles';
 // import Avatar from '@material-ui/core/Avatar';
 // import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import "../css/Game.css";
-import Game from '../components/Game/game';
+import CompGame from '../components/AI/index';
+
 
 // Importing images
+import profile_droid from "../img/droid.jpg"
 import profile_0 from "../img/profile_pics/profile_0.png"
 import profile_1 from "../img/profile_pics/profile_1.png"
 import profile_2 from "../img/profile_pics/profile_2.png"
@@ -30,17 +30,9 @@ import profile_8 from "../img/profile_pics/profile_8.png"
 import loading from "../img/loading.gif"
 
 const username = localStorage.getItem("username")
-const opponentName = localStorage.getItem("opponentName")
+let opponentName = "AI"
 
-let userColor;
-let opponentColor;
-if (localStorage.getItem("color") === "White") {
-  userColor = 0;
-  opponentColor = 1;
-} else {
-  userColor = 1;
-  opponentColor = 0;
-}
+// opponentName = 'chris' // for debugging
 
 let profilePic = [
   profile_0,
@@ -55,22 +47,7 @@ let profilePic = [
   loading
 ]
 
-let colorPic = [
-  WhiteDot,
-  BlackDot
-]
-
-
-
-
-
-
-
-
-
-
-
-const Games = () => {
+const AIGames = () => {
 
   const [state, setState] = useState({
     playerElo: 1000,
@@ -85,17 +62,15 @@ const Games = () => {
 
   useEffect(() => {
     API.getProfile(username).then((results) => {
-      API.getProfile(opponentName).then((res) => {
         setState({
           playerPic: results.data.profilePic,
           playerName: results.data.name,
           playerElo: results.data.elo,
 
-          opponentPic: res.data.profilePic,
-          opponentName: res.data.name,
-          opponentElo: res.data.elo
+          opponentPic: profile_droid,
+          opponentName: "K-2SO",
+          opponentElo: 1000
         })
-      })
     })
   }, [])
 
@@ -105,11 +80,11 @@ const Games = () => {
       <Header />
       <div className="navbar">Proposed Navbar</div>
       <Nav />
-      <div className="game-info">
+      <div class="game-info">
         <div className="game-details">
           <h5>Game Details:</h5>
           <ul style={{ padding: 0 }}>
-            <li style={{ listStyleType: "none" }}>Game ID</li>
+            <li style={{ listStyleType: "none" }}>AI Match</li>
             <li style={{ listStyleType: "none" }}>Game Name</li>
             <li style={{ listStyleType: "none" }}>Date</li>
           </ul>
@@ -123,30 +98,30 @@ const Games = () => {
           </ol>
         </div>
       </div>
-      <Game className="game-board">
+      <CompGame className="game-board">
         {/* <div className="scores">
             <div>WhiteHead 15</div>
             <div><img src={BlackDot}/></div>
             <div>Ramon 5</div>
             <div> <img src={WhiteDot}/></div>
-            </div>
+          </div>
           <img src={Board} alt="Reversi board"/> */}
-      </Game>
-      <div className="profiles">
+      </CompGame>
+      <div class="profiles">
         <div className="profile-details">
           <div><img src={profilePic[state.playerPic]} alt="player" /></div>
-          <div><img src={profilePic[state.opponentPic]} alt="opponent" /></div>
+          <div><img src={state.opponentPic} alt="opponent" /></div>
           <div className="elo">
-            <div><img src={colorPic[userColor]} /></div>
+            <div><img src={BlackDot} /></div>
             <div>{state.playerName} {state.playerElo}</div>
           </div>
           <div className="elo">
-            <div><img src={colorPic[opponentColor]} /></div>
+            <div><img src={WhiteDot} /></div>
             <div>{state.opponentName} {state.opponentElo}</div>
           </div>
         </div>
         <div className="quit-button">
-          <button type="button" className="btn btn-danger">Quit</button>
+          <button type="button" class="btn btn-danger">Quit</button>
         </div>
         <div className="timeout text-center">
           Timeout: 4 minutes
@@ -157,4 +132,4 @@ const Games = () => {
   )
 }
 
-export default Games;
+export default AIGames;

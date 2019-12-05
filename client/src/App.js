@@ -12,7 +12,8 @@ import Board from './components/Board/board';
 import './components/Board/board.css';
 import CreateLobby from "./pages/CreateLobby";
 import Games from './pages/Game';
-import Wait from "./pages/Wait"
+import Wait from "./pages/Wait";
+import CompGame from './pages/AIGame';
 
 // const API = require("./utils/API")
 // API.getGames("player1").then(res => {
@@ -38,6 +39,8 @@ function App() {
             <Route exact path="/board" component={Board} />
             <Route exact path="/create" component={CreateLobby} />
             <Route exact path="/wait" component={Wait} />
+            <Route exact path="/aigame" component={CompGame} />
+
             <Route component={NoMatch} />
           </Switch>
         </ReversiState>

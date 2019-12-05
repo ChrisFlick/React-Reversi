@@ -12,7 +12,7 @@ nav {
   height: 201px;
   padding: 13px;
   margin: 13px;
-  background: white;
+  background:rgb(245, 253, 253);
   text-align: center;
 }
 
@@ -38,7 +38,7 @@ nav {
 }
 
 .game-details {
-  background: white;
+  background:rgb(245, 253, 253);
   height: 201px;
   padding: 13px;
   margin: 13px;
@@ -67,7 +67,7 @@ nav {
   grid-template-columns: repeat(2, minmax(min-content, auto));
   grid-auto-rows: auto;
   justify-items: center;
-  background: white;
+  background: rgb(245, 253, 253);
   margin: 13px;
   padding: 7px 7px 0 7px;
   border: solid black 1px;
@@ -88,7 +88,7 @@ nav {
   grid-auto-rows: auto;
   justify-items: center;
   align-items: center;
-  background: white;
+  background: rgb(245, 253, 253);
   width: 100%;
   padding: 13px;
   margin: 13px 0;
@@ -98,7 +98,7 @@ nav {
 }
 
 .timeout {
-    background: white;
+    background: rgb(245, 253, 253);
     padding: 13px;
     margin: 13px;
     border: solid black 1px;
