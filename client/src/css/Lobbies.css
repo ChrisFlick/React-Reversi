@@ -38,10 +38,9 @@ nav {
     .lobbies-container {
       background-image: url("../img/woodentable.png");
       display: grid;
-      grid-template-columns: minmax(min-content, 87px) minmax(min-content, 873px);
+      grid-template-columns: minmax(min-content, 87px) minmax(min-content, 91vw);
       grid-auto-rows: auto;
-      width: 960px;
-      margin: 0 auto;
+      width: 100%;
       grid-template-areas:
       "header header"
       "nav lobbies";
