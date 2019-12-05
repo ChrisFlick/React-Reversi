@@ -17,6 +17,7 @@ const Lobbies = () => {
         setInterval(() => {
             API.getLobby(lobbyId).then(results => {
                 if (results.data[0].player2) {
+                    localStorage.setItem("opponentName", results.data[0].player2)
                     document.location.href = "/games"
                 }
             })

@@ -18,6 +18,8 @@ const peer = new Peer(username, {
 	debug: 3
 });
 
+let conn;
+
 
 let player1 = "player1";
 let player2 = "player2";
@@ -50,7 +52,7 @@ function Game(props) {
 	useEffect(() => {
 		
 		
-		let conn = peer.connect(opponentName);
+		conn = peer.connect(opponentName);
 		// on open will be launch when you successfully connect to PeerServer
 		
 		
@@ -302,7 +304,7 @@ function Game(props) {
 	function handleClick(x,y,dispatch) {
 		if (!pass() && isValidMove(squares, x, y)) {
 
-			let conn = peer.connect(opponentName);
+			conn = peer.connect(opponentName);
 			conn.on('open', function () {
 				// here you have conn.id
 				conn.send([x,y]);
