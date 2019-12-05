@@ -323,7 +323,7 @@ function CompGame(props) {
 	        	wait = true;
 	        	setTimeout(() => {
 	            	return resolve(wait);
-	        	}, 3000);
+	        	}, 1000);
 	    	});
 
 			think.then(function() {
