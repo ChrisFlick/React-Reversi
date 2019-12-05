@@ -60,16 +60,6 @@ let colorPic = [
   BlackDot
 ]
 
-
-
-
-
-
-
-
-
-
-
 const Games = () => {
 
   const [state, setState] = useState({
