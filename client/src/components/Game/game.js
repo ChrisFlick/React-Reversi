@@ -1,15 +1,16 @@
 import React, { createContext, useReducer, useContext, useEffect } from 'react';
 import Board from '../Board/board.js';
-import API from "../../utils/API"
+import API from "../../utils/API";
 import { useStoreContext } from '../../utils/GlobalState';
 import {
 	UPDATE_BOARD,
 } from "../../utils/actions";
-import Peer from "peerjs"
+import Peer from "peerjs";
+import QuitButton from '../Quit/index.js';
 
-const username = localStorage.getItem("username")
-const opponentName = localStorage.getItem("opponentName")
-const color = localStorage.getItem('color')
+const username = localStorage.getItem("username");
+const opponentName = localStorage.getItem("opponentName");
+const color = localStorage.getItem('color');
 
 const peer = new Peer(username, {
 	// host: '74.207.252.238',
@@ -17,7 +18,8 @@ const peer = new Peer(username, {
 });
 
 
-let player1, player2;
+let player1 = "player1";
+let player2 = "player2";
 // adjacent spaces
 let direction = [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]];
 // white == 1
@@ -35,9 +37,7 @@ function whoGoesFirst(player1, player2) {
 	return first;
 }
 function Game(props) {
-
 	
-	console.log("context", useStoreContext());
 	const [{ board }, dispatch] = useStoreContext();
 	let squares = board;
 	if (!startedGame) {
@@ -45,7 +45,6 @@ function Game(props) {
 		dispatch({ type: UPDATE_BOARD, board: squares });
 		startedGame = true;
 	}
-	console.log("start game", squares);
 
 	useEffect(() => {
 		
@@ -80,14 +79,17 @@ function Game(props) {
 					/>
 				</div>
 				<div className="game-info">
-					<h3>Turn</h3>
-					<div id="player-turn-box">
-						{turn}
-					</div>
-					<div className="game-status">{status}</div>
-				</div>
-			</div>
-		</div>
+	            	<h3>Turn</h3>
+	            	<div id="player-turn-box">
+	            	{turn}, {player}
+	            	</div>
+	        	</div>
+	        	<div className="game-status">
+	        		<h3>Status</h3>
+	        		{status}	{winner}
+	        	</div>
+	    	</div>
+	    </div>
 	);
 
 	function handleTurn(x,y,dispatch) {
@@ -289,41 +291,9 @@ function Game(props) {
 			return false;
 	}
 
-	function handleClick(x, y, dispatch) {
-		
-		
-
-		console.log(x, y);
-		if (isGameOver()) {
-			let finalScore = getScores(squares);
-			let winner;
-			if (finalScore.white > finalScore.black) {
-				winner = "White";
-
-				if(color === winner) {
-					API.updateElo(username, opponentName, true)
-				} else {
-					API.updateElo(username, opponentName, false)
-				}
-			}
-			else if (finalScore.white < finalScore.black) {
-				winner = "Black";	
-			}
-			else {
-				winner = "No one";
-			}
-
-			if(color === winner) {
-				API.updateElo(username, opponentName, true)
-			} else {
-				API.updateElo(username, opponentName, false)
-			}
-			status = "Game over! Winner is " + winner;
-			winner = winner;
-			return;
-		}
-		console.log("squares before", squares);
+	function handleClick(x,y,dispatch) {
 		if (!pass() && isValidMove(squares, x, y)) {
+
 			let conn = peer.connect(opponentName);
 			conn.on('open', function () {
 				// here you have conn.id
@@ -334,27 +304,59 @@ function Game(props) {
 			let swapColors;
 			for (let i = 0; i < moves.length; i++) {
 				if (moves[i][0] === x && moves[i][1] === y) {
-					getBoardSwapColors(squares, isValidMove(squares, x, y));
-					getBoardValidMoves(squares);
+					getBoardSwapColors(squares,isValidMove(squares,x,y));
+					if (pass() && !isGameOver()) {
+						pass();
+						clearChoices(squares);
+						getBoardValidMoves(squares);
+						dispatch({type: UPDATE_BOARD, board: squares});
+						return;
+					}
+					else
+						getBoardValidMoves(squares);
 				}
 			}
+			if (isGameOver()) {
+				let finalScore = getScores(squares);
+				if (finalScore.white > finalScore.black ) {
+					winner = "White";
+
+					if(color === winner) {
+						API.updateElo(username, opponentName, true);
+					} else {
+						API.updateElo(username, opponentName, false);
+					}
+				}
+				else if (finalScore.white < finalScore.black) {
+					winner = "Black";
+				}
+				else {
+					winner = "No one";
+				}
+				if(color === winner) {
+					API.updateElo(username, opponentName, true)
+				} else {
+					API.updateElo(username, opponentName, false)
+				}
+				status= "Game over! Winner is "+winner;
+				winner = <QuitButton />;
+				dispatch({type: UPDATE_BOARD, board: squares});
+				return;
+			}
 			passCounter = 0;
-			console.log(squares);
-			console.log(turn);
-			console.log(getScores(squares));
-			dispatch({ type: UPDATE_BOARD, board: squares });
+			status='';
+			dispatch({type: UPDATE_BOARD, board: squares});
 			return;
 		}
 		else {
-			console.log("passing")
-			pass();
+			status = "Not a valid move. Try again.";
+			getBoardValidMoves(squares);
+			dispatch({type: UPDATE_BOARD, board: squares});
 			return;
 		}
 
 	}
 	return element;
 }
-
-
 
 export default Game;
