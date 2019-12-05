@@ -20,10 +20,12 @@ useEffect(() => {
     return (
         <button className={"square"}
             onClick={props.onClick}
-            ref={propsColor}
             style={{ backgroundColor: backgroundColor }}
         >
-            {props.color}
+            <div style={{display: "none"}} ref={propsColor}>
+            
+                {props.color}
+                </div>
         </button>
     );
 }

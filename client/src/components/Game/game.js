@@ -7,6 +7,7 @@ import {
 } from "../../utils/actions";
 import Peer from "peerjs";
 import QuitButton from '../Quit/index.js';
+import Card from '../Card/index.js';
 
 const username = localStorage.getItem("username");
 const opponentName = localStorage.getItem("opponentName");
@@ -65,29 +66,36 @@ function Game(props) {
 	const element = (
 		<div>
 			<div className="game">
-				<h3>Score</h3>
-				<div id="score">
-					<p>White: <span id="score-white">{getScores(squares).white}
-						|| Black: </span><span id="score-black">{getScores(squares).black}</span>
-					</p>
-				</div>
-				<div className="game-board">
-					<Board
-						board={squares}
-						onClick={handleTurn}
-						dispatch={dispatch}
-					/>
-				</div>
-				<div className="game-info">
+				<Card>
+					<h3>Score</h3>
+					<div id="score">
+						<p>White: <span id="score-white">{getScores(squares).white}
+							|| Black: </span><span id="score-black">{getScores(squares).black}</span>
+						</p>
+					</div>
+				</Card>
+					<div className="game-board">
+						<Board
+							board={squares}
+							onClick={handleTurn}
+							dispatch={dispatch}
+						/>
+					</div>
+				<Card>
+					<div className="game-info">
 	            	<h3>Turn</h3>
 	            	<div id="player-turn-box">
 	            	{turn}, {player}
 	            	</div>
-	        	</div>
-	        	<div className="game-status">
-	        		<h3>Status</h3>
-	        		{status}	{winner}
-	        	</div>
+					</div>
+				</Card>
+				<Card>
+
+					<div className="game-status">
+						<h3>Status</h3>
+						{status}	{winner}
+					</div>
+				</Card>
 	    	</div>
 	    </div>
 	);
