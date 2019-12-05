@@ -1,5 +1,6 @@
 import React, { createContext, useReducer, useContext, useEffect } from 'react';
 import Board from '../Board/board.js';
+import API from "../../utils/API"
 import { useStoreContext } from '../../utils/GlobalState';
 import {
 	UPDATE_BOARD,
@@ -297,13 +298,25 @@ function Game(props) {
 			let finalScore = getScores(squares);
 			let winner;
 			if (finalScore.white > finalScore.black) {
-				winner = "Player 1";
+				winner = "White";
+
+				if(color === winner) {
+					API.updateElo(username, opponentName, true)
+				} else {
+					API.updateElo(username, opponentName, false)
+				}
 			}
 			else if (finalScore.white < finalScore.black) {
-				winner = "Player 2";
+				winner = "Black";	
 			}
 			else {
 				winner = "No one";
+			}
+
+			if(color === winner) {
+				API.updateElo(username, opponentName, true)
+			} else {
+				API.updateElo(username, opponentName, false)
 			}
 			status = "Game over! Winner is " + winner;
 			winner = winner;
