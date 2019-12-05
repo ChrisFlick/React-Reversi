@@ -1,16 +1,16 @@
 import React, { createContext, useReducer, useContext, useEffect } from 'react';
 import Board from '../Board/board.js';
-import API from "../../utils/API"
+import API from "../../utils/API";
 import { useStoreContext } from '../../utils/GlobalState';
 import {
 	UPDATE_BOARD,
 } from "../../utils/actions";
-import Peer from "peerjs"
+import Peer from "peerjs";
 import QuitButton from '../Quit/index.js';
 
-const username = localStorage.getItem("username")
-const opponentName = localStorage.getItem("opponentName")
-const color = localStorage.getItem('color')
+const username = localStorage.getItem("username");
+const opponentName = localStorage.getItem("opponentName");
+const color = localStorage.getItem('color');
 
 const peer = new Peer(username, {
 	// host: '74.207.252.238',
@@ -18,7 +18,7 @@ const peer = new Peer(username, {
 });
 
 
-let player1, player2;
+let player1 = "player1", player2 = "player2";
 // adjacent spaces
 let direction = [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]];
 // white == 1
@@ -316,6 +316,7 @@ function Game(props) {
 
 	function handleClick(x,y,dispatch) {
 		if (!pass() && isValidMove(squares, x, y)) {
+
 			let conn = peer.connect(opponentName);
 			conn.on('open', function () {
 				// here you have conn.id
