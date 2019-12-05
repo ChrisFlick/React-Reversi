@@ -95,7 +95,7 @@ const Games = () => {
       <Header />
       <div className="navbar">Proposed Navbar</div>
       <Nav />
-      <div className="game-info">
+      {/* <div className="game-info">
         <div className="game-details">
           <h5>Game Details:</h5>
           <ul style={{ padding: 0 }}>
@@ -104,15 +104,15 @@ const Games = () => {
             <li style={{ listStyleType: "none" }}>Date</li>
           </ul>
         </div>
-        <div className="game-details">
+        {/* <div className="game-details">
           <h5>Games List:</h5>
           <ol style={{ padding: 13 }}>
             <li>Death Match</li>
             <li>One More Time</li>
             <li>Mando's Turn</li>
           </ol>
-        </div>
-      </div>
+        </div> }
+      </div> */}
       <Game className="game-board">
         {/* <div className="scores">
             <div>WhiteHead 15</div>
@@ -138,10 +138,6 @@ const Games = () => {
         <div className="quit-button">
           <button type="button" className="btn btn-danger">Quit</button>
         </div>
-        <div className="timeout text-center">
-          Timeout: 4 minutes
-          </div>
-        <div className="chatbox">Chat Box</div>
       </div>
     </div>
   )
