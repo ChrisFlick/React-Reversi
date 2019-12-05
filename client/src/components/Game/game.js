@@ -297,13 +297,13 @@ function Game(props) {
 			let finalScore = getScores(squares);
 			let winner;
 			if (finalScore.white > finalScore.black) {
-				winner = "Player 1";
+				winner = "White";
 			}
 			else if (finalScore.white < finalScore.black) {
-				winner = "Player 2";
+				winner = "Black";
 			}
 			else {
-				winner = "No one";
+				winner = "a tie!";
 			}
 			status = "Game over! Winner is " + winner;
 			winner = winner;
@@ -311,7 +311,7 @@ function Game(props) {
 		}
 		console.log("squares before", squares);
 		if (!pass() && isValidMove(squares, x, y)) {
-			var conn = peer.connect(opponentName);
+			let conn = peer.connect(opponentName);
 			conn.on('open', function () {
 				// here you have conn.id
 				conn.send([x,y]);
