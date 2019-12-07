@@ -28,10 +28,11 @@ function Square(props) {
             onClick={props.onClick}
         >
             <div style={{
-                height: '25px',
-                width: '25px',
+                height: '35px',
+                width: '35px',
                 backgroundColor: backgroundColor,
                 borderRadius: '50%',
+                marginTop: '5px',
                 border: border,
                 display: 'inline-block',
             }}
