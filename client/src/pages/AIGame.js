@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from "react";
-// import API from "../utils/API"
 import Header from "../components/Header";
 import Nav from "../components/Nav";
-import Board from "../img/board.png";
 import BlackDot from "../img/black-dot.png";
 import WhiteDot from "../img/white-dot.png";
 import API from "../utils/API"
-import Opponent from "../img/opponent.png";
-import Player from "../img/player.png";
-// import { Container } from "../components/Grid";
-// import { makeStyles } from '@material-ui/core/styles';
-// import Avatar from '@material-ui/core/Avatar';
-// import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import "../css/Game.css";
 import CompGame from '../components/AI/index';
-
 
 // Importing images
 import profile_droid from "../img/droid.jpg"
@@ -80,15 +71,9 @@ const AIGames = () => {
       <Header />
       <div className="navbar">Proposed Navbar</div>
       <Nav />
-      <CompGame className="game-board">
-        {/* <div className="scores">
-            <div>WhiteHead 15</div>
-            <div><img src={BlackDot}/></div>
-            <div>Ramon 5</div>
-            <div> <img src={WhiteDot}/></div>
-          </div>
-          <img src={Board} alt="Reversi board"/> */}
-      </CompGame>
+      <div className="game-area">
+        <CompGame />
+      </div>
       <div class="profiles">
         <div className="profile-details">
           <div><img src={profilePic[state.playerPic]} alt="player" /></div>

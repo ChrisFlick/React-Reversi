@@ -85,8 +85,9 @@ const Games = () => {
       <Header />
       <div className="navbar">Proposed Navbar</div>
       <Nav />
-      <Game className="game-board">
-      </Game>
+      <div className="game-area">
+        <Game />
+      </div>
       <div className="profiles">
         <div className="profile-details">
           <div><img src={profilePic[state.playerPic]} alt="player" /></div>
