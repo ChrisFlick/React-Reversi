@@ -33,7 +33,6 @@ function CompGame(props) {
 	}
 	const element = (
 		<div>
-	        <div className="game">
 				<Card>
 					<h3>Score</h3>
 					<div id="score">
@@ -42,7 +41,7 @@ function CompGame(props) {
 						</p>
 					</div>
 				</Card>
-				<div className="game-board">
+				<div>
 					<Board
 						board = {squares}
 						onClick = {handleClick}
@@ -65,9 +64,8 @@ function CompGame(props) {
 							</div>
 						</div>
 					</Card>
+					</div>
 				</div>
-				</div>
-	    	</div>
 	    </div>
 	);
 

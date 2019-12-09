@@ -67,7 +67,6 @@ function Game(props) {
 
 	const element = (
 		<div>
-			<div className="game">
 				<Card>
 					<h3>Score</h3>
 					<div id="score">
@@ -76,7 +75,7 @@ function Game(props) {
 						</p>
 					</div>
 				</Card>
-					<div className="game-board">
+					<div>
 						<Board
 							board={squares}
 							onClick={handleTurn}
@@ -98,7 +97,6 @@ function Game(props) {
 						{status}	{winner}
 					</div>
 				</Card>
-	    	</div>
 	    </div>
 	);
 
