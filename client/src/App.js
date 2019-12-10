@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
 import Login from "./pages/login";
 import Profile from "./pages/Profile";
 import Lobbies from "./pages/Lobbies"
@@ -27,7 +26,6 @@ function App() {
       
       <div>
         <ReversiState>
-          {/* <Nav /> */}
           <Switch>
             <Route exact path="/" component={Login} />
             <Route exact path="/home" component={Home} />
