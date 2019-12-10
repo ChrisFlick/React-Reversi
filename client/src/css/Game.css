@@ -6,6 +6,15 @@ nav {
   grid-area: nav;
 }
 
+.card {
+  border: solid black 1px;
+  border-radius: 13px;
+  padding: 13px;
+  margin: 13px;
+  background: white;
+  text-align: center;
+}
+
 .chatbox {
   border: solid black 1px;
   border-radius: 13px;
