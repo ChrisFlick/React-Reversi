@@ -1,5 +1,10 @@
+.row {
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0;
+}
+
 .square {
-    /* background: transparent; */
     background-color: rgb(0, 153, 64);
     border: 1px solid transparent;
     border-color: rgb(24, 24, 24);
