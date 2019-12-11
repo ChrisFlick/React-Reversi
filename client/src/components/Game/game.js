@@ -42,7 +42,7 @@ function whoGoesFirst(player1, player2) {
 	return first;
 }
 function Game(props) {
-	
+
 	const [{ board }, dispatch] = useStoreContext();
 	let squares = board;
 	if (!startedGame) {
@@ -52,16 +52,16 @@ function Game(props) {
 	}
 
 	useEffect(() => {
-		
-		
+
+
 		conn = peer.connect(opponentName);
 		// on open will be launch when you successfully connect to PeerServer
-		
-		
+
+
 		peer.on('connection', function (conn) {
 			conn.on('data', function (data) {
 				// Handles coordinates from opponent
-				handleClick(data[0],data[1], dispatch);
+				handleClick(data[0], data[1], dispatch);
 			});
 		});
 	}, [])
@@ -69,34 +69,36 @@ function Game(props) {
 
 	const element = (
 		<div>
-				<div className="scores">
-					<div></div>
-					Score:
-					<div><img src={WhiteDot} alt="White"/> X<span id="score-white">{getScores(squares).white}</span></div>
-					<div><img src={BlackDot} alt="Black"/> X<span id="score-black">{getScores(squares).black}</span></div>
+			<div className="scores">
+				<div></div>
+				Score:
+				<div><img src={WhiteDot} alt="White" /> X<span id="score-white">{getScores(squares).white}</span></div>
+				<div><img src={BlackDot} alt="Black" /> X<span id="score-black">{getScores(squares).black}</span></div>
+			</div>
+			<div>
+				<Board
+					board={squares}
+					onClick={handleTurn}
+					dispatch={dispatch}
+				/>
+			</div>
+			<Card>
+				<div className="game-info">
+					<h4>Game Data</h4>
+					<div id="player-turn-box">
+					<strong>Turn: </strong>
+						{turn}, {player}
+					</div>
 				</div>
-					<div>
-						<Board
-							board={squares}
-							onClick={handleTurn}
-							dispatch={dispatch}
-						/>
-					</div>
-				<Card>
-					<div className="game-info">
-	            	<h4>Game Data</h4>
-	            	<div id="player-turn-box">
-	            	Turn: {turn}, {player}
-	            	</div>
-					</div>
-					<div className="game-status">
-						Status: {status}	{winner}
-					</div>
-				</Card>
-	    </div>
+				<div className="game-status">
+					<strong>Status: </strong>
+					{status}	{winner}
+				</div>
+			</Card>
+		</div>
 	);
 
-	function handleTurn(x,y,dispatch) {
+	function handleTurn(x, y, dispatch) {
 		if (color === turn) {
 			handleClick(x, y, dispatch)
 		}
@@ -295,25 +297,25 @@ function Game(props) {
 			return false;
 	}
 
-	function handleClick(x,y,dispatch) {
+	function handleClick(x, y, dispatch) {
 		if (!pass() && isValidMove(squares, x, y)) {
 
 			conn = peer.connect(opponentName);
 			conn.on('open', function () {
 				// here you have conn.id
-				conn.send([x,y]);
+				conn.send([x, y]);
 			});
-			
+
 			let moves = getValidMoves(squares);
 			let swapColors;
 			for (let i = 0; i < moves.length; i++) {
 				if (moves[i][0] === x && moves[i][1] === y) {
-					getBoardSwapColors(squares,isValidMove(squares,x,y));
+					getBoardSwapColors(squares, isValidMove(squares, x, y));
 					if (pass() && !isGameOver()) {
 						pass();
 						clearChoices(squares);
 						getBoardValidMoves(squares);
-						dispatch({type: UPDATE_BOARD, board: squares});
+						dispatch({ type: UPDATE_BOARD, board: squares });
 						return;
 					}
 					else
@@ -322,10 +324,10 @@ function Game(props) {
 			}
 			if (isGameOver()) {
 				let finalScore = getScores(squares);
-				if (finalScore.white > finalScore.black ) {
+				if (finalScore.white > finalScore.black) {
 					winner = "White";
 
-					if(color === winner) {
+					if (color === winner) {
 						API.updateElo(username, opponentName, true);
 					} else {
 						API.updateElo(username, opponentName, false);
@@ -337,25 +339,25 @@ function Game(props) {
 				else {
 					winner = "No one";
 				}
-				if(color === winner) {
+				if (color === winner) {
 					API.updateElo(username, opponentName, true)
 				} else {
 					API.updateElo(username, opponentName, false)
 				}
-				status= "Game over! Winner is "+winner;
+				status = "Game over! Winner is " + winner;
 				winner = <QuitButton />;
-				dispatch({type: UPDATE_BOARD, board: squares});
+				dispatch({ type: UPDATE_BOARD, board: squares });
 				return;
 			}
 			passCounter = 0;
-			status='';
-			dispatch({type: UPDATE_BOARD, board: squares});
+			status = '';
+			dispatch({ type: UPDATE_BOARD, board: squares });
 			return;
 		}
 		else {
 			status = "Not a valid move. Try again.";
 			getBoardValidMoves(squares);
-			dispatch({type: UPDATE_BOARD, board: squares});
+			dispatch({ type: UPDATE_BOARD, board: squares });
 			return;
 		}
 
