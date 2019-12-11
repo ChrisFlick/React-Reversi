@@ -1,0 +1,38 @@
+.navbar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: 87px;
+  width: 100vw;
+  background-color: #613216;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  font-size: 12px;
+}
+
+.navbar a {
+  color: white;
+}
+
+.navbar p {
+  margin: 0;
+}
+
+/* .battle {
+  position: relative;
+  top: 10px;
+}
+
+.lobby {
+  position: relative;
+  top: 13px;
+}
+
+.profile {
+  position: relative;
+  top: 26px;
+}
+
+.logout {
+  position: relative;
+  top: 367px;
+} */
