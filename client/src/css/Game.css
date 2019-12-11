@@ -6,6 +6,10 @@ nav {
   grid-area: nav;
 }
 
+button a {
+  color: white;
+}
+
 .card {
   border: solid black 1px;
   border-radius: 13px;

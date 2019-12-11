@@ -89,7 +89,7 @@ const AIGames = () => {
           </div>
         </div>
         <div className="quit-button">
-          <button type="button" class="btn btn-danger">Quit</button>
+          <button type="button" class="btn btn-danger"><a href="/lobbies">Quit</a></button>
         </div>
       </div>
     </div>

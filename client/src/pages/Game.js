@@ -103,7 +103,7 @@ const Games = () => {
           </div>
         </div>
         <div className="quit-button">
-          <button type="button" className="btn btn-danger">Quit</button>
+          <button type="button" class="btn btn-danger"><a href="/lobbies">Quit</a></button>
         </div>
       </div>
     </div>
