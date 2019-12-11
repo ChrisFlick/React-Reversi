@@ -8,6 +8,8 @@ import {
 import Peer from "peerjs";
 import QuitButton from '../Quit/index.js';
 import Card from '../Card/index.js';
+import WhiteDot from "../../img/white-dot.png";
+import BlackDot from "../../img/black-dot.png";
 
 const username = localStorage.getItem("username");
 const opponentName = localStorage.getItem("opponentName");
@@ -67,14 +69,12 @@ function Game(props) {
 
 	const element = (
 		<div>
-				<Card>
-					<h3>Score</h3>
-					<div id="score">
-						<p>White: <span id="score-white">{getScores(squares).white}
-							|| Black: </span><span id="score-black">{getScores(squares).black}</span>
-						</p>
-					</div>
-				</Card>
+				<div className="scores">
+					<div></div>
+					Score:
+					<div><img src={WhiteDot} alt="White"/> X<span id="score-white">{getScores(squares).white}</span></div>
+					<div><img src={BlackDot} alt="Black"/> X<span id="score-black">{getScores(squares).black}</span></div>
+				</div>
 					<div>
 						<Board
 							board={squares}

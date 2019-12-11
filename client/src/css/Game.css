@@ -93,8 +93,7 @@ nav {
 
 .scores {
   display: grid;
-  grid-template-columns: repeat(4, minmax(min-content, auto));
-  grid-auto-rows: auto;
+  grid-template-columns: repeat(5, 1fr);
   justify-items: center;
   align-items: center;
   background: rgb(245, 253, 253);
