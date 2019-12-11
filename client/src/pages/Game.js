@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
+import Navbar from "../components/Navbar";
 import BlackDot from "../img/black-dot.png";
 import WhiteDot from "../img/white-dot.png";
 import API from "../utils/API"
@@ -83,7 +84,7 @@ const Games = () => {
   return (
     <div className="game-container">
       <Header />
-      <div className="navbar">Proposed Navbar</div>
+      <Navbar />
       <Nav />
       <div className="game-area">
         <Game />
