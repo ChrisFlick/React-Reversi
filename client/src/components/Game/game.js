@@ -84,17 +84,13 @@ function Game(props) {
 					</div>
 				<Card>
 					<div className="game-info">
-	            	<h3>Turn</h3>
+	            	<h4>Game Data</h4>
 	            	<div id="player-turn-box">
-	            	{turn}, {player}
+	            	Turn: {turn}, {player}
 	            	</div>
 					</div>
-				</Card>
-				<Card>
-
 					<div className="game-status">
-						<h3>Status</h3>
-						{status}	{winner}
+						Status: {status}	{winner}
 					</div>
 				</Card>
 	    </div>
