@@ -8,6 +8,8 @@ import {
 import Peer from "peerjs";
 import QuitButton from '../Quit/index.js';
 import Card from '../Card/index.js';
+import WhiteDot from "../../img/white-dot.png";
+import BlackDot from "../../img/black-dot.png";
 
 const username = localStorage.getItem("username");
 const opponentName = localStorage.getItem("opponentName");
@@ -40,7 +42,7 @@ function whoGoesFirst(player1, player2) {
 	return first;
 }
 function Game(props) {
-	
+
 	const [{ board }, dispatch] = useStoreContext();
 	let squares = board;
 	if (!startedGame) {
@@ -50,16 +52,16 @@ function Game(props) {
 	}
 
 	useEffect(() => {
-		
-		
+
+
 		conn = peer.connect(opponentName);
 		// on open will be launch when you successfully connect to PeerServer
-		
-		
+
+
 		peer.on('connection', function (conn) {
 			conn.on('data', function (data) {
 				// Handles coordinates from opponent
-				handleClick(data[0],data[1], dispatch);
+				handleClick(data[0], data[1], dispatch);
 			});
 		});
 	}, [])
@@ -67,42 +69,33 @@ function Game(props) {
 
 	const element = (
 		<div>
-			<div className="game">
-				<Card>
-					<h3>Score</h3>
-					<div id="score">
-						<p>White: <span id="score-white">{getScores(squares).white}
-							|| Black: </span><span id="score-black">{getScores(squares).black}</span>
-						</p>
-					</div>
-				</Card>
-					<div className="game-board">
-						<Board
-							board={squares}
-							onClick={handleTurn}
-							dispatch={dispatch}
-						/>
-					</div>
-				<Card>
-					<div className="game-info">
-	            	<h3>Turn</h3>
-	            	<div id="player-turn-box">
-	            	{turn}, {player}
-	            	</div>
-					</div>
-				</Card>
-				<Card>
-
-					<div className="game-status">
-						<h3>Status</h3>
-						{status}	{winner}
-					</div>
-				</Card>
-	    	</div>
-	    </div>
+			<div className="scores">
+				<div></div>
+				Score:
+				<div><img src={WhiteDot} alt="White" /> X<span id="score-white">{getScores(squares).white}</span></div>
+				<div><img src={BlackDot} alt="Black" /> X<span id="score-black">{getScores(squares).black}</span></div>
+			</div>
+			<div>
+				<Board
+					board={squares}
+					onClick={handleTurn}
+					dispatch={dispatch}
+				/>
+			</div>
+			<div className="game-info">
+				<div id="player-turn-box">
+					<p><strong>Turn: </strong></p>
+					<p><strong>Status: </strong></p>
+				</div>
+				<div>
+					<p>{turn}, {player}</p>
+					<p>{status}	{winner}</p>
+				</div>
+		</div>
+		</div>
 	);
 
-	function handleTurn(x,y,dispatch) {
+	function handleTurn(x, y, dispatch) {
 		if (color === turn) {
 			handleClick(x, y, dispatch)
 		}
@@ -301,25 +294,25 @@ function Game(props) {
 			return false;
 	}
 
-	function handleClick(x,y,dispatch) {
+	function handleClick(x, y, dispatch) {
 		if (!pass() && isValidMove(squares, x, y)) {
 
 			conn = peer.connect(opponentName);
 			conn.on('open', function () {
 				// here you have conn.id
-				conn.send([x,y]);
+				conn.send([x, y]);
 			});
-			
+
 			let moves = getValidMoves(squares);
 			let swapColors;
 			for (let i = 0; i < moves.length; i++) {
 				if (moves[i][0] === x && moves[i][1] === y) {
-					getBoardSwapColors(squares,isValidMove(squares,x,y));
+					getBoardSwapColors(squares, isValidMove(squares, x, y));
 					if (pass() && !isGameOver()) {
 						pass();
 						clearChoices(squares);
 						getBoardValidMoves(squares);
-						dispatch({type: UPDATE_BOARD, board: squares});
+						dispatch({ type: UPDATE_BOARD, board: squares });
 						return;
 					}
 					else
@@ -328,10 +321,10 @@ function Game(props) {
 			}
 			if (isGameOver()) {
 				let finalScore = getScores(squares);
-				if (finalScore.white > finalScore.black ) {
+				if (finalScore.white > finalScore.black) {
 					winner = "White";
 
-					if(color === winner) {
+					if (color === winner) {
 						API.updateElo(username, opponentName, true);
 					} else {
 						API.updateElo(username, opponentName, false);
@@ -343,25 +336,25 @@ function Game(props) {
 				else {
 					winner = "No one";
 				}
-				if(color === winner) {
+				if (color === winner) {
 					API.updateElo(username, opponentName, true)
 				} else {
 					API.updateElo(username, opponentName, false)
 				}
-				status= "Game over! Winner is "+winner;
+				status = "Game over! Winner: " + winner;
 				winner = <QuitButton />;
-				dispatch({type: UPDATE_BOARD, board: squares});
+				dispatch({ type: UPDATE_BOARD, board: squares });
 				return;
 			}
 			passCounter = 0;
-			status='';
-			dispatch({type: UPDATE_BOARD, board: squares});
+			status = '';
+			dispatch({ type: UPDATE_BOARD, board: squares });
 			return;
 		}
 		else {
 			status = "Not a valid move. Try again.";
 			getBoardValidMoves(squares);
-			dispatch({type: UPDATE_BOARD, board: squares});
+			dispatch({ type: UPDATE_BOARD, board: squares });
 			return;
 		}
 

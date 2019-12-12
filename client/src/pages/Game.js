@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
+import Navbar from "../components/Navbar";
 import BlackDot from "../img/black-dot.png";
 import WhiteDot from "../img/white-dot.png";
 import API from "../utils/API"
@@ -83,10 +84,11 @@ const Games = () => {
   return (
     <div className="game-container">
       <Header />
-      <div className="navbar">Proposed Navbar</div>
+      <Navbar />
       <Nav />
-      <Game className="game-board">
-      </Game>
+      <div className="game-area">
+        <Game />
+      </div>
       <div className="profiles">
         <div className="profile-details">
           <div><img src={profilePic[state.playerPic]} alt="player" /></div>
@@ -101,7 +103,7 @@ const Games = () => {
           </div>
         </div>
         <div className="quit-button">
-          <button type="button" className="btn btn-danger">Quit</button>
+          <button type="button" class="btn btn-danger"><a href="/lobbies">Quit</a></button>
         </div>
       </div>
     </div>

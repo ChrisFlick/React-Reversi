@@ -2,11 +2,12 @@ import React from "react";
 import { NavLink } from 'react-router-dom';
 
 function QuitButton() {
-    return (
-        <button className={"QuitButton"}
-        >
+  return (
+    <p>
+      <button type="button" class="btn btn-danger">
         <NavLink to="/lobbies"> Quit Game </NavLink>
-        </button>
-    );
+      </button>
+    </p>
+  );
 }
 export default QuitButton;

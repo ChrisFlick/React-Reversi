@@ -55,6 +55,7 @@ function Square(props) {
                 marginTop: '5px',
                 border: border,
                 display: 'inline-block',
+                transitionDuration: "1s"
             }}
             ></div>
             <div style={{ display: "none" }} ref={propsColor}>

@@ -6,7 +6,9 @@ import {
 } from "../../utils/actions";
 import QuitButton from '../Quit/index.js';
 import Card from "../Card";
-import "./AI.css";
+import WhiteDot from "../../img/white-dot.png";
+import BlackDot from "../../img/black-dot.png";
+// import "./AI.css";
 
 let wait = false;
 let player1="You";
@@ -33,41 +35,31 @@ function CompGame(props) {
 	}
 	const element = (
 		<div>
-	        <div className="game">
-				<Card>
-					<h3>Score</h3>
-					<div id="score">
-						<p>White: <span id="score-white">{getScores(squares).white}
-							|| Black: </span><span id="score-black">{getScores(squares).black}</span>
-						</p>
+				<div>
+					<div className="scores">
+						<div></div>
+						Score:
+						<div><img src={WhiteDot} alt="White" /> X<span id="score-white">{getScores(squares).white}</span></div>
+						<div><img src={BlackDot} alt="Black" /> X<span id="score-black">{getScores(squares).black}</span></div>
 					</div>
-				</Card>
-				<div className="game-board">
-					<Board
-						board = {squares}
-						onClick = {handleClick}
-						dispatch = {dispatch}
-					/>
-					<div className="game-stuff">
-					<Card>
-						<div className="game-info">
-							<h3>Turn</h3>
-							<div id="player-turn-box">
-							{turn}, {player}
-							</div>
+					<div>
+						<Board
+							board = {squares}
+							onClick = {handleClick}
+							dispatch = {dispatch}
+						/>
+					</div>
+					<div className="game-info">
+						<div id="player-turn-box">
+							<p><strong>Turn: </strong></p>
+							<p><strong>Status: </strong></p>
 						</div>
-					</Card>
-					<Card>
-						<div className="game-status">
-							<h3>Status</h3>
-							<div>
-							{status}	{winner}
-							</div>
+						<div>
+							<p>{turn}, {player}</p>
+							<p>{status}	{winner}</p>
 						</div>
-					</Card>
+					</div>
 				</div>
-				</div>
-	    	</div>
 	    </div>
 	);
 
@@ -321,7 +313,7 @@ function CompGame(props) {
 				else {
 					winner = "No one";
 				}
-				status= "Game over! Winner is "+winner;
+				status= "Game over! Winner: "+winner;
 				winner = <QuitButton />;
 				dispatch({type: UPDATE_BOARD, board: squares});
 				return;
@@ -355,7 +347,7 @@ function CompGame(props) {
 					else {
 						winner = "No one";
 					}
-					status = "Game over! Winner is "+winner;
+					status = "Game over! Winner: "+winner;
 					winner = <QuitButton />;
 					dispatch({type: UPDATE_BOARD, board: squares});
 					return;

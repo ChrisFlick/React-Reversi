@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Col, Row, Container } from "../components/Grid";
 import Card from "../components/Card"
 import CardHeader from "../components/CardHeader"
 import CardBody from "../components/CardBody"
 import Header from "../components/Header"
 import API from "../utils/API"
-import Nav from "../components/Nav"
+import Navbar from "../components/Navbar";
+import Nav from "../components/Nav";
 import "../css/Profile.css";
 
 
@@ -36,8 +36,7 @@ let profilePic = [
   loading
 ]
 
-
-console.log("loggen")
+// console.log("loggen")
 const Profile = () => {
   const [state, setState] = useState({
     name: "Loading..",
@@ -64,6 +63,7 @@ const Profile = () => {
   return (
     <div className="profile-container">
       <Header />
+      <Navbar />
       <Nav />
       <div className="userprofile">
         <Card>
