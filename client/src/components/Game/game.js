@@ -82,19 +82,16 @@ function Game(props) {
 					dispatch={dispatch}
 				/>
 			</div>
-			<Card>
-				<div className="game-info">
-					<h4>Game Data</h4>
-					<div id="player-turn-box">
-					<strong>Turn: </strong>
-						{turn}, {player}
-					</div>
+			<div className="game-info">
+				<div id="player-turn-box">
+					<p><strong>Turn: </strong></p>
+					<p><strong>Status: </strong></p>
 				</div>
-				<div className="game-status">
-					<strong>Status: </strong>
-					{status}	{winner}
+				<div>
+					<p>{turn}, {player}</p>
+					<p>{status}	{winner}</p>
 				</div>
-			</Card>
+		</div>
 		</div>
 	);
 
@@ -344,7 +341,7 @@ function Game(props) {
 				} else {
 					API.updateElo(username, opponentName, false)
 				}
-				status = "Game over! Winner is " + winner;
+				status = "Game over! Winner: " + winner;
 				winner = <QuitButton />;
 				dispatch({ type: UPDATE_BOARD, board: squares });
 				return;

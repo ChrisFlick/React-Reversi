@@ -60,9 +60,26 @@ button a {
 }
 
 .game-info {
-  grid-area: game-info;
   display: grid;
-  justify-content: center;
+  grid-area: game-info;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: auto;
+  justify-items: start;
+  background: rgb(245, 253, 253);
+  width: 380px;
+  padding: 13px;
+  margin: 13px 0;
+  border: solid black 1px;
+  border-radius: 13px;
+  font-size: 20px;
+}
+
+.game-info div {
+  padding: 3px;
+}
+
+.game-info p {
+  margin: 0;
 }
 
 .navbar {
