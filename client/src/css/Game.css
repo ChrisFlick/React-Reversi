@@ -94,7 +94,8 @@ button a {
 }
 
 .quit-button {
-  text-align: center;
+  /* text-align: center; */
+  margin: 10px;
 }
 
 .scores {
