@@ -1,3 +1,5 @@
+/**** Page Structure ****/
+
 header {
   grid-area: header;
 }
@@ -6,32 +8,36 @@ nav {
   grid-area: nav;
 }
 
+/**** Attributes ****/
+
 .create-card {
-  border: solid black 1px;
-  border-radius: 13px;
   height: 120px;
   padding: 13px;
+  border: solid black 1px;
+  border-radius: 13px;
   margin: 13px;
   background: white;
   text-align: center;
 }
 
 .join-card {
-  border: solid black 1px;
-  border-radius: 13px;
   height: auto;
   padding: 13px;
+  border: solid black 1px;
+  border-radius: 13px;
   margin: 13px;
   background: white;
   text-align: center;
 }
 
 .lobbies {
-  grid-area: lobbies;
   display: grid;
+  grid-area: lobbies;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: minmax(min-content, max-content);
 }
+
+/**** Media Queries ****/
 
 /* Portrait style for phones */
 @media screen and (max-width: 640px) {
@@ -42,12 +48,12 @@ nav {
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: minmax(87px, auto);
+    grid-template-areas:
+    "header"
+    "navbar"
+    "lobbies";
     max-width: 100%;
     margin: 0 auto;
-    grid-template-areas:
-      "header"
-      "navbar"
-      "lobbies";
   }
 
   nav {
@@ -67,13 +73,13 @@ nav {
 @media screen and (min-width: 640px)
   and (min-height: 400px) {
     .lobbies-container {
-      background-image: url("../img/woodentable.png");
       display: grid;
       grid-template-columns: 100px minmax(min-content, 1fr);
       grid-auto-rows: auto;
-      width: auto;
       grid-template-areas:
       "header header"
       "nav lobbies";
+      width: auto;
+      background-image: url("../img/woodentable.png");
     }
   }

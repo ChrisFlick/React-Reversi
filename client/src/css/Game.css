@@ -1,3 +1,5 @@
+/**** Page Structure ****/
+
 header {
   grid-area: header;
 }
@@ -6,24 +8,31 @@ nav {
   grid-area: nav;
 }
 
+.navbar {
+  display: none;
+  grid-area: navbar;
+}
+
 button a {
   color: white;
 }
 
+/**** Attributes ****/
+
 .card {
+  padding: 13px;
   border: solid black 1px;
   border-radius: 13px;
-  padding: 13px;
   margin: 13px;
   background: white;
   text-align: center;
 }
 
 .chatbox {
-  border: solid black 1px;
-  border-radius: 13px;
   height: 201px;
   padding: 13px;
+  border: solid black 1px;
+  border-radius: 13px;
   margin: 13px;
   background:rgb(245, 253, 253);
   text-align: center;
@@ -34,8 +43,8 @@ button a {
   grid-template-columns: repeat(2, minmax(min-content, 50%));
   grid-auto-rows: auto;
   padding: 3px;
-  font-size: 10px;
   white-space: nowrap;
+  font-size: 10px;
   text-align: center;
 }
 
@@ -51,12 +60,12 @@ button a {
 }
 
 .game-details {
-  background:rgb(245, 253, 253);
   height: 201px;
   padding: 13px;
-  margin: 13px;
   border: solid black 1px;
   border-radius: 13px;
+  margin: 13px;
+  background:rgb(245, 253, 253);
 }
 
 .game-info {
@@ -65,12 +74,12 @@ button a {
   grid-template-columns: 1fr 4fr;
   grid-template-rows: auto;
   justify-items: start;
-  background: rgb(245, 253, 253);
   width: 380px;
   padding: 13px;
-  margin: 13px 0;
   border: solid black 1px;
   border-radius: 13px;
+  margin: 13px 0;
+  background: rgb(245, 253, 253);
   font-size: 20px;
 }
 
@@ -80,11 +89,6 @@ button a {
 
 .game-info p {
   margin: 0;
-}
-
-.navbar {
-  grid-area: navbar;
-  display: none;
 }
 
 .profiles {
@@ -99,10 +103,10 @@ button a {
   grid-template-columns: repeat(2, minmax(min-content, auto));
   grid-auto-rows: auto;
   justify-items: center;
-  background: rgb(245, 253, 253);
-  margin: 13px;
   padding: 7px 7px 0 7px;
   border: solid black 1px;
+  margin: 13px;
+  background: rgb(245, 253, 253);
 }
 
 .profile-details img {
@@ -118,12 +122,12 @@ button a {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   justify-items: center;
-  background: rgb(245, 253, 253);
   width: 100%;
   padding: 13px;
-  margin: 13px 0;
   border: solid black 1px;
   border-radius: 13px;
+  margin: 13px 0;
+  background: rgb(245, 253, 253);
   font-size: 20px;
 }
 
@@ -132,12 +136,14 @@ button a {
 }
 
 .timeout {
-    background: rgb(245, 253, 253);
-    padding: 13px;
-    margin: 13px;
-    border: solid black 1px;
-    border-radius: 13px;
+  padding: 13px;
+  border: solid black 1px;
+  border-radius: 13px;
+  margin: 13px;
+  background: rgb(245, 253, 253);
 }
+
+/**** Media Queries ****/
 
 /* Portrait style for phones */
 @media screen and (max-width: 640px) {
@@ -148,13 +154,13 @@ button a {
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: minmax(87px, auto);
+    grid-template-areas:
+    "header"
+    "navbar"
+    "game-area"
+    "profiles";
     max-width: 100%;
     margin: 0 auto;
-    grid-template-areas:
-      "header"
-      "navbar"
-      "game-area"
-      "profiles";
   }
 
   nav {
@@ -184,9 +190,9 @@ button a {
     display: grid;
     grid-template-columns: 100px minmax(min-content, 1fr) minmax(min-content, 1fr);
     grid-auto-rows: auto;
-    width: auto;
     grid-template-areas:
-      "header header     header"
-      "nav    game-area profiles";
+    "header header     header"
+    "nav    game-area profiles";
+    width: auto;
   }
 }
