@@ -26,9 +26,9 @@ nav {
     .profile-container {
       background-image: url("../img/woodentable.png");
       display: grid;
-      grid-template-columns: minmax(min-content, 87px) minmax(min-content, 50vw) minmax(min-content, 50vw);
+      grid-template-columns: 100px minmax(min-content, 50vw) minmax(min-content, 50vw);
       grid-auto-rows: auto;
-      width: 100%;
+      width: auto;
       grid-template-areas:
       "header header  header"
       "nav    userprofile details";
