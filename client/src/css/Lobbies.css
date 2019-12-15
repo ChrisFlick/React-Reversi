@@ -9,7 +9,7 @@ nav {
 .create-card {
   border: solid black 1px;
   border-radius: 13px;
-  height: 20vh;
+  height: 120px;
   padding: 13px;
   margin: 13px;
   background: white;
@@ -30,7 +30,38 @@ nav {
   grid-area: lobbies;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: auto;
+  grid-template-rows: minmax(min-content, max-content);
+}
+
+/* Portrait style for phones */
+@media screen and (max-width: 640px) {
+  body {
+    background-image: url("../img/woodentable.png");
+  }
+  .lobbies-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(87px, auto);
+    max-width: 100%;
+    margin: 0 auto;
+    grid-template-areas:
+      "header"
+      "navbar"
+      "lobbies";
+  }
+
+  nav {
+    display: none;
+  }
+  
+  .join-card h1 {
+    font-size: 18px;
+  }
+
+  .navbar {
+    display: grid;
+    width: 100%;
+  }
 }
 
 @media screen and (min-width: 640px)
@@ -38,9 +69,9 @@ nav {
     .lobbies-container {
       background-image: url("../img/woodentable.png");
       display: grid;
-      grid-template-columns: minmax(min-content, 87px) minmax(min-content, 91vw);
+      grid-template-columns: 100px minmax(min-content, 1fr);
       grid-auto-rows: auto;
-      width: 100%;
+      width: auto;
       grid-template-areas:
       "header header"
       "nav lobbies";

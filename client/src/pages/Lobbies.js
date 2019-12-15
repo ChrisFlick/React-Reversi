@@ -4,6 +4,7 @@ import Card from "../components/Card"
 import CardHeader from "../components/CardHeader"
 import CardBody from "../components/CardBody"
 import Header from "../components/Header"
+import Navbar from "../components/Navbar"
 import Nav from "../components/Nav"
 import API from "../utils/API"
 import Avatar from '@material-ui/core/Avatar';
@@ -35,39 +36,29 @@ const Lobbies = () => {
                 localStorage.setItem("opponentName", res.data[0].player1)
                 document.location.href = "/games";
             })
-            
         })
-        
-
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        API.createLobby(document.getElementById('name').value, username).then(results => {  
+        API.createLobby(document.getElementById('name').value, username).then(results => {
             localStorage.setItem("lobby", results.data)
-           document.location.href = "/wait"
-
+            document.location.href = "/wait"
         })
-            
     }
-
-
 
     return (
         <div className="lobbies-container">
             <Header />
+            <Navbar />
             <Nav />
-
             <div className="lobbies">
                 <div className="create-card">
-                    <CardHeader>Create a Lobby</CardHeader>
-                    <CardBody>
-
+                    <p>Create a Lobby</p>
                     <form id="createLobby" onSubmit={handleSubmit}>
                         Name:
                         <input id="name" type="text"></input>
                     </form>
-                    </CardBody>
                 </div>
                 <div className="join-card">
                     <h1>Join a lobby</h1>
