@@ -5,7 +5,6 @@ import {
   UPDATE_BOARD,
 } from "../../utils/actions";
 import QuitButton from '../Quit/index.js';
-import Card from "../Card";
 import WhiteDot from "../../img/white-dot.png";
 import BlackDot from "../../img/black-dot.png";
 // import "./AI.css";

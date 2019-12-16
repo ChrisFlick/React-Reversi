@@ -7,7 +7,6 @@ import {
 } from "../../utils/actions";
 import Peer from "peerjs";
 import QuitButton from '../Quit/index.js';
-import Card from '../Card/index.js';
 import WhiteDot from "../../img/white-dot.png";
 import BlackDot from "../../img/black-dot.png";
 
