@@ -40,7 +40,7 @@ function Square(props) {
                 setBackgroundColor("rgb(0,153,64)")
                 setBorder("0px solid rgb(0,153,64)");
         }
-    });
+    }, [props]);
 
     return (
         <button className={"square"}
