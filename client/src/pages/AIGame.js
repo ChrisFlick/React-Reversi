@@ -75,7 +75,7 @@ const AIGames = () => {
       <div className="game-area">
         <CompGame />
       </div>
-      <div class="profiles">
+      <div className="profiles">
         <div className="profile-details">
           <div><img src={profilePic[state.playerPic]} alt="player" /></div>
           <div><img src={state.opponentPic} alt="opponent" /></div>
@@ -89,7 +89,7 @@ const AIGames = () => {
           </div>
         </div>
         <div className="quit-button">
-          <button type="button" class="btn btn-danger"><a href="/lobbies">Quit</a></button>
+          <button type="button" className="btn btn-danger"><a href="/lobbies">Quit</a></button>
         </div>
       </div>
     </div>
