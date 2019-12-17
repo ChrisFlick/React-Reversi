@@ -37,6 +37,13 @@ nav {
   grid-template-rows: minmax(min-content, max-content);
 }
 
+.wait-container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
 /**** Media Queries ****/
 
 /* Portrait style for phones */

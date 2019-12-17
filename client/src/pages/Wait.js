@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import { Col, Row, Container } from "../components/Grid";
-// import Card from "../components/Card"
-// import CardHeader from "../components/CardHeader"
-// import CardBody from "../components/CardBody"
-// import Header from "../components/Header"
-// import Nav from "../components/Nav"
+import Card from "../components/Card"
 import API from "../utils/API"
 import "../css/Lobbies.css"
 
@@ -28,8 +23,10 @@ const Lobbies = () => {
 
 
     return (
-        <div>
-            <h1>Waiting for opponent..</h1>
+        <div className="wait-container">
+            <Card>
+                <h1>Waiting for opponent</h1>
+            </Card>
         </div>
     )
 }
