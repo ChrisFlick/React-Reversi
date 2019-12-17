@@ -58,6 +58,7 @@ const Lobbies = () => {
                     <form id="createLobby" onSubmit={handleSubmit}>
                         Name:
                         <input id="name" type="text"></input>
+                        <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
                     </form>
                 </div>
                 <div className="join-card">
@@ -65,7 +66,7 @@ const Lobbies = () => {
                     {state.lobbies.map(item => {
                         if (item.hasRoom) {
                             return (
-                                <h4><button id="hi" onClick={(e) => handleClick(item)}>{item.name}</button></h4>
+                                <h4><button type="button" class="btn btn-success" id="hi" onClick={(e) => handleClick(item)}>{item.name}</button></h4>
                             )
                         }
                     })}

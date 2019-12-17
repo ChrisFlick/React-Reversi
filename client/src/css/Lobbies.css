@@ -11,13 +11,16 @@ nav {
 /**** Attributes ****/
 
 .create-card {
-  height: 120px;
   padding: 13px;
   border: solid black 1px;
   border-radius: 13px;
   margin: 13px;
   background: white;
   text-align: center;
+}
+
+.create-card input {
+  margin: 0 16px 16px 16px;
 }
 
 .join-card {
