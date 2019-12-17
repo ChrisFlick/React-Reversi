@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "../components/Card"
 import API from "../utils/API"
+import loading from "../img/loading.gif"
 import "../css/Lobbies.css"
 
 const lobbyId = localStorage.getItem('lobby')
@@ -25,6 +26,7 @@ const Lobbies = () => {
     return (
         <div className="wait-container">
             <Card>
+                <img src={loading} alt="loading"/>
                 <h1>Waiting for opponent</h1>
             </Card>
         </div>

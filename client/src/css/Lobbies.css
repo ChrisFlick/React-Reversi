@@ -37,10 +37,22 @@ nav {
   grid-template-rows: minmax(min-content, max-content);
 }
 
+/* Styles for Wait page*/
+
 .wait-container {
   display: flex;
   height: 100vh;
   justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.wait-container img {
+  max-width: 100px;
+  height: auto;
+}
+
+.wait-container .card {
   align-items: center;
 }
 
