@@ -33,6 +33,11 @@ nav {
   text-align: center;
 }
 
+.join-card .btn {
+  font-size: 24px;
+
+}
+
 .lobbies {
   display: grid;
   grid-area: lobbies;
