@@ -5,7 +5,6 @@ import {
   UPDATE_BOARD,
 } from "../../utils/actions";
 import QuitButton from '../Quit/index.js';
-import Card from "../Card";
 import WhiteDot from "../../img/white-dot.png";
 import BlackDot from "../../img/black-dot.png";
 // import "./AI.css";
@@ -291,7 +290,7 @@ function CompGame(props) {
 						let playerPassing = player;
 						player = player === player1? player2: player1;
 						turn = turn === 'White' ? 'Black': 'White';
-						status = playerPassing+" has no available moves. Pass";
+						status = playerPassing+" has no available moves. Pass.";
 						passCounter++;
 						clearChoices(squares);
 						getBoardValidMoves(squares);
@@ -332,7 +331,7 @@ function CompGame(props) {
 				if (player === player2 && wait === true) {
 					let move = aiTurn(squares);
 					getBoardSwapColors(squares,isValidMove(squares,move[0],move[1]));
-					status = "Droid moved. Player's turn now";
+					status = "Droid moved. Player's turn.";
 					getBoardValidMoves(squares);
 					dispatch({type: UPDATE_BOARD, board: squares});
 				}

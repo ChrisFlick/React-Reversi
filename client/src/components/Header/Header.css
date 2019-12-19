@@ -7,3 +7,9 @@ header {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
 }
+
+header img {
+  width: 400px;
+  height: auto;
+  padding: 0 10px;
+}

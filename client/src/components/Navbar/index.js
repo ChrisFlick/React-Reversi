@@ -13,13 +13,13 @@ function Navbar() {
       <p>
         <a href="/">LOGOUT</a>
       </p>
-      <p>
+      <span>
         <a href="/aigame">
         <p>BATTLE</p>
         <p>THE</p>
         <p>BOT</p>
         </a>
-      </p>
+      </span>
     </div>
   );
 }

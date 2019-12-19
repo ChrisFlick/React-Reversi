@@ -94,11 +94,11 @@ const Games = () => {
           <div><img src={profilePic[state.playerPic]} alt="player" /></div>
           <div><img src={profilePic[state.opponentPic]} alt="opponent" /></div>
           <div className="elo">
-            <div><img src={colorPic[userColor]} /></div>
+            <div><img src={colorPic[userColor]} alt="player" /></div>
             <div>{state.playerName} {state.playerElo}</div>
           </div>
           <div className="elo">
-            <div><img src={colorPic[opponentColor]} /></div>
+            <div><img src={colorPic[opponentColor]} alt="opponent" /></div>
             <div>{state.opponentName} {state.opponentElo}</div>
           </div>
         </div>
