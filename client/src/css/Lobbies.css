@@ -73,7 +73,7 @@ nav {
   }
   .lobbies-container {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 100vw;
     grid-auto-rows: minmax(87px, auto);
     grid-template-areas:
     "header"
@@ -83,12 +83,22 @@ nav {
     margin: 0 auto;
   }
 
+  header img {
+    width: 100vw;
+    height: auto;
+    padding: 0 10px;
+  }
+
   nav {
     display: none;
   }
   
   .join-card h1 {
     font-size: 18px;
+  }
+  
+  .lobbies {
+    grid-template-columns: 1fr;
   }
 
   .navbar {

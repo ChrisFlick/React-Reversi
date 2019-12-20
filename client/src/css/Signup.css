@@ -84,6 +84,7 @@ span {
   }
 
   .form-card {
+    max-width: 80vw;
     margin: 13px 0;
   }
   
