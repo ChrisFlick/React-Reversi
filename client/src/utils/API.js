@@ -1,4 +1,5 @@
 const axios = require("axios");
+const url = "https://reversi-server.herokuapp.com"
 
 const API = {  
   auth: function (name, password) {
@@ -14,7 +15,7 @@ const API = {
   *********************/
 
   createProfile: function (name, password, pic) {
-    return axios.post("/api/profiles", {
+    return axios.post(url + "/api/profiles", {
       name: name,
       password: password,
       pic: pic
@@ -22,15 +23,15 @@ const API = {
   },
 
   deleteProfile: function (name) { // Deletes profile given the name
-    return axios.delete(`/api/profiles/${name}`)
+    return axios.delete(`${url}/api/profiles/${name}`)
   },
 
   getProfile: function (name) { // Searches for profile based on name
-    return axios.get(`/api/profiles/${name}`)
+    return axios.get(`${url}/api/profiles/${name}`)
   },
 
   updateElo: function (user, opponent, win) {
-    return axios.put(`/api/elo/${user}/${opponent}/${win}`)
+    return axios.put(`${url}/api/elo/${user}/${opponent}/${win}`)
   },
 
   /*********************
@@ -38,23 +39,23 @@ const API = {
   *********************/
 
   createLobby: function (name, player1) {
-    return axios.post("/api/lobbies", {
+    return axios.post(url + "/api/lobbies", {
       name: name,
       player1: player1,
     })
   },
 
   updateLobby: function (id, player2) {
-    return axios.put(`/api/lobbies/${id}`, {
+    return axios.put(`${url}/api/lobbies/${id}`, {
       player2: player2,
     })
   },
 
   getLobby: function (id) {
     if (id) {
-      return axios.get(`/api/lobbies/${id}`)
+      return axios.get(`${url}/api/lobbies/${id}`)
     }
-    return axios.get(`/api/lobbies/all`)
+    return axios.get(`${url}/api/lobbies/all`)
     
   },
 
@@ -63,7 +64,7 @@ const API = {
   *********************/
 
   createGame: function (id, player1, player2) {
-    return axios.post(`/api/games`, {
+    return axios.post(`${url}/api/games`, {
       id: id,
       player1: player1,
       player2: player2,
@@ -71,11 +72,11 @@ const API = {
   },
 
   getGames: function (name) {
-    return axios.get(`/api/games/${name}`)
+    return axios.get(`${url}/api/games/${name}`)
   },
 
   updateGame: function(id, moves) {
-    return axios.put(`/api/games/${id}`,{
+    return axios.put(`${url}/api/games/${id}`,{
       moves: moves
     })
   }
