@@ -1,3 +1,5 @@
+/**** Page Structure ****/
+
 header {
   grid-area: header;
 }
@@ -6,44 +8,115 @@ nav {
   grid-area: nav;
 }
 
+/**** Attributes ****/
+
 .create-card {
+  padding: 13px;
   border: solid black 1px;
   border-radius: 13px;
-  height: 20vh;
-  padding: 13px;
   margin: 13px;
   background: white;
   text-align: center;
+}
+
+.create-card input {
+  margin: 0 16px 16px 16px;
 }
 
 .join-card {
-  border: solid black 1px;
-  border-radius: 13px;
   height: auto;
   padding: 13px;
+  border: solid black 1px;
+  border-radius: 13px;
   margin: 13px;
   background: white;
   text-align: center;
 }
 
+.join-card .btn {
+  font-size: 24px;
+
+}
+
 .lobbies {
-  grid-area: lobbies;
   display: grid;
+  grid-area: lobbies;
   grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: auto;
+  grid-template-rows: minmax(min-content, max-content);
+}
+
+/* Styles for Wait page*/
+
+.wait-container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.wait-container img {
+  max-width: 400px;
+  height: auto;
+}
+
+.wait-container .card {
+  align-items: center;
+}
+
+/**** Media Queries ****/
+
+/* Portrait style for phones */
+@media screen and (max-width: 640px) {
+  body {
+    background-image: url("../img/woodentable.png");
+  }
+  .lobbies-container {
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-auto-rows: minmax(87px, auto);
+    grid-template-areas:
+    "header"
+    "navbar"
+    "lobbies";
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  header img {
+    width: 100vw;
+    height: auto;
+    padding: 0 10px;
+  }
+
+  nav {
+    display: none;
+  }
+  
+  .join-card h1 {
+    font-size: 18px;
+  }
+  
+  .lobbies {
+    grid-template-columns: 1fr;
+  }
+
+  .navbar {
+    display: grid;
+    width: 100%;
+  }
 }
 
 @media screen and (min-width: 640px)
   and (min-height: 400px) {
     .lobbies-container {
-      background-image: url("../img/woodentable.png");
       display: grid;
-      grid-template-columns: minmax(min-content, 87px) minmax(min-content, 873px);
+      grid-template-columns: 100px minmax(min-content, 1fr);
       grid-auto-rows: auto;
-      width: 960px;
-      margin: 0 auto;
       grid-template-areas:
       "header header"
       "nav lobbies";
+      width: auto;
+      background-image: url("../img/woodentable.png");
     }
   }

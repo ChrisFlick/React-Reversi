@@ -1,5 +1,6 @@
 import React from 'react';
 // import Avatar from '@material-ui/core/Avatar';
+import BackgroundImage from '../img/React_Reversi.png'
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -17,8 +18,8 @@ function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
+            <Link color="inherit" href="https://www.uclaextension.edu/">
+                The Assemblers
       </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -31,7 +32,7 @@ const useStyles = makeStyles(theme => ({
         height: '100vh',
     },
     image: {
-        backgroundImage: 'url(https://playpager.com/wp-content/uploads/2019/08/reversi-game.jpg)',
+        backgroundImage: `url(${BackgroundImage})`,
         backgroundColor: theme.palette.grey[50],
         backgroundSize: 'cover',
         backgroundPosition: 'center',

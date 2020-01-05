@@ -1,3 +1,5 @@
+/**** Page Structure ****/
+
 header {
   grid-area: header;
 }
@@ -6,13 +8,33 @@ nav {
   grid-area: nav;
 }
 
-.chatbox {
+.navbar {
+  display: none;
+  grid-area: navbar;
+}
+
+button a {
+  color: white;
+}
+
+/**** Attributes ****/
+
+.card {
+  padding: 13px;
   border: solid black 1px;
   border-radius: 13px;
-  height: 201px;
-  padding: 13px;
   margin: 13px;
   background: white;
+  text-align: center;
+}
+
+.chatbox {
+  height: 201px;
+  padding: 13px;
+  border: solid black 1px;
+  border-radius: 13px;
+  margin: 13px;
+  background:rgb(245, 253, 253);
   text-align: center;
 }
 
@@ -21,8 +43,8 @@ nav {
   grid-template-columns: repeat(2, minmax(min-content, 50%));
   grid-auto-rows: auto;
   padding: 3px;
-  font-size: 10px;
   white-space: nowrap;
+  font-size: 10px;
   text-align: center;
 }
 
@@ -31,35 +53,49 @@ nav {
   height: auto;
 }
 
-.game-board {
-  grid-area: game-board;
+.game-area {
+  grid-area: game-area;
   display: grid;
   justify-content: center;
 }
 
 .game-details {
-  background: white;
   height: 201px;
   padding: 13px;
-  margin: 13px;
   border: solid black 1px;
   border-radius: 13px;
+  margin: 13px;
+  background:rgb(245, 253, 253);
 }
 
 .game-info {
-  grid-area: game-info;
   display: grid;
-  justify-content: center;
+  grid-area: game-info;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: auto;
+  justify-items: start;
+  width: 380px;
+  padding: 13px;
+  border: solid black 1px;
+  border-radius: 13px;
+  margin: 13px 0;
+  background: rgb(245, 253, 253);
+  font-size: 20px;
 }
 
-.navbar {
-  grid-area: navbar;
-  display: none;
+.game-info div {
+  padding: 3px;
+}
+
+.game-info p {
+  margin: 0;
 }
 
 .profiles {
   grid-area: profiles;
   justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .profile-details {
@@ -67,10 +103,10 @@ nav {
   grid-template-columns: repeat(2, minmax(min-content, auto));
   grid-auto-rows: auto;
   justify-items: center;
-  background: white;
-  margin: 13px;
   padding: 7px 7px 0 7px;
   border: solid black 1px;
+  margin: 13px;
+  background: rgb(245, 253, 253);
 }
 
 .profile-details img {
@@ -79,75 +115,35 @@ nav {
 }
 
 .quit-button {
-  text-align: center;
+  margin: 10px;
 }
 
 .scores {
   display: grid;
-  grid-template-columns: repeat(4, minmax(min-content, auto));
-  grid-auto-rows: auto;
+  grid-template-columns: repeat(5, 1fr);
   justify-items: center;
-  align-items: center;
-  background: white;
   width: 100%;
   padding: 13px;
-  margin: 13px 0;
   border: solid black 1px;
   border-radius: 13px;
+  margin: 13px 0;
+  background: rgb(245, 253, 253);
   font-size: 20px;
 }
 
-.timeout {
-    background: white;
-    padding: 13px;
-    margin: 13px;
-    border: solid black 1px;
-    border-radius: 13px;
+.scores img {
+  margin-bottom: 5px;
 }
 
-/* Landscape style for phones */
-@media screen and (max-height: 400px) {
-  .game-container {
-    display: grid;
-    grid-template-columns: repeat(3, 20fr) 40fr;
-    grid-auto-rows: auto;
-    justify-items: center;
-    background-image: none;
-  }
-  .game-board {
-    grid-column: 1 / 4;
-    grid-row: 2 / 3;
-  }
-  .navbar {
-    display: grid;
-    grid-column: 1 / 5;
-    grid-row: 1 / 2;
-  }
-  .profiles {
-    grid-column: 4 / 5;
-    grid-row: 2 / 3;
-  }
-  body {
-    background-image: url("../img/woodentable.png");
-    background-size: 100hw;
-  }
-  header, nav {
-    display: none;
-  }
-  .game-info, .profile-details, .quit-button, .scores, .timeout{
-    display: none;
-  }
-  .card {
-    height: 75vh;
-    width: 40vw;
-  }
-  .game-board img{
-    height: 80vh;
-  }
-  .navbar {
-    height: 20vh;
-  }
+.timeout {
+  padding: 13px;
+  border: solid black 1px;
+  border-radius: 13px;
+  margin: 13px;
+  background: rgb(245, 253, 253);
 }
+
+/**** Media Queries ****/
 
 /* Portrait style for phones */
 @media screen and (max-width: 640px) {
@@ -156,21 +152,33 @@ nav {
   }
   .game-container {
     display: grid;
-    grid-template-columns: minmax(1fr, auto) minmax(1fr, auto);
+    grid-template-columns: 1fr;
     grid-auto-rows: minmax(87px, auto);
-    max-width: 640px;
-    margin: 0 auto;
     grid-template-areas:
-      "header     header"
-      "navbar     navbar"
-      "game-board game-board"
-      "game-info  profiles";
+    "header"
+    "navbar"
+    "game-area"
+    "profiles";
+    max-width: 100%;
+    margin: 0 auto;
   }
+
   nav {
     display: none;
   }
+
+  .game-area {
+    width: 100%;
+  }
+
   .navbar {
     display: grid;
+    width: 100%;
+  }
+
+  .profiles {
+    width: 400px;
+    margin: 0 auto;
   }
 }
 
@@ -180,12 +188,11 @@ nav {
   .game-container {
     background-image: url("../img/woodentable.png");
     display: grid;
-    grid-template-columns: minmax(1fr, 87px) minmax(1fr, 193px) minmax(1fr, 420px) minmax(1fr, 260px);
+    grid-template-columns: 100px minmax(min-content, 1fr) minmax(min-content, 1fr);
     grid-auto-rows: auto;
-    width: 960px;
-    margin: 0 auto;
     grid-template-areas:
-      "header header    header     header"
-      "nav    game-info game-board profiles";
+    "header header     header"
+    "nav    game-area profiles";
+    width: auto;
   }
 }

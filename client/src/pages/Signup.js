@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
+import Navbar from "../components/Navbar";
+import TextField from '@material-ui/core/TextField';
 import { Container } from "../components/Grid";
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
@@ -94,103 +96,103 @@ const Signup = () => {
   const classes = useStyles();
 
   return (
-    <Container fluid>
-      <div>
-        <Header />
-        <Nav />
-        <div className="form-container">
-          <div className="form-card">
-            <form className="form">
-              <span>
-                Enter User Name:
-                  <input
-                  value={inputState.userName}
-                  name="userName"
-                  type="text"
-                  placeholder="User Name"
-                  onChange={handleChange}
-                />
-              </span>
-              <span>
-                Enter Password:
-                <input
-                  value={inputState.password.substring(0, 14)}
-                  name="password"
-                  type="password"
-                  placeholder="password"
-                  onChange={handleChange}
-                />
-              </span>
-              <span>
-                Confirm Password
-                <input
-                  value={inputState.passwordConfirm}
-                  name="passwordConfirm"
-                  type="password"
-                  placeholder="password"
-                  onChange={handleChange}
-                />
-              </span>
-            </form>
-            <form id="avatar">
-              <Grid container justify="center" alignItems="center">
-                <input type="radio" name="avatar" value={0} checked="checked"></input>
-                <Avatar className={classes.avatar}>
-                  <img className="avatar" src={profile_0} alt="avatar"></img
-                  ></Avatar>
+    <div className="form-container">
+      <Header />
+      <Navbar />
+      <Nav />
+      <div className="form-area">
+        <div className="form-card">
+          <h4>Sign Up</h4>
+          <form className="form">
+            <span>
+              {/* Enter User Name: */}
+              <input
+                value={inputState.userName}
+                name="userName"
+                type="text"
+                placeholder="Enter User Name"
+                onChange={handleChange}
+              />
+            </span>
+            <span>
+              {/* Enter Password: */}
+              <input
+                value={inputState.password.substring(0, 14)}
+                name="password"
+                type="password"
+                placeholder="Enter Password"
+                onChange={handleChange}
+              />
+            </span>
+            <span>
+              {/* Confirm Password */}
+              <input
+                value={inputState.passwordConfirm}
+                name="passwordConfirm"
+                type="password"
+                placeholder="Confirm Password"
+                onChange={handleChange}
+              />
+            </span>
+          </form>
+          <form id="avatar">
+            <Grid container justify="center" alignItems="center">
+              <input type="radio" name="avatar" value={0} checked="checked"></input>
+              <Avatar className={classes.avatar}>
+                <img className="avatar" src={profile_0} alt="avatar"></img
+                ></Avatar>
 
-                <input type="radio" name="avatar" value={1}></input>
-                <Avatar className={classes.orangeAvatar}>
-                  <img className="avatar" src={profile_1} alt="avatar"></img>
-                </Avatar>
+              <input type="radio" name="avatar" value={1}></input>
+              <Avatar className={classes.orangeAvatar}>
+                <img className="avatar" src={profile_1} alt="avatar"></img>
+              </Avatar>
 
-                <input type="radio" name="avatar" value={2}></input>
-                <Avatar className={classes.avatar} >
-                  <img className="avatar" src={profile_2} alt="avatar"></img>
-                </Avatar>
+              <input type="radio" name="avatar" value={2}></input>
+              <Avatar className={classes.avatar} >
+                <img className="avatar" src={profile_2} alt="avatar"></img>
+              </Avatar>
 
-                <input type="radio" name="avatar" value={3}></input>
-                <Avatar className={classes.purpleAvatar} >
-                  <img className="avatar" src={profile_3} alt="avatar"></img>
-                </Avatar>
+              <input type="radio" name="avatar" value={3}></input>
+              <Avatar className={classes.purpleAvatar} >
+                <img className="avatar" src={profile_3} alt="avatar"></img>
+              </Avatar>
 
-                <input type="radio" name="avatar" value={4}></input>
-                <Avatar className={classes.purpleAvatar} >
-                  <img className="avatar" src={profile_4} alt="avatar"></img>
-                </Avatar>
+              <input type="radio" name="avatar" value={4}></input>
+              <Avatar className={classes.purpleAvatar} >
+                <img className="avatar" src={profile_4} alt="avatar"></img>
+              </Avatar>
 
-              </Grid>
-              <Grid container justify="center" alignItems="center">
-                <input type="radio" name="avatar" value={5}></input>
-                <Avatar className={classes.avatar} >
-                  <img className="avatar" src={profile_5} alt="avatar"></img>
-                </Avatar>
+            </Grid>
+            <Grid container justify="center" alignItems="center">
+              <input type="radio" name="avatar" value={5}></input>
+              <Avatar className={classes.avatar} >
+                <img className="avatar" src={profile_5} alt="avatar"></img>
+              </Avatar>
 
-                <input type="radio" name="avatar" value={6}></input>
-                <Avatar className={classes.avatar} >
-                  <img className="avatar" src={profile_6} alt="avatar"></img>
-                </Avatar>
+              <input type="radio" name="avatar" value={6}></input>
+              <Avatar className={classes.avatar} >
+                <img className="avatar" src={profile_6} alt="avatar"></img>
+              </Avatar>
 
-                <input type="radio" name="avatar" value={7}></input>
-                <Avatar className={classes.orangeAvatar} >
-                  <img className="avatar" src={profile_7} alt="avatar"></img>
-                </Avatar>
+              <input type="radio" name="avatar" value={7}></input>
+              <Avatar className={classes.orangeAvatar} >
+                <img className="avatar" src={profile_7} alt="avatar"></img>
+              </Avatar>
 
-                <input type="radio" name="avatar" value={8}></input>
-                <Avatar className={classes.purpleAvatar} >
-                  <img className="avatar" src={profile_8} alt="avatar"></img>
-                </Avatar>
-              </Grid>
-            </form>
+              <input type="radio" name="avatar" value={8}></input>
+              <Avatar className={classes.purpleAvatar} >
+                <img className="avatar" src={profile_8} alt="avatar"></img>
+              </Avatar>
+            </Grid>
+          </form>
 
-            <div className="avatar-choices">
-              <p>Avatar Choices</p>
-              <button type="button" className="btn btn-primary" onClick={handleFormSubmit}>Submit</button>
-            </div>
+          <div className="avatar-choices">
+            <p>Avatar Choices</p>
+            <button type="button" className="btn btn-primary" onClick={handleFormSubmit}>Submit</button>
           </div>
         </div>
       </div>
-    </Container>
+    </div>
   );
 }
 

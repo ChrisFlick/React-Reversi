@@ -1,35 +1,15 @@
+/**** Page Structure ****/
+
+body {
+  background-image: url("../img/woodentable.png");
+}
+
 span {
   width: 100%;
   margin: 5px 0px 5px 0px;
 }
 
-.container-fluid {
-  padding: 0;
-}
-
-.form {
-  display: grid;
-  grid-template-rows: auto;
-  margin: 20px;
-}
-
-.form-card {
-  position: absolute;
-  top: 140px;
-  width: 593px;
-  height: 367px;
-  background-color: #EEBE96;
-}
-
-.form-container {
-  display: flex;
-  justify-content: center;
-}
-
-.form input {
-  float: right;
-  width: 75%;
-}
+/**** Attributes ****/
 
 .avatar-choices {
   text-align: center;
@@ -39,7 +19,90 @@ span {
   width: 40px;
 }
 
+.form {
+  display: grid;
+  grid-template-rows: auto;
+  margin: 20px;
+}
+
+.form-area {
+  display: grid;
+  grid-area: form-area;
+  grid-template-rows: minmax(min-content, max-content);
+  margin: 0 auto;
+}
+
+.form-card {
+  max-width: 62vw;
+  height: 100%;
+  padding: 13px;
+  margin: 53px 0 0 0;
+  border: solid black 1px;
+  border-radius: 13px;
+  background-color: white;
+  text-align: center;
+}
+
+.form-card h4 {
+  margin: 20px 0 0 0;
+}
+
+.form input {
+  width: 100%;
+}
+
 .profilePic {
   width: 250px
 }
 
+/**** Media Queries ****/
+
+/* Portrait style for phones */
+@media screen and (max-width: 640px) {
+  body {
+    background-image: url("../img/woodentable.png");
+  }
+  .form-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(87px, auto);
+    grid-template-areas:
+    "header"
+    "navbar"
+    "form-area";
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  nav {
+    display: none;
+  }
+  
+  .navbar {
+    display: grid;
+    width: 100%;
+  }
+
+  .form-card {
+    max-width: 80vw;
+    margin: 13px 0;
+  }
+  
+  .join-card h1 {
+    font-size: 18px;
+  }
+}
+
+/* Desktop style */
+@media screen and (min-width: 640px) {
+  .form-container {
+    display: grid;
+    grid-template-columns: 100px minmax(min-content, 1fr);
+    grid-auto-rows: auto;
+    grid-template-areas:
+    "header header"
+    "nav    form-area";
+    justify-content: center;
+    width: auto;
+  }
+}

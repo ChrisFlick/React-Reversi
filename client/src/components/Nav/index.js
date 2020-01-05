@@ -1,9 +1,7 @@
 import React from "react";
-import { useStoreContext } from "../../utils/GlobalState";
 import "./Nav.css";
 
 function Nav() {
-  const [store] = useStoreContext();
 
   return (
     <nav >
@@ -15,6 +13,9 @@ function Nav() {
       </p>
       <p className="logout">
         <a href="/">LOGOUT</a>
+      </p>
+      <p className="battle">
+        <a href="/aigame">BATTLE THE BOT</a>
       </p>
     </nav>
   );

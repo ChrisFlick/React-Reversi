@@ -1,40 +1,40 @@
 #piece {
-  transform-style: preserve-3d;
-}
-
-#black {
-  position: absolute;
-  display: grid;
-}
-
-#white {
-  transform: rotateY(90deg);
-}
-
-.black-flip-down {
-  animation: flipfront 0.25s ease-in;
-}
-
-.black-flip-up {
-  animation: flipback 0.25s ease-out;
-}
-
-.white-flip-down {
-  animation: flipfront 0.25s ease-in;
-}
-
-.white-flip-up {
-  animation: flipback 0.25s ease-out;
-}
-
-/** Animation styles **/
-
-@keyframes flipfront {
-  0% { transform: rotateY(0deg) }
-  100% { transform: rotateY(90deg) }
-}
-
-@keyframes flipback {
-  0% { transform: rotateY(90deg) }
-  100% { transform: rotateY(0deg) }
-}
+    transform-style: preserve-3d;
+  }
+  
+  #black {
+    position: absolute;
+    display: grid;
+  }
+  
+  #white {
+    transform: rotateY(90deg);
+  }
+  
+  .black-flip-down {
+    animation: flipfront 0.25s ease-in;
+  }
+  
+  .black-flip-up {
+    animation: flipback 0.25s ease-out;
+  }
+  
+  .white-flip-down {
+    animation: flipfront 0.25s ease-in;
+  }
+  
+  .white-flip-up {
+    animation: flipback 0.25s ease-out;
+  }
+  
+  /** Animation styles **/
+  
+  @keyframes flipfront {
+    0% { transform: rotateY(0deg) }
+    100% { transform: rotateY(90deg) }
+  }
+  
+  @keyframes flipback {
+    0% { transform: rotateY(90deg) }
+    100% { transform: rotateY(0deg) }
+  } 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
 import Navbar from "../components/Navbar";
@@ -6,9 +6,10 @@ import BlackDot from "../img/black-dot.png";
 import WhiteDot from "../img/white-dot.png";
 import API from "../utils/API"
 import "../css/Game.css";
-import Game from '../components/Game/game';
+import CompGame from '../components/AI/index';
 
 // Importing images
+import profile_droid from "../img/droid.jpg"
 import profile_0 from "../img/profile_pics/profile_0.png"
 import profile_1 from "../img/profile_pics/profile_1.png"
 import profile_2 from "../img/profile_pics/profile_2.png"
@@ -21,17 +22,9 @@ import profile_8 from "../img/profile_pics/profile_8.png"
 import loading from "../img/loading.gif"
 
 const username = localStorage.getItem("username")
-const opponentName = localStorage.getItem("opponentName")
+let opponentName = "AI"
 
-let userColor;
-let opponentColor;
-if (localStorage.getItem("color") === "White") {
-  userColor = 0;
-  opponentColor = 1;
-} else {
-  userColor = 1;
-  opponentColor = 0;
-}
+// opponentName = 'chris' // for debugging
 
 let profilePic = [
   profile_0,
@@ -46,12 +39,7 @@ let profilePic = [
   loading
 ]
 
-let colorPic = [
-  WhiteDot,
-  BlackDot
-]
-
-const Games = () => {
+const AIGames = () => {
 
   const [state, setState] = useState({
     playerElo: 1000,
@@ -66,17 +54,15 @@ const Games = () => {
 
   useEffect(() => {
     API.getProfile(username).then((results) => {
-      API.getProfile(opponentName).then((res) => {
         setState({
           playerPic: results.data.profilePic,
           playerName: results.data.name,
           playerElo: results.data.elo,
 
-          opponentPic: res.data.profilePic,
-          opponentName: res.data.name,
-          opponentElo: res.data.elo
+          opponentPic: profile_droid,
+          opponentName: "K-2SO",
+          opponentElo: 1000
         })
-      })
     })
   }, [])
 
@@ -87,27 +73,27 @@ const Games = () => {
       <Navbar />
       <Nav />
       <div className="game-area">
-        <Game />
+        <CompGame />
       </div>
       <div className="profiles">
         <div className="profile-details">
           <div><img src={profilePic[state.playerPic]} alt="player" /></div>
-          <div><img src={profilePic[state.opponentPic]} alt="opponent" /></div>
+          <div><img src={state.opponentPic} alt="opponent" /></div>
           <div className="elo">
-            <div><img src={colorPic[userColor]} alt="player" /></div>
+            <div><img src={WhiteDot} /></div>
             <div>{state.playerName} {state.playerElo}</div>
           </div>
           <div className="elo">
-            <div><img src={colorPic[opponentColor]} alt="opponent" /></div>
+            <div><img src={BlackDot} /></div>
             <div>{state.opponentName} {state.opponentElo}</div>
           </div>
         </div>
         <div className="quit-button">
-          <button type="button" class="btn btn-danger"><a href="/lobbies">Quit</a></button>
+          <button type="button" className="btn btn-danger"><a href="/lobbies">Quit</a></button>
         </div>
       </div>
     </div>
   )
 }
 
-export default Games;
+export default AIGames;

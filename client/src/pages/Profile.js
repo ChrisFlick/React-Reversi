@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Col, Row, Container } from "../components/Grid";
 import Card from "../components/Card"
 import CardHeader from "../components/CardHeader"
 import CardBody from "../components/CardBody"
 import Header from "../components/Header"
 import API from "../utils/API"
-import Nav from "../components/Nav"
+import Navbar from "../components/Navbar";
+import Nav from "../components/Nav";
+import "../css/Profile.css";
+
 
 // Importing images
 import profile_0 from "../img/profile_pics/profile_0.png"
@@ -34,8 +36,7 @@ let profilePic = [
   loading
 ]
 
-
-console.log("loggen")
+// console.log("loggen")
 const Profile = () => {
   const [state, setState] = useState({
     name: "Loading..",
@@ -45,9 +46,9 @@ const Profile = () => {
     pic: 9
   })
 
-  useEffect(() => { 
+  useEffect(() => {
     API.getProfile(username).then((results) => {
-     
+
       setState({
         pic: results.data.profilePic,
         name: results.data.name,
@@ -57,42 +58,38 @@ const Profile = () => {
       })
     })
   },[])
- 
+
 
   return (
-    <Container fluid>
+    <div className="profile-container">
       <Header />
+      <Navbar />
       <Nav />
-      <Row>
-        <Col size="md-6 ">
-
-          <h1>{state.name}</h1>
-          <img src={profilePic[state.pic]} alt="profile picture" className="profilePic"></img>
-
-
-        </Col>
-        <Col size="md-6">
-          <Row>
-            <Card>
-              <CardHeader><h4>ELO Rating:</h4></CardHeader>
-              <CardBody><h1>{state.elo}</h1></CardBody>
-            </Card>
-          </Row>
-          <Row>
-            <Card>
-              <CardHeader><h4>Wins:</h4></CardHeader>
-              <CardBody><h1>{state.wins}</h1></CardBody>
-            </Card>
-            <Card>
-              <CardHeader><h4>Loses:</h4></CardHeader>
-              <CardBody><h1>{state.loses}</h1></CardBody>
-            </Card>
-          </Row>
-
-
-        </Col>
-      </Row>
-    </Container>
+      <div className="userprofile">
+        <Card>
+          <CardBody>
+            <h1>{state.name}</h1>
+            <img src={profilePic[state.pic]} alt="profile picture" className="profilePic"></img>
+          </CardBody>
+        </Card>
+      </div>
+      <div className="details">
+        <Card>
+          <CardHeader><h4>ELO Rating:</h4></CardHeader>
+          <CardBody><h1>{state.elo}</h1></CardBody>
+        </Card>
+        <div className="standings">
+          <Card>
+            <CardHeader><h4>Wins:</h4></CardHeader>
+            <CardBody><h1>{state.wins}</h1></CardBody>
+          </Card>
+          <Card>
+            <CardHeader><h4>Loses:</h4></CardHeader>
+            <CardBody><h1>{state.loses}</h1></CardBody>
+          </Card>
+        </div>
+      </div>
+    </div>
   );
 };
 
