@@ -19,9 +19,9 @@ let configs = {
     "dialect": "mysql"
   },
   "production": {
-    "username":"oogskhdc1zuqans2",
-    "password": "f835o7h7r3vnazp7",
-    "database": "w2fcxieubc35b53y",
+    "username": "zjg3jx1djhlz40yr",
+    "password": "m2dzp26b3t6psb5r",
+    "database": "yieaqvry0192bicx",
     "host": "hcm4e9frmbwfez47.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
   }
 }

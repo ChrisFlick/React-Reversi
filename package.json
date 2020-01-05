@@ -32,5 +32,8 @@
     "peerjs": "^1.1.0",
     "react-router-dom": "^5.1.2",
     "sequelize": "^5.8.6"
+  },
+  "engines": {
+    "node": "10.15.3"
   }
 }
