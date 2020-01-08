@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/react-chess/static/css/main.d0d60d2f.chunk.css",
+    "main.js": "/react-chess/static/js/main.c819d249.chunk.js",
+    "main.js.map": "/react-chess/static/js/main.c819d249.chunk.js.map",
+    "runtime-main.js": "/react-chess/static/js/runtime-main.09e52f7a.js",
+    "runtime-main.js.map": "/react-chess/static/js/runtime-main.09e52f7a.js.map",
+    "static/js/2.38244281.chunk.js": "/react-chess/static/js/2.38244281.chunk.js",
+    "static/js/2.38244281.chunk.js.map": "/react-chess/static/js/2.38244281.chunk.js.map",
+    "index.html": "/react-chess/index.html",
+    "precache-manifest.e1057a5fbe420b607c6059b6b6b8d4eb.js": "/react-chess/precache-manifest.e1057a5fbe420b607c6059b6b6b8d4eb.js",
+    "service-worker.js": "/react-chess/service-worker.js",
+    "static/css/main.d0d60d2f.chunk.css.map": "/react-chess/static/css/main.d0d60d2f.chunk.css.map",
+    "static/media/Reversi200.png": "/react-chess/static/media/Reversi200.eb6949ca.png",
+    "static/media/droid.jpg": "/react-chess/static/media/droid.1245cd7d.jpg",
+    "static/media/profile_0.png": "/react-chess/static/media/profile_0.49bc484c.png",
+    "static/media/profile_3.png": "/react-chess/static/media/profile_3.01d70877.png",
+    "static/media/profile_6.png": "/react-chess/static/media/profile_6.75fbd5dc.png",
+    "static/media/profile_7.png": "/react-chess/static/media/profile_7.da2789dc.png",
+    "static/media/Profile.css": "/react-chess/static/media/woodentable.fbe56390.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.09e52f7a.js",
+    "static/js/2.38244281.chunk.js",
+    "static/css/main.d0d60d2f.chunk.css",
+    "static/js/main.c819d249.chunk.js"
+  ]
+}
