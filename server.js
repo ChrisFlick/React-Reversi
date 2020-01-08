@@ -1,6 +1,6 @@
 // Requiring necessary npm packages
-var express = require("express");
-var session = require("express-session");
+const express = require("express");
+const path = require('path');
 // Requiring passport as we've configured it
 require('dotenv').config();
 
@@ -22,6 +22,12 @@ app.use(express.static("public"));
 
 // Requiring our routes
 require("./routes/api-routes.js")(app);
+
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function() {
