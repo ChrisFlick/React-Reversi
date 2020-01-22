@@ -12,7 +12,7 @@ The game is started in the position shown below on a reversi board consisting of
 ![Start of game](./images/startOfGame.png)
 
 ## Playing the game
-A move consists of placing one piece on an empty square.
+A move consists of placing one piece on an empty square. The empty circles show you where a valid move is.
 
 ## Capture
 You can capture vertical, horizontal, and diagonal rows of pieces. Also, you can capture more than one row at once.
@@ -20,3 +20,5 @@ You can capture vertical, horizontal, and diagonal rows of pieces. Also, you can
 ## End of the game
 
 The game ends when one player wins, by making his color dominant on the board while no moves are left.
+
+![End of Game](./images/endOfGame.png)
