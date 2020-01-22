@@ -19,6 +19,4 @@ You can capture vertical, horizontal, and diagonal rows of pieces. Also, you can
 
 ## End of the game
 
-The game ends when:
-One player wins, by making his color dominant on the board.
-The players agree to finish the game (as a resignation, or a draw).
+The game ends when one player wins, by making his color dominant on the board while no moves are left.
