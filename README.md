@@ -22,4 +22,5 @@ You can capture vertical, horizontal, and diagonal rows of pieces. Also, you can
 The game ends when one player wins, by making his color dominant on the board while no moves are left.
 
 ![End of Game](./images/endOfGame.png)
+
 In this example White wins.
